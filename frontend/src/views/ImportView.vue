@@ -11,8 +11,8 @@
           show-icon
         >
           <p>请选择邮箱类型，然后按照相应格式输入邮箱信息，每行一个：</p>
-          <p v-if="formData.mailType === 'outlook'"><code>邮箱地址----密码----客户端ID----RefreshToken</code></p>
-          <p>示例：example@outlook.com----password123----9e5f94bc-e8a4-4e73-b8be-63364c29d753----M.C511_BL2...</p>
+          <p v-if="formData.mailType === 'outlook'"><code>邮箱地址----客户端ID----RefreshToken</code></p>
+          <p>示例：example@outlook.com----9e5f94bc-e8a4-4e73-b8be-63364c29d753----M.C511_BL2...</p>
         </el-alert>
         
         <el-form :model="formData" ref="formRef" :rules="rules" label-position="top">
@@ -141,13 +141,13 @@ function validateImportData(rule, value, callback) {
     // 根据不同邮箱类型进行不同的验证
     if (formData.mailType === 'outlook') {
       const parts = line.split('----')
-      if (parts.length !== 4) {
+      if (parts.length !== 3) {
         hasError = true
-        callback(new Error(`第 ${i + 1} 行格式错误，请使用"----"分隔邮箱、密码、客户端ID和RefreshToken`))
+        callback(new Error(`第 ${i + 1} 行格式错误，请使用"----"分隔邮箱、客户端ID和RefreshToken`))
         break
       }
       
-      if (!parts[0] || !parts[1] || !parts[2] || !parts[3]) {
+      if (!parts[0] || !parts[1] || !parts[2]) {
         hasError = true
         callback(new Error(`第 ${i + 1} 行有空白字段，所有字段都必须填写`))
         break

@@ -1,8 +1,8 @@
-<template>
+﻿<template>
   <div class="home-container">
     <div class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">花火邮箱助手</h1>
+        <h1 class="hero-title">学在华邮件助手</h1>
         <p class="hero-subtitle">简单易用的通用邮件收件工具</p>
         <div class="hero-buttons">
           <el-button type="primary" size="large" @click="navigateToEmails" class="primary-btn hover-scale">开始使用</el-button>
@@ -54,7 +54,7 @@
 
     <div class="cta-section">
       <div class="cta-content">
-        <h2>开始使用花火邮箱助手</h2>
+        <h2>开始使用学在华邮件助手</h2>
         <p>简单几步，高效管理您的所有邮箱</p>
         <el-button type="primary" size="large" @click="navigateToEmails" class="cta-button hover-scale">立即开始</el-button>
       </div>

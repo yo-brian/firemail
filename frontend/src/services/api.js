@@ -244,15 +244,42 @@ const apiMethods = {
   },
 
   checkEmail: (emailId) => {
-    return api.post(`/emails/${emailId}/check`);
+    return api.post(`/emails/${emailId}/check`, null, { timeout: 60000 });
+  },
+
+  recheckEmailAll: (emailId) => {
+    return api.post(`/emails/${emailId}/recheck_all`, null, { timeout: 60000 });
   },
 
   batchCheckEmails: (emailIds) => {
-    return api.post('/emails/batch_check', { email_ids: emailIds });
+    return api.post('/emails/batch_check', { email_ids: emailIds }, { timeout: 60000 });
   },
 
   getMailRecords: (emailId) => {
     return api.get(`/emails/${emailId}/mail_records`);
+  },
+
+  getMailAttachments: (mailId) => {
+    return api.get(`/mail_records/${mailId}/attachments`);
+  },
+
+  markMailRead: (mailId) => {
+    return api.post(`/mail_records/${mailId}/mark-read`);
+  },
+
+  sendMail: (emailId, payload) => {
+    return api.post(`/emails/${emailId}/send_mail`, payload);
+  },
+
+  replyMail: (mailId, payload) => {
+    return api.post(`/mail_records/${mailId}/reply`, payload);
+  },
+
+  deleteMailRecord: (mailId) => {
+    return api.delete(`/mail_records/${mailId}`);
+  },
+  batchDeleteMailRecords: (mailIds) => {
+    return api.post('/mail_records/batch_delete', { mail_ids: mailIds });
   },
 
   getEmailPassword: (emailId) => {
@@ -272,14 +299,21 @@ const apiMethods = {
     getAll: () => api.get('/emails').then(res => res.data),
     getPassword: (emailId) => api.get(`/emails/${emailId}/password`).then(res => res.data),
     getRecords: (emailId) => api.get(`/emails/${emailId}/mail_records`).then(res => res.data),
+    getAttachments: (mailId) => api.get(`/mail_records/${mailId}/attachments`).then(res => res.data),
+    markRead: (mailId) => api.post(`/mail_records/${mailId}/mark-read`).then(res => res.data),
+    sendMail: (emailId, payload) => api.post(`/emails/${emailId}/send_mail`, payload).then(res => res.data),
+    replyMail: (mailId, payload) => api.post(`/mail_records/${mailId}/reply`, payload).then(res => res.data),
+    deleteMail: (mailId) => api.delete(`/mail_records/${mailId}`).then(res => res.data),
+    batchDeleteMail: (mailIds) => api.post('/mail_records/batch_delete', { mail_ids: mailIds }).then(res => res.data),
     add: (emailData) => api.post('/emails', emailData),
     check: (emailIds) => {
       if (Array.isArray(emailIds) && emailIds.length === 1) {
-        return api.post(`/emails/${emailIds[0]}/check`);
+        return api.post(`/emails/${emailIds[0]}/check`, null, { timeout: 60000 });
       } else {
-        return api.post('/emails/batch_check', { email_ids: emailIds });
+        return api.post('/emails/batch_check', { email_ids: emailIds }, { timeout: 60000 });
       }
     },
+    recheckAll: (emailId) => api.post(`/emails/${emailId}/recheck_all`, null, { timeout: 60000 }).then(res => res.data),
     delete: (emailIds) => {
       if (Array.isArray(emailIds) && emailIds.length === 1) {
         return api.delete(`/emails/${emailIds[0]}`);
@@ -287,7 +321,9 @@ const apiMethods = {
         return api.post('/emails/batch_delete', { email_ids: emailIds });
       }
     },
-    import: (data) => api.post('/emails/import', data)
+    import: (data) => api.post('/emails/import', data),
+    initiateDeviceFlow: () => api.post('/outlook/graph/initiate'),
+    checkDeviceFlow: (deviceCode) => api.get(`/outlook/graph/check/${deviceCode}`),
   },
 
   // 工具方法

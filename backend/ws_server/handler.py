@@ -6,6 +6,7 @@ import websockets
 import jwt
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
+from utils.email.outlook import OutlookMailHandler
 
 # 配置日志
 logger = logging.getLogger('websocket')
@@ -181,7 +182,11 @@ class WebSocketHandler:
                 emails = self.db.get_all_emails(user_id)
             
             # 将邮箱记录转换为字典列表
-            emails_list = [dict(email) for email in emails]
+            emails_list = []
+            for email in emails:
+                email_dict = dict(email)
+                email_dict['unread_count'] = self.db.get_unread_count(email_dict['id'])
+                emails_list.append(email_dict)
             
             # 发送响应
             await websocket.send(json.dumps({
@@ -348,16 +353,16 @@ class WebSocketHandler:
         """处理添加邮箱的请求"""
         try:
             # 获取请求数据
-            email = data.get('email')
-            password = data.get('password')
-            mail_type = data.get('mail_type', 'imap')  # 默认使用imap类型
+            email = (data.get('email') or '').strip()
+            password = data.get('password') or ''
+            mail_type = data.get('mail_type', 'outlook')
             client_id = data.get('client_id')
             refresh_token = data.get('refresh_token')
             server = data.get('server')
             port = data.get('port')
             use_ssl = data.get('use_ssl', True)
             
-            if not email or not password:
+            if mail_type != 'outlook' and (not email or not password):
                 await websocket.send(json.dumps({
                     'type': 'error',
                     'message': '邮箱地址和密码不能为空'
@@ -372,6 +377,28 @@ class WebSocketHandler:
                         'message': 'Outlook邮箱需要提供Client ID和Refresh Token'
                     }))
                     return
+
+                resolved = OutlookMailHandler.resolve_graph_mailbox(
+                    refresh_token=refresh_token,
+                    client_id=client_id,
+                    expected_email=email or None
+                )
+                if not resolved.get('success'):
+                    await websocket.send(json.dumps({
+                        'type': 'error',
+                        'message': resolved.get('error') or 'Graph 身份校验失败'
+                    }))
+                    return
+
+                # 统一使用 Graph /me 返回的邮箱地址
+                email = resolved.get('email') or ''
+                if not email:
+                    await websocket.send(json.dumps({
+                        'type': 'error',
+                        'message': '无法解析邮箱地址，请检查授权后重试'
+                    }))
+                    return
+
                 email_id = self.db.add_email(user_id, email, password, client_id, refresh_token, mail_type)
             else:  # imap类型
                 email_id = self.db.add_email(

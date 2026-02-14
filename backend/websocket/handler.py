@@ -1,6 +1,7 @@
 import json
 import asyncio
 import logging
+from utils.email.outlook import OutlookMailHandler
 import websockets
 from websockets.exceptions import ConnectionClosed
 import os
@@ -155,7 +156,11 @@ class WebSocketHandler:
         """处理获取所有邮箱的请求"""
         emails = self.db.get_all_emails()
         # 转换为可序列化的字典列表
-        emails_list = [dict(email) for email in emails]
+        emails_list = []
+        for email in emails:
+            email_dict = dict(email)
+            email_dict['unread_count'] = self.db.get_unread_count(email_dict['id'])
+            emails_list.append(email_dict)
         await self.send_to_client(websocket, {
             'type': 'emails_list',
             'data': emails_list
@@ -411,7 +416,11 @@ class WebSocketHandler:
                 
                 # 发送更新后的邮箱列表
                 emails = self.db.get_all_emails(user_id)
-                emails_list = [dict(email) for email in emails]
+                emails_list = []
+                for email in emails:
+                    email_dict = dict(email)
+                    email_dict['unread_count'] = self.db.get_unread_count(email_dict['id'])
+                    emails_list.append(email_dict)
                 await self.send_to_client(websocket, {
                     'type': 'emails_list',
                     'data': emails_list
@@ -486,7 +495,11 @@ class WebSocketHandler:
                 
                 # 发送更新后的邮箱列表
                 emails = self.db.get_all_emails(user_id)
-                emails_list = [dict(email) for email in emails]
+                emails_list = []
+                for email in emails:
+                    email_dict = dict(email)
+                    email_dict['unread_count'] = self.db.get_unread_count(email_dict['id'])
+                    emails_list.append(email_dict)
                 await self.send_to_client(websocket, {
                     'type': 'emails_list',
                     'data': emails_list
@@ -561,7 +574,11 @@ class WebSocketHandler:
                 
                 # 发送更新后的邮箱列表
                 emails = self.db.get_all_emails(user_id)
-                emails_list = [dict(email) for email in emails]
+                emails_list = []
+                for email in emails:
+                    email_dict = dict(email)
+                    email_dict['unread_count'] = self.db.get_unread_count(email_dict['id'])
+                    emails_list.append(email_dict)
                 await self.send_to_client(websocket, {
                     'type': 'emails_list',
                     'data': emails_list

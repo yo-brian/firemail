@@ -290,9 +290,15 @@ const checkEmail = async (emailId) => {
     })
     if (response.ok) {
       ElMessage.success('开始检查邮件')
-    } else {
-      ElMessage.error('检查邮件失败')
+      return
     }
+
+    if (response.status === 409) {
+      ElMessage.warning('该邮箱正在处理中，请稍后再试')
+      return
+    }
+
+    ElMessage.error('检查邮件失败')
   } catch (error) {
     console.error('检查邮件失败:', error)
     ElMessage.error('检查邮件失败')

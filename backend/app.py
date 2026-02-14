@@ -1,15 +1,20 @@
+﻿#  -*- coding: utf-8 -*-
 import os
 import sys
 import logging
 import threading
 import argparse
 import datetime
+import time
+import uuid
 import jwt
 from functools import wraps
 from flask import Flask, send_from_directory, jsonify, request, Response, make_response
 from flask_cors import CORS
 from database.db import Database
-from utils.email import EmailBatchProcessor
+from utils.email import EmailBatchProcessor, OutlookMailHandler
+import requests
+import msal
 from ws_server.handler import WebSocketHandler
 import asyncio
 import concurrent.futures
@@ -33,6 +38,7 @@ os.makedirs(data_dir, exist_ok=True)
 app = Flask(__name__)
 CORS(app, supports_credentials=True, resources={r"/api/*": {"origins": "*"}})  # 允许跨域请求和凭据
 
+
 # 增加捕获所有OPTIONS请求的处理方法，支持预检请求
 @app.route('/', defaults={'path': ''}, methods=['OPTIONS'])
 @app.route('/<path:path>', methods=['OPTIONS'])
@@ -47,6 +53,32 @@ def handle_options(path):
 
 # JWT密钥
 JWT_SECRET = os.environ.get('JWT_SECRET_KEY', 'huohuo_email_secret_key')
+OUTLOOK_DEVICE_AUTHORITY = os.environ.get(
+    'OUTLOOK_DEVICE_AUTHORITY',
+    'https://login.microsoftonline.com/consumers/'
+)
+_OUTLOOK_DEFAULT_SCOPES = ['User.Read', 'Mail.Read', 'Mail.ReadWrite', 'Mail.Send']
+_OUTLOOK_RESERVED_SCOPES = {'openid', 'profile', 'offline_access'}
+_raw_outlook_scopes = os.environ.get(
+    'OUTLOOK_DEVICE_SCOPES',
+    'offline_access User.Read Mail.Read Mail.ReadWrite Mail.Send'
+)
+_raw_outlook_scopes = _raw_outlook_scopes.replace(',', ' ')
+OUTLOOK_DEVICE_SCOPES = []
+for _scope in _raw_outlook_scopes.split():
+    _scope = _scope.strip()
+    if not _scope:
+        continue
+    if _scope.lower() in _OUTLOOK_RESERVED_SCOPES:
+        continue
+    OUTLOOK_DEVICE_SCOPES.append(_scope)
+if not OUTLOOK_DEVICE_SCOPES:
+    OUTLOOK_DEVICE_SCOPES = list(_OUTLOOK_DEFAULT_SCOPES)
+elif set(s.lower() for s in OUTLOOK_DEVICE_SCOPES) != set(s.lower() for s in _raw_outlook_scopes.split()):
+    logger.info(f"Outlook device flow: filtered reserved scopes, effective scopes={OUTLOOK_DEVICE_SCOPES}")
+OUTLOOK_DEVICE_FLOW_CACHE_TTL = int(os.environ.get('OUTLOOK_DEVICE_FLOW_CACHE_TTL', '1800'))
+_OUTLOOK_DEVICE_FLOW_LOCK = threading.Lock()
+_OUTLOOK_DEVICE_FLOWS = {}
 
 # 打印所有环境变量，帮助调试
 print("\n========= 环境变量 =========")
@@ -68,6 +100,22 @@ email_processor = EmailBatchProcessor(db)
 # 初始化WebSocket处理器
 ws_handler = WebSocketHandler()
 ws_handler.set_dependencies(db, email_processor)
+
+
+def _purge_expired_outlook_device_flows():
+    now = time.time()
+    with _OUTLOOK_DEVICE_FLOW_LOCK:
+        expired_keys = []
+        for flow_id, item in _OUTLOOK_DEVICE_FLOWS.items():
+            expires_at = float(item.get('expires_at') or 0)
+            if expires_at and expires_at < now:
+                expired_keys.append(flow_id)
+                continue
+            created_at = float(item.get('created_at') or 0)
+            if created_at and (now - created_at) > OUTLOOK_DEVICE_FLOW_CACHE_TTL:
+                expired_keys.append(flow_id)
+        for flow_id in expired_keys:
+            _OUTLOOK_DEVICE_FLOWS.pop(flow_id, None)
 
 # 用户认证装饰器
 def token_required(f):
@@ -361,7 +409,7 @@ def reset_user_password(current_user, user_id):
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """健康检查接口"""
-    return jsonify({'status': 'ok', 'message': '花火邮箱助手服务正在运行'})
+    return jsonify({'status': 'ok', 'message': '学在华邮件助手服务正在运行'})
 
 @app.route('/api/config', methods=['GET'])
 def get_config():
@@ -406,18 +454,24 @@ def get_all_emails(current_user):
     else:
         emails = db.get_all_emails(current_user['id'])
 
-    return jsonify([dict(email) for email in emails])
+    emails_list = []
+    for email in emails:
+        email_dict = dict(email)
+        email_dict['unread_count'] = db.get_unread_count(email_dict['id'])
+        emails_list.append(email_dict)
+
+    return jsonify(emails_list)
 
 @app.route('/api/emails', methods=['POST'])
 @token_required
 def add_email(current_user):
     """添加新邮箱"""
-    data = request.json
-    email = data.get('email')
-    password = data.get('password')
+    data = request.json or {}
+    email = (data.get('email') or '').strip()
+    password = data.get('password') or ''
     mail_type = data.get('mail_type', 'outlook')
 
-    if not email or not password:
+    if mail_type != 'outlook' and (not email or not password):
         return jsonify({'error': '邮箱地址和密码是必需的'}), 400
 
     # 根据不同邮箱类型验证参数并添加
@@ -427,6 +481,19 @@ def add_email(current_user):
 
         if not client_id or not refresh_token:
             return jsonify({'error': 'Outlook邮箱需要提供Client ID和Refresh Token'}), 400
+
+        resolved = OutlookMailHandler.resolve_graph_mailbox(
+            refresh_token=refresh_token,
+            client_id=client_id,
+            expected_email=email or None
+        )
+        if not resolved.get('success'):
+            return jsonify({'error': resolved.get('error') or 'Graph 身份校验失败'}), 400
+
+        # 始终以 Graph /me 返回的邮箱为准，避免手填邮箱与令牌身份不一致
+        email = resolved.get('email') or ''
+        if not email:
+            return jsonify({'error': '无法解析邮箱地址，请检查授权后重试'}), 400
 
         success = db.add_email(
             current_user['id'],
@@ -663,6 +730,299 @@ def get_mail_attachments(current_user, mail_id):
         logger.error(f"获取附件列表失败: {str(e)}")
         return jsonify({'error': f'服务器错误: {str(e)}'}), 500
 
+@app.route('/api/mail_records/<int:mail_id>/mark-read', methods=['POST'])
+@token_required
+def mark_mail_read(current_user, mail_id):
+    """将邮件记录标记为已读，并同步到原邮箱"""
+    try:
+        mail_record = db.get_mail_record_by_id(mail_id)
+        if not mail_record:
+            return jsonify({'error': '邮件不存在'}), 404
+
+        email_id = mail_record['email_id']
+        email_info = db.get_email_by_id(email_id, None if current_user['is_admin'] else current_user['id'])
+        if not email_info:
+            return jsonify({'error': '无权访问此邮件'}), 403
+
+        if email_info.get('mail_type') != 'outlook':
+            return jsonify({'error': '仅支持Outlook/Graph邮箱的已读同步'}), 400
+
+        graph_message_id = mail_record.get('graph_message_id')
+        if not graph_message_id:
+            return jsonify({'error': '缺少Graph消息ID，无法同步已读'}), 400
+
+        refresh_token = email_info.get('refresh_token')
+        client_id = email_info.get('client_id')
+        if not refresh_token or not client_id:
+            return jsonify({'error': '缺少Refresh Token或Client ID，无法同步已读'}), 400
+
+        access_token = OutlookMailHandler.get_new_access_token(refresh_token, client_id)
+        if not access_token:
+            return jsonify({'error': '获取Access Token失败'}), 500
+
+        OutlookMailHandler.mark_message_read(access_token, graph_message_id, True)
+        db.set_mail_read_status(mail_id, 1)
+
+        return jsonify({'success': True, 'message': '已同步已读'}), 200
+    except Exception as e:
+        logger.error(f"同步邮件已读状态失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+@app.route('/api/emails/<int:email_id>/send_mail', methods=['POST'])
+@token_required
+def send_mail(current_user, email_id):
+    """发送邮件（Graph）"""
+    try:
+        email_info = db.get_email_by_id(email_id, None if current_user['is_admin'] else current_user['id'])
+        if not email_info:
+            return jsonify({'error': '邮箱不存在或无权限'}), 404
+
+        if email_info.get('mail_type') != 'outlook':
+            return jsonify({'error': '当前仅支持Outlook/Graph发信'}), 400
+
+        data = request.json or {}
+        to_list = data.get('to') or []
+        if isinstance(to_list, str):
+            to_list = [x.strip() for x in to_list.split(',') if x.strip()]
+        subject = data.get('subject') or ''
+        content = data.get('content') or ''
+        cc_list = data.get('cc') or []
+        bcc_list = data.get('bcc') or []
+        attachments = _normalize_attachments(data.get('attachments'))
+
+        if not to_list:
+            return jsonify({'error': '收件人不能为空'}), 400
+
+        access_token = OutlookMailHandler.get_new_access_token(email_info.get('refresh_token'), email_info.get('client_id'))
+        if not access_token:
+            return jsonify({'error': '获取Access Token失败'}), 500
+
+        OutlookMailHandler.send_mail(
+            access_token,
+            to_list,
+            subject,
+            content,
+            cc_list=cc_list,
+            bcc_list=bcc_list,
+            attachments=attachments
+        )
+        return jsonify({'success': True, 'message': '发送成功'}), 200
+    except Exception as e:
+        logger.error(f"发送邮件失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+def _normalize_recipients(value):
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return [x.strip() for x in value.split(',') if x.strip()]
+    if isinstance(value, list):
+        return [str(x).strip() for x in value if str(x).strip()]
+    return None
+
+def _normalize_attachments(value):
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        return []
+    normalized = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        content_base64 = (item.get('content_base64') or '').strip()
+        if not content_base64:
+            continue
+        normalized.append({
+            'name': (item.get('name') or 'attachment.bin').strip(),
+            'content_type': (item.get('content_type') or 'application/octet-stream').strip(),
+            'content_base64': content_base64
+        })
+    return normalized
+
+@app.route('/api/mail_records/<int:mail_id>/reply', methods=['POST'])
+@token_required
+def reply_mail(current_user, mail_id):
+    """Graph 原生 reply/replyAll（支持编辑收件人/主题/正文）"""
+    try:
+        mail_record = db.get_mail_record_by_id(mail_id)
+        if not mail_record:
+            return jsonify({'error': '邮件不存在'}), 404
+
+        email_info = db.get_email_by_id(mail_record['email_id'], None if current_user['is_admin'] else current_user['id'])
+        if not email_info:
+            return jsonify({'error': '无权限访问此邮件'}), 403
+
+        if email_info.get('mail_type') != 'outlook':
+            return jsonify({'error': '当前仅支持Outlook/Graph回复'}), 400
+
+        data = request.json or {}
+        action = (data.get('action') or 'reply').strip().lower()
+        if action not in ('reply', 'replyall'):
+            return jsonify({'error': 'action 仅支持 reply 或 replyAll'}), 400
+        reply_all = action == 'replyall'
+
+        graph_message_id = (mail_record.get('graph_message_id') or '').strip()
+        if not graph_message_id:
+            return jsonify({'error': '缺少Graph消息ID，无法执行原生回复'}), 400
+
+        access_token = OutlookMailHandler.get_new_access_token(email_info.get('refresh_token'), email_info.get('client_id'))
+        if not access_token:
+            return jsonify({'error': '获取Access Token失败'}), 500
+
+        draft = OutlookMailHandler.create_reply_draft(access_token, graph_message_id, reply_all=reply_all)
+        draft_id = draft.get('id')
+        if not draft_id:
+            return jsonify({'error': '创建回复草稿失败'}), 500
+
+        subject = data.get('subject') if 'subject' in data else None
+        content = data.get('content') if 'content' in data else None
+        quote_body = (draft.get('body') or {}).get('content') or ''
+        if content is not None:
+            trimmed = content.strip()
+            if quote_body:
+                content = f"{trimmed}<br><br>{quote_body}" if trimmed else quote_body
+        to_list = _normalize_recipients(data.get('to')) if 'to' in data else None
+        cc_list = _normalize_recipients(data.get('cc')) if 'cc' in data else None
+        bcc_list = _normalize_recipients(data.get('bcc')) if 'bcc' in data else None
+        attachments = _normalize_attachments(data.get('attachments'))
+
+        OutlookMailHandler.update_draft_message(
+            access_token,
+            draft_id,
+            subject=subject,
+            body_content=content,
+            to_list=to_list,
+            cc_list=cc_list,
+            bcc_list=bcc_list,
+            attachments=attachments,
+        )
+        OutlookMailHandler.send_draft_message(access_token, draft_id)
+        return jsonify({'success': True, 'message': '回复发送成功', 'action': 'replyAll' if reply_all else 'reply'}), 200
+    except Exception as e:
+        logger.error(f"回复邮件失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+@app.route('/api/mail_records/<int:mail_id>', methods=['DELETE'])
+@token_required
+def delete_mail_record(current_user, mail_id):
+    """删除邮件（Graph + 本地记录）"""
+    try:
+        mail_record = db.get_mail_record_by_id(mail_id)
+        if not mail_record:
+            return jsonify({'error': '邮件不存在'}), 404
+
+        email_info = db.get_email_by_id(mail_record['email_id'], None if current_user['is_admin'] else current_user['id'])
+        if not email_info:
+            return jsonify({'error': '无权限访问此邮件'}), 403
+
+        remote_delete_warning = None
+        # Outlook/Graph: 先尝试删除远端，再删除本地
+        if email_info.get('mail_type') == 'outlook' and mail_record.get('graph_message_id'):
+            access_token = OutlookMailHandler.get_new_access_token(email_info.get('refresh_token'), email_info.get('client_id'))
+            if not access_token:
+                return jsonify({'error': '获取Access Token失败'}), 500
+            try:
+                OutlookMailHandler.delete_message(access_token, mail_record['graph_message_id'])
+            except requests.exceptions.HTTPError as http_err:
+                status = getattr(http_err.response, 'status_code', None)
+                # 常见场景：缺少 Mail.ReadWrite，远端无删除权限。此时允许仅删除本地记录。
+                if status in (401, 403):
+                    remote_delete_warning = '远端删除失败（权限不足），已仅删除本地记录。请给应用补充 Mail.ReadWrite 权限。'
+                    logger.warning(f"远端删除邮件失败(HTTP {status})，降级为仅本地删除: mail_id={mail_id}")
+                else:
+                    raise
+
+        if not db.delete_mail_record(mail_id):
+            return jsonify({'error': '删除本地邮件记录失败'}), 500
+
+        if remote_delete_warning:
+            return jsonify({'success': True, 'message': remote_delete_warning, 'remote_deleted': False}), 200
+        return jsonify({'success': True, 'message': '删除成功', 'remote_deleted': True}), 200
+    except Exception as e:
+        logger.error(f"删除邮件失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+@app.route('/api/mail_records/batch_delete', methods=['POST'])
+@token_required
+def batch_delete_mail_records(current_user):
+    """批量删除邮件（Graph + 本地记录）"""
+    try:
+        data = request.json or {}
+        mail_ids = data.get('mail_ids') or []
+        if not isinstance(mail_ids, list) or not mail_ids:
+            return jsonify({'error': 'mail_ids不能为空'}), 400
+
+        # 去重且保证为int
+        normalized_ids = []
+        seen = set()
+        for item in mail_ids:
+            try:
+                mid = int(item)
+            except Exception:
+                continue
+            if mid > 0 and mid not in seen:
+                seen.add(mid)
+                normalized_ids.append(mid)
+
+        if not normalized_ids:
+            return jsonify({'error': 'mail_ids无有效ID'}), 400
+
+        success_ids = []
+        failed = []
+        token_cache = {}
+
+        for mail_id in normalized_ids:
+            try:
+                mail_record = db.get_mail_record_by_id(mail_id)
+                if not mail_record:
+                    failed.append({'id': mail_id, 'error': '邮件不存在'})
+                    continue
+
+                email_info = db.get_email_by_id(
+                    mail_record['email_id'],
+                    None if current_user['is_admin'] else current_user['id']
+                )
+                if not email_info:
+                    failed.append({'id': mail_id, 'error': '无权限访问此邮件'})
+                    continue
+
+                if email_info.get('mail_type') == 'outlook' and mail_record.get('graph_message_id'):
+                    email_id = int(email_info['id'])
+                    access_token = token_cache.get(email_id)
+                    if not access_token:
+                        access_token = OutlookMailHandler.get_new_access_token(
+                            email_info.get('refresh_token'),
+                            email_info.get('client_id')
+                        )
+                        if not access_token:
+                            failed.append({'id': mail_id, 'error': '获取Access Token失败'})
+                            continue
+                        token_cache[email_id] = access_token
+                    try:
+                        OutlookMailHandler.delete_message(access_token, mail_record['graph_message_id'])
+                    except requests.exceptions.HTTPError as http_err:
+                        status = getattr(http_err.response, 'status_code', None)
+                        if status not in (401, 403):
+                            raise
+
+                if not db.delete_mail_record(mail_id):
+                    failed.append({'id': mail_id, 'error': '删除本地邮件记录失败'})
+                    continue
+
+                success_ids.append(mail_id)
+            except Exception as inner_e:
+                failed.append({'id': mail_id, 'error': str(inner_e)})
+
+        return jsonify({
+            'success': True,
+            'message': f'已删除 {len(success_ids)} 封邮件',
+            'success_ids': success_ids,
+            'failed': failed
+        }), 200
+    except Exception as e:
+        logger.error(f"批量删除邮件失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
 @app.route('/api/attachments/<int:attachment_id>/download', methods=['GET'])
 @token_required
 def download_attachment(current_user, attachment_id):
@@ -746,6 +1106,7 @@ def upload_email_file(current_user, email_id):
                 content=mail_record.get('content', '(无内容)'),
                 received_time=mail_record.get('received_time', datetime.now()),
                 folder='IMPORTED',
+                is_read=1,
                 has_attachments=1 if mail_record.get('has_attachments', False) else 0
             )
 
@@ -803,24 +1164,78 @@ def import_emails(current_user):
 
         try:
             parts = line.split('----')
-            if len(parts) != 4:
-                failed_details.append({
-                    'line': i + 1,
-                    'content': line,
-                    'reason': '格式错误，需要4个字段'
-                })
-                continue
+            if mail_type == 'outlook':
+                if len(parts) == 3:
+                    email, client_id, refresh_token = parts
+                    password = ''
+                elif len(parts) == 4:
+                    email, password, client_id, refresh_token = parts
+                else:
+                    failed_details.append({
+                        'line': i + 1,
+                        'content': line,
+                        'reason': '格式错误，需要3个字段'
+                    })
+                    continue
 
-            email, password, client_id, refresh_token = parts
-            if not all([email, password, client_id, refresh_token]):
-                failed_details.append({
-                    'line': i + 1,
-                    'content': line,
-                    'reason': '有空白字段'
-                })
-                continue
+                if not all([email, client_id, refresh_token]):
+                    failed_details.append({
+                        'line': i + 1,
+                        'content': line,
+                        'reason': '有空白字段'
+                    })
+                    continue
 
-            success = db.add_email(current_user['id'], email, password, client_id, refresh_token, mail_type)
+                success = db.add_email(current_user['id'], email, password, client_id, refresh_token, mail_type)
+            else:
+                if len(parts) != 2:
+                    failed_details.append({
+                        'line': i + 1,
+                        'content': line,
+                        'reason': '格式错误，需要2个字段'
+                    })
+                    continue
+
+                email, password = parts
+                if not all([email, password]):
+                    failed_details.append({
+                        'line': i + 1,
+                        'content': line,
+                        'reason': '有空白字段'
+                    })
+                    continue
+
+                if mail_type == 'gmail':
+                    server = 'imap.gmail.com'
+                    port = 993
+                elif mail_type == 'qq':
+                    server = 'imap.qq.com'
+                    port = 993
+                elif mail_type == 'imap':
+                    failed_details.append({
+                        'line': i + 1,
+                        'content': line,
+                        'reason': 'IMAP类型请使用单个添加并填写服务器参数'
+                    })
+                    continue
+                else:
+                    failed_details.append({
+                        'line': i + 1,
+                        'content': line,
+                        'reason': f'不支持的邮箱类型: {mail_type}'
+                    })
+                    continue
+
+                success = db.add_email(
+                    current_user['id'],
+                    email,
+                    password,
+                    mail_type=mail_type,
+                    server=server,
+                    port=port,
+                    use_ssl=True
+                )
+
             if success:
                 success_count += 1
             else:
@@ -844,6 +1259,143 @@ def import_emails(current_user):
         'failed': len(failed_details),
         'failed_details': failed_details
     })
+
+@app.route('/api/emails/<int:email_id>/recheck_all', methods=['POST'])
+@token_required
+def recheck_email_all(current_user, email_id):
+    """清空检查时间并重新全量拉取"""
+    try:
+        email_info = db.get_email_by_id(email_id)
+        if not email_info:
+            return jsonify({'error': '邮箱不存在'}), 404
+
+        if email_info['user_id'] != current_user['id'] and not current_user['is_admin']:
+            return jsonify({'error': '无权操作此邮箱'}), 403
+
+        db.reset_check_time(email_id)
+        email_processor.check_emails([email_id])
+
+        return jsonify({'success': True, 'message': '已触发重新全量拉取'}), 200
+    except Exception as e:
+        logger.error(f"重新全量拉取失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+@app.route('/api/oauth/outlook/device_code', methods=['POST'])
+@token_required
+def outlook_device_code(current_user):
+    """获取Outlook设备码（MSAL flow_id 模式）"""
+    data = request.json or {}
+    client_id = data.get('client_id')
+    if not client_id:
+        return jsonify({'error': 'client_id required'}), 400
+
+    try:
+        _purge_expired_outlook_device_flows()
+
+        token_cache = msal.SerializableTokenCache()
+        msal_app = msal.PublicClientApplication(
+            client_id=client_id,
+            authority=OUTLOOK_DEVICE_AUTHORITY,
+            token_cache=token_cache
+        )
+        flow = msal_app.initiate_device_flow(scopes=OUTLOOK_DEVICE_SCOPES)
+        if 'user_code' not in flow:
+            logger.error(f"MSAL initiate_device_flow failed: {flow}")
+            return jsonify({'error': flow.get('error_description') or flow.get('error') or 'initiate_device_flow failed'}), 400
+
+        flow_id = str(uuid.uuid4())
+        created_at = time.time()
+        expires_in = int(flow.get('expires_in') or 900)
+        expires_at = float(flow.get('expires_at') or (created_at + expires_in))
+
+        with _OUTLOOK_DEVICE_FLOW_LOCK:
+            _OUTLOOK_DEVICE_FLOWS[flow_id] = {
+                'flow': flow,
+                'cache': token_cache,
+                'user_id': int(current_user['id']),
+                'client_id': client_id,
+                'created_at': created_at,
+                'expires_at': expires_at,
+            }
+
+        return jsonify({
+            'flow_id': flow_id,
+            'user_code': flow.get('user_code'),
+            'verification_uri': flow.get('verification_uri'),
+            'verification_uri_complete': flow.get('verification_uri_complete'),
+            'expires_in': expires_in,
+            'interval': int(flow.get('interval') or 5),
+            'message': flow.get('message'),
+        }), 200
+    except Exception as e:
+        logger.error(f"获取设备码失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+@app.route('/api/oauth/outlook/device_token', methods=['POST'])
+@token_required
+def outlook_device_token(current_user):
+    """使用设备码换取Token（优先 flow_id，其次兼容 device_code）"""
+    data = request.json or {}
+    client_id = data.get('client_id')
+    device_code = data.get('device_code')
+    flow_id = data.get('flow_id')
+
+    try:
+        _purge_expired_outlook_device_flows()
+
+        if flow_id:
+            with _OUTLOOK_DEVICE_FLOW_LOCK:
+                flow_item = _OUTLOOK_DEVICE_FLOWS.get(flow_id)
+
+            if not flow_item:
+                return jsonify({'error': 'expired_token', 'error_description': 'Flow not found or expired'}), 400
+
+            if int(flow_item.get('user_id')) != int(current_user['id']):
+                return jsonify({'error': 'forbidden', 'error_description': 'Flow does not belong to current user'}), 403
+
+            flow = flow_item['flow']
+            if float(flow_item.get('expires_at') or 0) < time.time():
+                with _OUTLOOK_DEVICE_FLOW_LOCK:
+                    _OUTLOOK_DEVICE_FLOWS.pop(flow_id, None)
+                return jsonify({'error': 'expired_token', 'error_description': 'Device flow expired'}), 400
+
+            msal_app = msal.PublicClientApplication(
+                client_id=flow_item['client_id'],
+                authority=OUTLOOK_DEVICE_AUTHORITY,
+                token_cache=flow_item['cache']
+            )
+            # 非阻塞单次轮询，和前端轮询配合
+            result = msal_app.acquire_token_by_device_flow(
+                flow,
+                exit_condition=lambda _flow: True
+            )
+
+            if 'access_token' in result:
+                with _OUTLOOK_DEVICE_FLOW_LOCK:
+                    _OUTLOOK_DEVICE_FLOWS.pop(flow_id, None)
+                return jsonify(result), 200
+
+            error_code = result.get('error')
+            if error_code in ('expired_token', 'authorization_declined', 'bad_verification_code'):
+                with _OUTLOOK_DEVICE_FLOW_LOCK:
+                    _OUTLOOK_DEVICE_FLOWS.pop(flow_id, None)
+            return jsonify(result), 400
+
+        # 兼容旧版本：没有 flow_id 时，退回直接 device_code 换 token
+        if not client_id or not device_code:
+            return jsonify({'error': 'flow_id required (or client_id + device_code for legacy mode)'}), 400
+
+        url = 'https://login.microsoftonline.com/common/oauth2/v2.0/token'
+        payload = {
+            'client_id': client_id,
+            'device_code': device_code,
+            'grant_type': 'urn:ietf:params:oauth:grant-type:device_code'
+        }
+        response = requests.post(url, data=payload, timeout=30)
+        return jsonify(response.json()), response.status_code
+    except Exception as e:
+        logger.error(f"获取Token失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
 
 # 系统配置管理
 @app.route('/api/admin/config/registration', methods=['POST'])
@@ -1019,7 +1571,7 @@ def update_email(current_user, email_id):
 def start_real_time_check():
     """启动实时邮件检查"""
     try:
-        check_interval = request.json.get('check_interval', 60)
+        check_interval = request.json.get('check_interval', 300)
         if check_interval < 30:  # 最小检查间隔为30秒
             check_interval = 30
 
@@ -1127,7 +1679,7 @@ def toggle_email_realtime_check(current_user, email_id):
 
 def parse_args():
     """解析命令行参数"""
-    parser = argparse.ArgumentParser(description='花火邮箱助手')
+    parser = argparse.ArgumentParser(description='学在华邮件助手')
     parser.add_argument('--host', default='0.0.0.0', help='主机地址')
     parser.add_argument('--port', type=int, default=5000, help='HTTP端口')
     parser.add_argument('--ws-port', type=int, default=8765, help='WebSocket端口')
@@ -1156,11 +1708,11 @@ if __name__ == '__main__':
         ws_thread.start()
 
         # 启动实时邮件检查
-        email_processor.start_real_time_check(check_interval=60)
+        email_processor.start_real_time_check(check_interval=300)
         logger.info("实时邮件检查已启动")
 
         # 启动Flask应用
-        logger.info(f"花火邮箱助手启动于 http://{args.host}:{args.port}")
+        logger.info(f"学在华邮件助手启动于 http://{args.host}:{args.port}")
         app.run(host=args.host, port=args.port, debug=args.debug)
     except KeyboardInterrupt:
         logger.info("程序被用户中断，正在关闭...")
@@ -1171,3 +1723,4 @@ if __name__ == '__main__':
         if db:
             db.close()
         logger.info("程序已关闭")
+

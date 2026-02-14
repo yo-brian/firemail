@@ -9,7 +9,7 @@ from email.header import decode_header
 from email.utils import parsedate_to_datetime
 import os
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 import threading
 import socket
 import ssl
@@ -183,6 +183,10 @@ class IMAPMailHandler:
 
             # 标准化处理last_check_time
             last_check_time = normalize_check_time(last_check_time)
+            if not last_check_time:
+                # Default to last 60 days on first sync
+                last_check_time = datetime.utcnow() - timedelta(days=60)
+
 
             if last_check_time:
                 logger.info(f"获取自 {last_check_time.isoformat()} 以来的新邮件")

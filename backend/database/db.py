@@ -30,6 +30,8 @@ class Database:
                     # 数据库文件已存在，只建立连接
                     logger.info(f"数据库文件已存在: {db_path}，建立连接")
                     cls._instance.connect_db(db_path)
+                    # 对已有数据库执行字段迁移
+                    cls._instance._ensure_columns()
 
                     # 检查数据库是否有用户，如果有则认为数据库已经初始化
                     cursor = cls._instance.conn.execute("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='users'")
@@ -119,6 +121,8 @@ class Database:
                     received_time TIMESTAMP,
                     content TEXT,
                     folder TEXT,
+                    is_read INTEGER DEFAULT 1,
+                    graph_message_id TEXT,
                     has_attachments INTEGER DEFAULT 0,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (email_id) REFERENCES emails (id)
@@ -152,8 +156,7 @@ class Database:
             ''')
 
             # 检查并添加新字段
-            self._check_and_add_column('emails', 'enable_realtime_check', 'INTEGER DEFAULT 0')
-            self._check_and_add_column('users', 'password_hash', 'TEXT NOT NULL')
+            self._ensure_columns()
 
             self.conn.commit()
             logger.info(f"初始化数据库表结构: {self.db_path}")
@@ -177,6 +180,13 @@ class Database:
                 self.conn.commit()
         except Exception as e:
             logger.error(f"检查和添加列失败: {str(e)}")
+
+    def _ensure_columns(self):
+        """确保新增字段已在现有数据库中"""
+        self._check_and_add_column('emails', 'enable_realtime_check', 'INTEGER DEFAULT 0')
+        self._check_and_add_column('users', 'password_hash', 'TEXT NOT NULL')
+        self._check_and_add_column('mail_records', 'is_read', 'INTEGER DEFAULT 1')
+        self._check_and_add_column('mail_records', 'graph_message_id', 'TEXT')
 
     def _init_system_config(self):
         """初始化系统配置"""
@@ -527,6 +537,15 @@ class Database:
         )
         self.conn.commit()
 
+    def reset_check_time(self, email_id):
+        """清空邮箱的最后检查时间，用于全量拉取"""
+        logger.debug(f"清空邮箱最后检查时间, ID: {email_id}")
+        self.conn.execute(
+            "UPDATE emails SET last_check_time = NULL, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+            (email_id,)
+        )
+        self.conn.commit()
+
     def update_email_token(self, email_id, access_token):
         """更新Outlook邮箱的访问令牌"""
         logger.debug(f"更新邮箱访问令牌, ID: {email_id}")
@@ -590,7 +609,7 @@ class Database:
         self.conn.execute(f"DELETE FROM emails WHERE id IN ({placeholders})", email_ids)
         self.conn.commit()
 
-    def add_mail_record(self, email_id, subject, sender, received_time, content, folder=None, has_attachments=0):
+    def add_mail_record(self, email_id, subject, sender, received_time, content, folder=None, is_read=1, graph_message_id=None, has_attachments=0):
         """添加邮件记录"""
         logger.debug(f"添加邮件记录, 邮箱ID: {email_id}, 主题: {subject}")
         try:
@@ -612,8 +631,8 @@ class Database:
 
             # 邮件不存在，添加新记录
             cursor = self.conn.execute(
-                "INSERT INTO mail_records (email_id, subject, sender, received_time, content, folder, has_attachments) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (email_id, subject, sender, received_time, content, folder, has_attachments)
+                "INSERT INTO mail_records (email_id, subject, sender, received_time, content, folder, is_read, graph_message_id, has_attachments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (email_id, subject, sender, received_time, content, folder, is_read, graph_message_id, has_attachments)
             )
             mail_id = cursor.lastrowid
             self.conn.commit()
@@ -661,6 +680,18 @@ class Database:
 
         return records
 
+    def set_mail_read_status(self, mail_id: int, is_read: int) -> bool:
+        try:
+            self.conn.execute(
+                "UPDATE mail_records SET is_read = ? WHERE id = ?",
+                (1 if is_read else 0, mail_id)
+            )
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"更新邮件已读状态失败: {str(e)}")
+            return False
+
     def get_mail_record_by_id(self, mail_id):
         """根据ID获取邮件记录"""
         logger.debug(f"获取邮件记录, ID: {mail_id}")
@@ -695,6 +726,29 @@ class Database:
         except Exception as e:
             logger.error(f"获取邮件记录失败: {str(e)}")
             return None
+
+    def delete_mail_record(self, mail_id: int) -> bool:
+        """删除单条邮件记录"""
+        try:
+            self.conn.execute("DELETE FROM mail_records WHERE id = ?", (mail_id,))
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"删除邮件记录失败: {str(e)}")
+            return False
+
+    def get_unread_count(self, email_id: int) -> int:
+        """获取指定邮箱的未读邮件数量"""
+        try:
+            cursor = self.conn.execute(
+                "SELECT COUNT(*) as cnt FROM mail_records WHERE email_id = ? AND is_read = 0",
+                (email_id,)
+            )
+            row = cursor.fetchone()
+            return int(row['cnt']) if row else 0
+        except Exception as e:
+            logger.error(f"获取未读数量失败: {str(e)}")
+            return 0
 
     def add_attachment(self, mail_id, filename, content_type, size, content):
         """添加附件记录"""
@@ -916,7 +970,10 @@ class Database:
                         sender=sender,
                         content=record.get("content", "(无内容)"),
                         received_time=record.get("received_time", datetime.now()),
-                        folder=record.get("folder", "INBOX")
+                        folder=record.get("folder", "INBOX"),
+                        is_read=1 if record.get("is_read", True) else 0,
+                        graph_message_id=record.get("graph_message_id"),
+                        has_attachments=1 if record.get("has_attachments", False) else 0
                     )
 
                     if success:
@@ -925,6 +982,22 @@ class Database:
                     else:
                         logger.warning(f"邮件记录保存失败: '{subject[:30]}...'")
                 else:
+                    # 如果记录已存在，尝试更新未读状态与Graph消息ID
+                    try:
+                        existing_id = existing['id']
+                        new_is_read = 1 if record.get("is_read", True) else 0
+                        if existing.get('is_read') != new_is_read:
+                            self.set_mail_read_status(existing_id, new_is_read)
+
+                        if not existing.get('graph_message_id') and record.get('graph_message_id'):
+                            self.conn.execute(
+                                "UPDATE mail_records SET graph_message_id = ? WHERE id = ?",
+                                (record.get('graph_message_id'), existing_id)
+                            )
+                            self.conn.commit()
+                    except Exception as e:
+                        logger.error(f"更新邮件记录状态失败: {str(e)}")
+
                     logger.debug(f"邮件记录已存在: '{subject[:30]}...'")
 
             except Exception as e:

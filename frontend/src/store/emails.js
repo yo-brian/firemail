@@ -108,7 +108,9 @@ export const useEmailsStore = defineStore('emails', {
               sender: record.sender || '(未知发件人)',
               received_time: record.received_time || new Date().toISOString(),
               content: record.content || '(无内容)',
-              folder: record.folder || 'INBOX'
+              folder: record.folder || 'INBOX',
+              is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
+              graph_message_id: record.graph_message_id || null
             }));
           } else {
             this.currentMailRecords = [];
@@ -311,7 +313,9 @@ export const useEmailsStore = defineStore('emails', {
               sender: record.sender || '(未知发件人)',
               received_time: record.received_time || new Date().toISOString(),
               content: record.content || '(无内容)',
-              folder: record.folder || 'INBOX'
+              folder: record.folder || 'INBOX',
+              is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
+              graph_message_id: record.graph_message_id || null
             }));
           } else {
             this.currentMailRecords = [];
@@ -328,6 +332,38 @@ export const useEmailsStore = defineStore('emails', {
         console.error(error);
       } finally {
         this.loading = false;
+      }
+    },
+
+    // 重新全量拉取
+    async recheckEmailAll(emailId) {
+      try {
+        await api.emails.recheckAll(emailId);
+        return true;
+      } catch (error) {
+        console.error('重新全量拉取失败:', error);
+        throw error;
+      }
+    },
+
+    // 标记邮件已读并同步到邮箱
+    async markMailRead(mailId) {
+      try {
+        await api.emails.markRead(mailId);
+        const record = this.currentMailRecords.find(item => item.id === mailId);
+        if (record) {
+          record.is_read = 1;
+        }
+        if (this.currentEmailId) {
+          const email = this.emails.find(item => item.id === this.currentEmailId);
+          if (email && typeof email.unread_count === 'number' && email.unread_count > 0) {
+            email.unread_count -= 1;
+          }
+        }
+        return true;
+      } catch (error) {
+        console.error('标记邮件已读失败:', error);
+        throw error;
       }
     },
 

@@ -1,0 +1,600 @@
+2026-02-12 09:05:36,421 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'Command Error. 12']
+2026-02-12 09:05:38,192 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:05:47,965 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:05:51,172 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:06:40,746 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:06:44,453 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:06:49,566 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:06:53,759 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:07:38,921 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'Command Error. 12']
+2026-02-12 09:07:42,617 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:07:46,844 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:07:49,511 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:08:42,657 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:08:44,052 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:08:47,245 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:08:51,755 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:09:43,876 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:09:45,772 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:09:49,859 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:09:52,112 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:10:42,878 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'Command Error. 12']
+2026-02-12 09:10:46,949 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:10:49,197 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:10:51,446 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:11:46,724 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:11:48,091 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:11:52,971 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:11:57,030 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:12:48,020 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:12:49,395 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:12:51,634 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:12:56,243 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:13:49,801 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:13:52,968 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:13:55,360 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:14:00,591 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:14:50,879 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:14:52,213 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:14:54,593 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:14:56,799 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:15:43,244 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:15:44,590 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:15:46,830 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:15:51,789 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:16:44,119 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:16:45,750 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:16:50,424 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:16:54,955 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:17:43,227 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'Command Error. 12']
+2026-02-12 09:17:46,885 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:17:51,186 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:17:55,654 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:18:46,847 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:18:48,204 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:18:50,509 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:18:52,892 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:19:48,849 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:19:50,346 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:19:54,523 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:20:00,853 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:20:47,497 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'Command Error. 12']
+2026-02-12 09:20:51,910 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:20:54,369 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:20:58,846 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:21:49,122 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 获取Outlook文件夹列表失败: LIST command error: BAD [b'Command Error. 12']
+2026-02-12 09:21:50,415 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:21:54,686 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'User is authenticated but not connected.']
+2026-02-12 09:21:56,907 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Error. 12']
+2026-02-12 09:22:54,001 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:22:56,632 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:22:59,179 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:00,936 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:03,426 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:06,950 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:08,468 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:10,921 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:13,291 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:14,719 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:17,326 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:19,586 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:21,052 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:23,581 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:25,892 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:27,212 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:29,550 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:32,063 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:33,573 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:36,005 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:38,464 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:39,824 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:42,148 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:44,585 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:23:45,923 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:23:48,317 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:23:50,668 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:23:56,334 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:23:58,781 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:24:01,207 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:24:02,552 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:24:04,835 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:24:07,250 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:24:53,829 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:24:56,309 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:24:58,781 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:00,146 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:02,877 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:05,237 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:06,619 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:09,109 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:11,426 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:12,730 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:15,198 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:17,483 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:19,005 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:21,401 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:23,906 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:25,199 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:27,503 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:29,851 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:31,167 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:33,886 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:36,265 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:37,680 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:40,023 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:42,382 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:25:43,780 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:25:46,404 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:25:48,755 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:25:53,912 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:25:56,378 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:25:58,794 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:26:00,126 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:26:02,488 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:26:04,770 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:26:55,982 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:26:58,266 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:00,930 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:02,415 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:04,839 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:07,298 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:08,651 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:11,065 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:13,411 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:14,828 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:17,232 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:19,691 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:21,061 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:23,422 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:25,822 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:27,164 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:29,547 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:31,973 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:27:33,405 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:29:55,272 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:29:58,143 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:01,828 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:04,213 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:07,083 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:10,855 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:14,089 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:17,547 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:20,969 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:22,720 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:26,359 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:29,287 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:32,220 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:35,415 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:38,801 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:41,213 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:44,245 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:47,705 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:49,727 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:53,271 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:30:56,651 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:31:01,449 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:31:04,719 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:31:09,852 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:31:14,983 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:18,923 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:22,628 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:30,238 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:33,353 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:36,582 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:38,783 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:41,511 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:45,104 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:31:57,206 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:00,533 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:03,425 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:06,038 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:09,213 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:12,262 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:14,644 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:17,652 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:21,897 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:23,956 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:27,107 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:30,727 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:33,069 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:35,984 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:38,408 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:40,698 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:44,149 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:47,423 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:50,462 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:53,339 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:56,398 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:32:58,827 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:33:01,533 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:33:04,198 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:33:09,502 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:12,432 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:15,447 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:37,940 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:41,288 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:44,255 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:46,432 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:50,919 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:33:54,082 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:35:00,627 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:04,308 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:07,535 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:11,136 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:14,537 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:17,652 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:19,970 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:22,865 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:26,031 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:28,836 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:32,116 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:35,485 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:37,790 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:41,051 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:44,625 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:46,812 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:49,801 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:52,376 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:54,664 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:35:57,152 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:36:01,632 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:36:03,742 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:36:08,351 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:36:11,561 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:36:13,985 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:17,598 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:20,634 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:28,980 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:31,575 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:35,000 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:37,228 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:40,540 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:36:45,131 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:37:02,059 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:05,479 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:08,932 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:12,244 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:15,057 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:18,580 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:21,156 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:24,438 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:27,870 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:30,941 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:33,490 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:36,587 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:41,452 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:44,634 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:48,285 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:50,210 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:53,538 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:57,147 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:37:59,458 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:38:02,989 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:38:06,303 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:38:08,927 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:38:12,407 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:38:15,833 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:38:17,636 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:20,855 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:24,277 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:32,676 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:35,490 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:40,293 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:42,664 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:49,268 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:38:55,559 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:39:02,972 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:07,343 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:10,937 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:14,441 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:17,454 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:20,364 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:23,014 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:25,997 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:29,971 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:32,018 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:34,821 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:38,261 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:40,197 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:43,848 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:47,972 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:51,363 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:54,505 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:39:58,641 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:01,400 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:04,719 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:07,229 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:09,445 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:12,490 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:15,660 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:40:19,110 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:22,167 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:24,807 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:32,156 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:35,594 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:38,643 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:51,060 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:54,241 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:40:56,966 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:41:06,133 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:09,690 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:14,047 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:16,312 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:22,315 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:26,233 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:28,714 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:34,781 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:39,285 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:42,188 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:46,480 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:49,470 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:51,787 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:41:55,752 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:00,090 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:01,807 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:05,201 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:09,174 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:12,245 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:15,826 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:18,899 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:21,789 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:25,242 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:28,986 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:42:34,027 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:42:36,648 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:42:39,371 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:42:47,829 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:42:51,301 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:42:56,847 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:43:02,288 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:43:05,134 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:43:08,554 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:44:06,535 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:09,041 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:11,966 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:14,343 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:17,329 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:21,475 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:23,292 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:27,253 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:30,397 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:32,873 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:37,416 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:43,396 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:46,145 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:52,187 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:56,812 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:44:59,576 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:03,755 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:06,701 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:08,476 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:11,379 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:14,611 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:16,722 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:20,276 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:24,523 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:45:26,615 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:29,198 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:32,837 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:40,435 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:42,947 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:46,324 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:49,919 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:54,400 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:45:58,686 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:46:07,937 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:10,643 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:14,317 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:16,736 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:20,534 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:23,667 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:25,777 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:36,093 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:38,687 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:43,634 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:47,030 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:51,066 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:54,930 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:46:58,178 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:00,699 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:02,655 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:06,512 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:10,746 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:13,557 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:18,085 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:21,012 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:23,385 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:26,763 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:30,057 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:47:35,431 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:47:39,002 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:47:42,052 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:47:50,259 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:47:53,173 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:47:59,166 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:48:01,808 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:48:05,661 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:48:09,022 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:49:10,908 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:14,136 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:16,924 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:21,834 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:25,336 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:28,702 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:31,818 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:35,038 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:38,289 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:40,592 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:44,208 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:48,078 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:51,288 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:55,029 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:49:59,089 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:02,312 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:04,880 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:10,475 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:12,799 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:16,140 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:19,443 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:21,908 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:25,006 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:31,392 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:50:33,476 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:50:36,053 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:50:42,715 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:50:49,788 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:51:00,246 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:51:04,221 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:51:06,146 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:51:09,683 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:51:13,051 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: command SEARCH illegal in state AUTH, only allowed in states SELECTED
+2026-02-12 09:52:14,439 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:17,725 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:22,006 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:24,570 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:28,179 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:32,197 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:34,358 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:38,330 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:42,107 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:44,232 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:47,852 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:51,736 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:52:54,397 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:53:00,338 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:53:03,791 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - Fetch Outlook mail failed: SELECT command error: BAD [b'Command Argument Error. 11']
+2026-02-12 09:58:47,894 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:4) =====
+2026-02-12 09:58:47,894 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 授权失败，请重新获取 Refresh Token（权限: offline_access + Mail.Read）
+2026-02-12 09:59:50,123 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:4) =====
+2026-02-12 09:59:50,124 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 授权失败，请重新获取 Refresh Token（权限: offline_access + Mail.Read）
+2026-02-12 10:13:43,132 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:5) =====
+2026-02-12 10:13:43,133 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: HTTPSConnectionPool(host='graph.microsoft.com', port=443): Read timed out. (read timeout=30)
+2026-02-12 10:57:37,888 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:6) =====
+2026-02-12 10:57:37,888 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: HTTPSConnectionPool(host='graph.microsoft.com', port=443): Read timed out. (read timeout=30)
+2026-02-12 11:51:59,881 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:6) =====
+2026-02-12 11:51:59,883 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: HTTPSConnectionPool(host='graph.microsoft.com', port=443): Read timed out. (read timeout=30)
+2026-02-12 13:05:26,619 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:6) =====
+2026-02-12 13:05:26,621 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: HTTPSConnectionPool(host='graph.microsoft.com', port=443): Read timed out. (read timeout=30)
+2026-02-12 13:08:43,552 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:6) =====
+2026-02-12 13:08:43,553 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: HTTPSConnectionPool(host='graph.microsoft.com', port=443): Read timed out. (read timeout=30)
+2026-02-12 13:11:23,514 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:6) =====
+2026-02-12 13:11:23,516 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: HTTPSConnectionPool(host='graph.microsoft.com', port=443): Read timed out. (read timeout=30)
+2026-02-12 14:46:04,333 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 更新检查时间失败: 'NoneType' object has no attribute 'execute'
+2026-02-12 15:20:45,434 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:20:45,435 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:22:49,803 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:22:49,804 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:23:20,376 - email_utils - ERROR - [ThreadPoolExecutor-0_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:23:20,377 - email_utils - ERROR - [ThreadPoolExecutor-0_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:23:25,436 - email_utils - ERROR - [ThreadPoolExecutor-0_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:23:25,437 - email_utils - ERROR - [ThreadPoolExecutor-0_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:23:46,417 - email_utils - ERROR - [ThreadPoolExecutor-0_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:23:46,417 - email_utils - ERROR - [ThreadPoolExecutor-0_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:27:53,156 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:27:53,162 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:32:56,112 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:32:56,113 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:37:59,355 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:37:59,355 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:43:01,836 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:43:01,836 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:48:05,322 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:48:05,323 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:53:07,547 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:53:07,548 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 15:58:10,768 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 15:58:10,769 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:03:13,108 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:03:13,109 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:08:17,077 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:08:17,078 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:13:18,737 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:13:18,738 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:18:21,975 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:18:21,976 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:23:24,495 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:23:24,496 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:28:27,184 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:28:27,186 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:33:30,486 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:33:30,487 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:38:32,989 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:38:32,990 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:43:36,016 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:43:36,016 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:48:39,365 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:48:39,366 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:53:44,584 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:53:44,585 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 16:58:45,642 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 16:58:45,643 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:03:47,693 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:03:47,693 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:08:50,791 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:08:50,792 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:13:53,761 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:13:53,762 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:18:56,566 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:18:56,566 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:23:59,372 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:23:59,373 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:29:02,945 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:29:02,946 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:34:05,552 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:34:05,553 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:39:08,034 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:39:08,035 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:44:10,653 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:44:10,654 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:49:13,388 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:49:13,388 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:54:16,730 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:54:16,730 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 17:59:18,194 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 17:59:18,194 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:04:20,299 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:04:20,299 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:09:25,809 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:09:25,809 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:14:26,056 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:14:26,057 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:19:28,555 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:19:28,556 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:24:31,424 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:24:31,425 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:29:34,561 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:29:34,561 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:34:37,343 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:34:37,343 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:39:40,238 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:39:40,239 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:44:43,511 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:44:43,512 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:49:46,256 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:49:46,257 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:54:49,637 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:54:49,638 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 18:59:52,934 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 18:59:52,936 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:04:54,871 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:04:54,872 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:09:57,591 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:09:57,592 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:15:00,456 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:15:00,457 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:20:04,442 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:20:04,443 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:25:06,238 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:25:06,239 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:30:09,299 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:30:09,300 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:35:12,022 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:35:12,023 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:40:14,765 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:40:14,765 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:45:17,323 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:45:17,324 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:50:21,714 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:50:21,715 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName
+2026-02-12 19:55:23,279 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - ===== 邮箱处理错误: malikmuhammad30@outlook.com (ID:8) =====
+2026-02-12 19:55:23,281 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 错误详情: Graph 拉取失败: 400 Client Error: Bad Request for url: https://graph.microsoft.com/v1.0/me/mailFolders?%24top=200&%24select=id%2CdisplayName%2CwellKnownName

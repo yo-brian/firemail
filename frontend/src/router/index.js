@@ -50,7 +50,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/views/HomeView.vue'),
+      component: () => import('@/views/MailListView.vue'),
       meta: { requiresAuth: true }
     },
     {
@@ -72,6 +72,13 @@ const router = createRouter({
       path: '/import',
       name: 'import',
       component: () => import('@/views/ImportView.vue'),
+      meta: { requiresAuth: true },
+      beforeEnter: requireAuth
+    },
+    {
+      path: '/mail-list',
+      name: 'mail-list',
+      component: () => import('@/views/MailListView.vue'),
       meta: { requiresAuth: true },
       beforeEnter: requireAuth
     },

@@ -1,4 +1,4 @@
-# 🔥 FireMail - 花火邮箱助手
+﻿# 🔥 FireMail - 学在华邮件助手
 
 🌟 一款专为多种邮箱设计的批量收件工具，提供简单高效的邮件管理解决方案。
 
@@ -11,6 +11,10 @@
 ![image](https://git.adust.f5.si/gh/fengyuanluo/tuchuang@main/20250410194726.png)
 
 ![image](https://git.adust.f5.si/gh/fengyuanluo/tuchuang@main/20250410194744.png)
+
+# Azure AD App ID: <your-app-id>
+# Azure AD Client Secret: <your-client-secret>
+# Azure AD Tenant ID: <your-tenant-id>
 
 ## 📋 项目功能
 

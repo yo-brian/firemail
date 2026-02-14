@@ -15,6 +15,14 @@ export default defineConfig({
   },
   server: {
     cors: true,
-    port
+    host: '0.0.0.0',
+    port,
+    proxy: {
+      '/api': 'http://localhost:5000',
+      '/ws': {
+        target: 'ws://localhost:8765',
+        ws: true
+      }
+    }
   }
 })

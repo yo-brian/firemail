@@ -6,6 +6,8 @@ import imaplib
 import email
 import requests
 import time
+import datetime
+from datetime import timezone
 
 from .common import (
     decode_mime_words,
@@ -17,6 +19,12 @@ from .logger import logger
 class OutlookMailHandler:
     """Outlook邮箱处理类"""
 
+    IMAP_HOSTS = [
+        'outlook.office365.com',
+        'imap-mail.outlook.com',
+        'outlook.live.com'
+    ]
+
     # Outlook常用文件夹映射
     DEFAULT_FOLDERS = {
         'INBOX': ['inbox', 'Inbox', 'INBOX'],
@@ -27,6 +35,9 @@ class OutlookMailHandler:
         'ARCHIVE': ['archive', 'Archive', '归档']
     }
 
+    GRAPH_BASE_URL = 'https://graph.microsoft.com/v1.0'
+    GRAPH_RETRY_STATUS = {429, 502, 503, 504}
+
     def __init__(self, email_address, access_token):
         """初始化Outlook处理器"""
         self.email_address = email_address
@@ -35,16 +46,37 @@ class OutlookMailHandler:
         self.error = None
 
     def connect(self):
-        """连接到Outlook服务器"""
+        """Connect to Outlook server"""
         try:
-            self.mail = imaplib.IMAP4_SSL('outlook.live.com')
-            auth_string = OutlookMailHandler.generate_auth_string(self.email_address, self.access_token)
-            self.mail.authenticate('XOAUTH2', lambda x: auth_string)
+            mail = OutlookMailHandler._connect_imap(self.email_address, self.access_token)
+            if not mail:
+                raise Exception('Unable to connect to Outlook IMAP')
+            self.mail = mail
             return True
         except Exception as e:
             self.error = str(e)
-            logger.error(f"Outlook连接失败: {e}")
+            logger.error(f"Outlook connection failed: {e}")
             return False
+
+    @staticmethod
+    def _connect_imap(email_address, access_token):
+        """Try multiple IMAP hosts and authenticate"""
+        auth_string = OutlookMailHandler.generate_auth_string(email_address, access_token)
+        for host in OutlookMailHandler.IMAP_HOSTS:
+            try:
+                mail = imaplib.IMAP4_SSL(host)
+                mail.authenticate('XOAUTH2', lambda x: auth_string)
+                mail.noop()
+                logger.info(f"Outlook IMAP connected: {host}")
+                return mail
+            except Exception as e:
+                logger.error(f"Outlook IMAP connect failed {host}: {e}")
+                try:
+                    mail.logout()
+                except Exception:
+                    pass
+                continue
+        return None
 
     def get_folders(self):
         """获取文件夹列表"""
@@ -179,154 +211,463 @@ class OutlookMailHandler:
     @staticmethod
     def fetch_emails(email_address, access_token, folder="inbox", callback=None, last_check_time=None):
         """
-        通过IMAP协议获取Outlook/Hotmail邮箱中的邮件
+        Fetch Outlook/Hotmail emails via IMAP
 
         Args:
-            email_address: 邮箱地址
-            access_token: OAuth2访问令牌
-            folder: 邮件文件夹，默认为收件箱
-            callback: 进度回调函数
-            last_check_time: 上次检查时间，如果提供，只获取该时间之后的邮件
+            email_address: mailbox address
+            access_token: OAuth2 access token
+            folder: mailbox folder
+            callback: progress callback
+            last_check_time: only fetch emails after this time
 
         Returns:
-            list: 邮件记录列表
+            list: mail records
         """
         mail_records = []
 
-        # 确保回调函数存在
+        # Ensure callback exists
         if callback is None:
             callback = lambda progress, folder: None
 
-        # 标准化处理last_check_time
+        # Normalize last_check_time
         last_check_time = normalize_check_time(last_check_time)
+        if not last_check_time:
+            # Default to last 60 days on first sync
+            last_check_time = datetime.datetime.utcnow() - datetime.timedelta(days=60)
 
-        # 日志记录
+        # Parse email
         if last_check_time:
-            logger.info(f"获取Outlook邮箱{email_address}中{folder}文件夹自{last_check_time.isoformat()}以来的新邮件")
+            logger.info(f"Fetching Outlook mailbox {email_address} folder {folder} since {last_check_time.isoformat()}")
         else:
-            logger.info(f"获取Outlook邮箱{email_address}中{folder}文件夹的所有邮件")
+            logger.info(f"Fetching Outlook mailbox {email_address} folder {folder} (all emails)")
 
-        # 尝试连接次数
+        # Parse email??
         max_retries = 3
 
         for retry in range(max_retries):
             try:
-                logger.info(f"尝试连接Outlook邮箱 (尝试 {retry+1}/{max_retries})")
+                logger.info(f"Connecting to Outlook IMAP (attempt {retry+1}/{max_retries})")
                 callback(10, folder)
 
-                # 创建IMAP连接
-                mail = imaplib.IMAP4_SSL('outlook.live.com')
-
-                # 使用OAuth2登录
-                auth_string = OutlookMailHandler.generate_auth_string(email_address, access_token)
-                mail.authenticate('XOAUTH2', lambda x: auth_string)
-
-                # 选择文件夹
-                mail.select('inbox')
-                callback(20, folder)
-
-                # 定义搜索条件
-                if last_check_time:
-                    # 将上次检查时间转换为IMAP日期格式 (DD-MMM-YYYY)
-                    search_date = format_date_for_imap_search(last_check_time)
-                    search_cmd = f'(SINCE "{search_date}")'
-                    logger.info(f"搜索{search_date}之后的邮件")
-                    status, data = mail.search(None, search_cmd)
-                else:
-                    # 获取最近的100封邮件
-                    status, data = mail.search(None, 'ALL')
-
-                if status != 'OK':
-                    logger.error(f"搜索邮件失败: {status}")
+                # Connect IMAP
+                mail = OutlookMailHandler._connect_imap(email_address, access_token)
+                if not mail:
+                    logger.error('Outlook IMAP connection failed, skipping')
                     continue
 
-                # 获取所有邮件ID
+                # Parse email?
+                mail.select(folder)
+                callback(20, folder)
+
+                # Parse email??
+                # Ensure callback exists??IMAP???? (DD-MMM-YYYY)
+                search_date = format_date_for_imap_search(last_check_time)
+                search_cmd = f'(SINCE "{search_date}")'
+                logger.info(f"Searching emails since {search_date}")
+                status, data = mail.search(None, search_cmd)
+
+                if status != 'OK':
+                    logger.error(f"Search emails failed: {status}")
+                    continue
+
+                # Parse email??ID
                 mail_ids = data[0].split()
 
-                # 只处理最近的100封邮件
-                mail_ids = mail_ids[-100:] if len(mail_ids) > 100 else mail_ids
 
                 total_mails = len(mail_ids)
-                logger.info(f"找到{total_mails}封邮件")
+                logger.info(f"Found {total_mails} emails")
 
-                # 处理每封邮件
+                # Parse email??
                 for i, mail_id in enumerate(mail_ids):
-                    # 更新进度
+                    # Parse email
                     progress = int(20 + (i / total_mails) * 70) if total_mails > 0 else 90
                     callback(progress, folder)
 
                     try:
-                        # 获取邮件
+                        # Parse email
                         status, mail_data = mail.fetch(mail_id, '(RFC822)')
 
                         if status != 'OK':
-                            logger.error(f"获取邮件ID {mail_id} 失败: {status}")
+                            logger.error(f"Fetch mail ID {mail_id} failed: {status}")
                             continue
 
-                        # 解析邮件
+                        # Parse email
                         msg = email.message_from_bytes(mail_data[0][1])
 
-                        # 获取邮件基本信息
                         subject = decode_mime_words(msg.get('Subject', ''))
                         sender = decode_mime_words(msg.get('From', ''))
                         received_time = email.utils.parsedate_to_datetime(msg.get('Date', ''))
 
-                        # 创建唯一标识，用于去重
-                        mail_key = f"{subject}|{sender}|{received_time.isoformat() if received_time else 'unknown'}"
-
-                        # 检查此邮件是否已处理（通过内存中的集合进行快速检查）
-                        if mail_key in [record.get('mail_key') for record in mail_records]:
-                            logger.info(f"跳过重复邮件: {subject}")
-                            continue
-
-                        # 获取邮件内容
+                        # Parse email??
                         content = ""
                         if msg.is_multipart():
                             for part in msg.walk():
                                 content_type = part.get_content_type()
-                                if content_type == 'text/plain' or content_type == 'text/html':
+                                if content_type in ['text/plain', 'text/html']:
                                     try:
                                         part_content = part.get_payload(decode=True).decode()
                                         content += part_content
-                                    except:
+                                    except Exception:
                                         pass
                         else:
-                            content = msg.get_payload(decode=True).decode()
+                            try:
+                                content = msg.get_payload(decode=True).decode()
+                            except Exception:
+                                content = str(msg.get_payload())
 
-                        # 添加到结果列表
                         mail_records.append({
                             'subject': subject,
                             'sender': sender,
                             'received_time': received_time,
                             'content': content,
-                            'mail_key': mail_key  # 添加唯一标识，用于后续去重
+                            'folder': folder
                         })
-
                     except Exception as e:
-                        logger.error(f"处理邮件ID {mail_id} 时出错: {str(e)}")
+                        logger.warning(f"Parse Outlook mail failed: {e}")
+                        continue
 
-                # 成功获取邮件，跳出重试循环
-                callback(90, folder)
-                break
-
-            except imaplib.IMAP4.error as e:
-                logger.error(f"IMAP错误: {str(e)}")
-                time.sleep(1)  # 等待一秒再重试
-
-            except Exception as e:
-                logger.error(f"获取邮件异常: {str(e)}")
-                time.sleep(1)  # 等待一秒再重试
-
-            finally:
-                # 确保关闭连接
                 try:
                     mail.logout()
-                except:
+                except Exception:
                     pass
+
+                break
+            except Exception as e:
+                logger.error(f"Fetch Outlook mail failed: {e}")
+                if retry < max_retries - 1:
+                    time.sleep(1)
+                else:
+                    break
 
         return mail_records
 
     @staticmethod
+    def _graph_request(token, url, params=None):
+        backoff = 1
+        for _ in range(5):
+            resp = requests.get(
+                url,
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Accept": "application/json",
+                },
+                params=params,
+                timeout=30,
+            )
+            if resp.status_code < 400:
+                return resp.json()
+            if resp.status_code in OutlookMailHandler.GRAPH_RETRY_STATUS:
+                retry_after = resp.headers.get("Retry-After")
+                if retry_after:
+                    sleep_seconds = int(retry_after)
+                else:
+                    sleep_seconds = min(backoff, 30)
+                    backoff *= 2
+                time.sleep(sleep_seconds)
+                continue
+            resp.raise_for_status()
+        resp.raise_for_status()
+
+    @staticmethod
+    def _graph_request_json(method, token, url, payload=None):
+        backoff = 1
+        for _ in range(5):
+            resp = requests.request(
+                method,
+                url,
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                },
+                json=payload,
+                timeout=30,
+            )
+            if resp.status_code < 400:
+                return resp.json() if resp.content else {}
+            if resp.status_code in OutlookMailHandler.GRAPH_RETRY_STATUS:
+                retry_after = resp.headers.get("Retry-After")
+                if retry_after:
+                    sleep_seconds = int(retry_after)
+                else:
+                    sleep_seconds = min(backoff, 30)
+                    backoff *= 2
+                time.sleep(sleep_seconds)
+                continue
+            resp.raise_for_status()
+        resp.raise_for_status()
+
+    @staticmethod
+    def _graph_list_folders(token):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/mailFolders"
+        # Some Microsoft tenants reject selecting wellKnownName on this endpoint.
+        # Keep the query minimal for compatibility.
+        params = {"$top": 200}
+        payload = OutlookMailHandler._graph_request(token, url, params=params)
+        return payload.get("value", [])
+
+    @staticmethod
+    def _graph_list_messages(token, folder_id, since_iso):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/mailFolders/{folder_id}/messages"
+        params = {
+            "$top": 50,
+            "$orderby": "receivedDateTime desc",
+            "$select": "id,subject,from,receivedDateTime,body,hasAttachments,isRead",
+        }
+        if since_iso:
+            params["$filter"] = f"receivedDateTime ge {since_iso}"
+
+        items = []
+        payload = OutlookMailHandler._graph_request(token, url, params=params)
+        items.extend(payload.get("value", []))
+        next_link = payload.get("@odata.nextLink")
+        while next_link:
+            payload = OutlookMailHandler._graph_request(token, next_link, params=None)
+            items.extend(payload.get("value", []))
+            next_link = payload.get("@odata.nextLink")
+        return items
+
+    @staticmethod
+    def get_profile_email(access_token):
+        """Get user's primary email address via Graph /me."""
+        try:
+            url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me"
+            payload = OutlookMailHandler._graph_request(access_token, url, params={"$select": "mail,userPrincipalName"})
+            if not payload:
+                return None
+            profile_email = payload.get("mail") or payload.get("userPrincipalName")
+            if profile_email and "@" in profile_email:
+                return profile_email
+            logger.error(f"Graph /me response has no usable email field: {payload}")
+            return None
+        except Exception as e:
+            logger.error(f"Get profile email via Graph /me failed: {e}")
+            return None
+
+    @staticmethod
+    def resolve_graph_mailbox(refresh_token, client_id, expected_email=None):
+        """
+        Resolve mailbox identity from refresh_token/client_id via Graph.
+
+        Returns:
+            dict: {success: bool, email: str|None, access_token: str|None, error: str|None}
+        """
+        try:
+            normalized_expected = (expected_email or "").strip().lower()
+            access_token = OutlookMailHandler.get_new_access_token(refresh_token, client_id)
+            if not access_token:
+                return {
+                    "success": False,
+                    "email": None,
+                    "access_token": None,
+                    "error": "Refresh Token 或 Client ID 无效，无法获取 Access Token"
+                }
+
+            resolved_email = OutlookMailHandler.get_profile_email(access_token)
+            if not resolved_email:
+                return {
+                    "success": False,
+                    "email": None,
+                    "access_token": access_token,
+                    "error": "无法通过 Graph /me 获取邮箱地址（请确认包含 User.Read 权限）"
+                }
+
+            normalized_resolved = resolved_email.strip().lower()
+            if normalized_expected and normalized_expected != normalized_resolved:
+                return {
+                    "success": False,
+                    "email": None,
+                    "access_token": access_token,
+                    "error": f"输入邮箱与 Graph 账号不一致：{normalized_expected} != {normalized_resolved}"
+                }
+
+            return {
+                "success": True,
+                "email": normalized_resolved,
+                "access_token": access_token,
+                "error": None
+            }
+        except Exception as e:
+            logger.error(f"Resolve Graph mailbox failed: {e}")
+            return {
+                "success": False,
+                "email": None,
+                "access_token": None,
+                "error": f"Graph 身份解析失败: {e}"
+            }
+
+    @staticmethod
+    def mark_message_read(access_token, message_id, is_read=True):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/messages/{message_id}"
+        payload = {"isRead": bool(is_read)}
+        OutlookMailHandler._graph_request_json("PATCH", access_token, url, payload=payload)
+        return True
+
+    @staticmethod
+    def delete_message(access_token, message_id):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/messages/{message_id}"
+        OutlookMailHandler._graph_request_json("DELETE", access_token, url, payload=None)
+        return True
+
+    @staticmethod
+    def _to_graph_recipients(items):
+        recipients = []
+        for item in items or []:
+            addr = (item or "").strip()
+            if addr:
+                recipients.append({"emailAddress": {"address": addr}})
+        return recipients
+
+    @staticmethod
+    def _to_graph_attachments(items):
+        attachments = []
+        for item in items or []:
+            if not isinstance(item, dict):
+                continue
+            content_bytes = (item.get("content_base64") or "").strip()
+            name = (item.get("name") or "attachment.bin").strip()
+            content_type = (item.get("content_type") or "application/octet-stream").strip()
+            if not content_bytes:
+                continue
+            attachments.append({
+                "@odata.type": "#microsoft.graph.fileAttachment",
+                "name": name,
+                "contentType": content_type,
+                "contentBytes": content_bytes,
+            })
+        return attachments
+
+    @staticmethod
+    def send_mail(access_token, to_list, subject, body_content, cc_list=None, bcc_list=None, attachments=None):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/sendMail"
+
+        message_payload = {
+            "subject": subject or "(No Subject)",
+            "body": {
+                "contentType": "HTML",
+                "content": body_content or "",
+            },
+            "toRecipients": OutlookMailHandler._to_graph_recipients(to_list),
+            "ccRecipients": OutlookMailHandler._to_graph_recipients(cc_list),
+            "bccRecipients": OutlookMailHandler._to_graph_recipients(bcc_list),
+        }
+        graph_attachments = OutlookMailHandler._to_graph_attachments(attachments)
+        if graph_attachments:
+            message_payload["attachments"] = graph_attachments
+
+        payload = {"message": message_payload, "saveToSentItems": True}
+
+        OutlookMailHandler._graph_request_json("POST", access_token, url, payload=payload)
+        return True
+
+    @staticmethod
+    def create_reply_draft(access_token, message_id, reply_all=False):
+        action = "createReplyAll" if reply_all else "createReply"
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/messages/{message_id}/{action}"
+        payload = OutlookMailHandler._graph_request_json("POST", access_token, url, payload={})
+        draft_id = payload.get("id")
+        if not draft_id:
+            raise RuntimeError("Failed to create Graph reply draft")
+        return payload
+
+    @staticmethod
+    def update_draft_message(access_token, draft_id, subject=None, body_content=None, to_list=None, cc_list=None, bcc_list=None, attachments=None):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/messages/{draft_id}"
+        patch = {}
+        if subject is not None:
+            patch["subject"] = subject
+        if body_content is not None:
+            patch["body"] = {
+                "contentType": "HTML",
+                "content": body_content,
+            }
+        if to_list is not None:
+            patch["toRecipients"] = OutlookMailHandler._to_graph_recipients(to_list)
+        if cc_list is not None:
+            patch["ccRecipients"] = OutlookMailHandler._to_graph_recipients(cc_list)
+        if bcc_list is not None:
+            patch["bccRecipients"] = OutlookMailHandler._to_graph_recipients(bcc_list)
+        if attachments is not None:
+            patch["attachments"] = OutlookMailHandler._to_graph_attachments(attachments)
+        if patch:
+            OutlookMailHandler._graph_request_json("PATCH", access_token, url, payload=patch)
+        return True
+
+    @staticmethod
+    def send_draft_message(access_token, draft_id):
+        url = f"{OutlookMailHandler.GRAPH_BASE_URL}/me/messages/{draft_id}/send"
+        OutlookMailHandler._graph_request_json("POST", access_token, url, payload={})
+        return True
+
+    @staticmethod
+    def fetch_emails_graph(email_address, access_token, callback=None, last_check_time=None):
+        """Fetch Outlook/Hotmail emails via Microsoft Graph."""
+        mail_records = []
+        if callback is None:
+            callback = lambda progress, folder: None
+
+        last_check_time = normalize_check_time(last_check_time)
+        if not last_check_time:
+            last_check_time = datetime.datetime.utcnow() - datetime.timedelta(days=60)
+        since_iso = last_check_time.replace(tzinfo=timezone.utc).isoformat().replace("+00:00", "Z")
+
+        folders = OutlookMailHandler._graph_list_folders(access_token)
+        if not folders:
+            folders = [{"id": "inbox", "displayName": "Inbox"}]
+
+        allowed_names = {"inbox", "junkemail", "junk email", "spam", "收件箱", "垃圾邮件"}
+        def _folder_allowed(f):
+            well_known = (f.get("wellKnownName") or "").strip().lower()
+            if well_known in ("inbox", "junkemail"):
+                return True
+            name = (f.get("displayName") or f.get("id") or "").strip().lower()
+            if name in allowed_names:
+                return True
+            return f.get("id") in ("inbox", "junkemail")
+
+        folders = [f for f in folders if _folder_allowed(f)]
+        logger.info(f"Graph folders selected: {[(f.get('displayName'), f.get('wellKnownName')) for f in folders]}")
+
+        total_folders = len(folders)
+        for idx, folder in enumerate(folders):
+            folder_id = folder.get("id")
+            folder_name = folder.get("displayName", folder_id)
+            if not folder_id:
+                continue
+            callback(10, folder_name)
+            messages = OutlookMailHandler._graph_list_messages(access_token, folder_id, since_iso)
+
+            for msg in messages:
+                sender = ""
+                sender_obj = msg.get("from") or {}
+                sender_addr = (sender_obj.get("emailAddress") or {}).get("address")
+                if sender_addr:
+                    sender = sender_addr
+
+                received_time = msg.get("receivedDateTime")
+                try:
+                    received_dt = datetime.datetime.fromisoformat(received_time.replace("Z", "+00:00"))
+                except Exception:
+                    received_dt = datetime.datetime.utcnow()
+
+                body = (msg.get("body") or {}).get("content") or ""
+                is_read = bool(msg.get("isRead", True))
+                mail_records.append({
+                    "subject": msg.get("subject") or "(无主题)",
+                    "sender": sender or "(未知发件人)",
+                    "received_time": received_dt,
+                    "content": body,
+                    "folder": folder_name,
+                    "is_read": is_read,
+                    "graph_message_id": msg.get("id"),
+                    "has_attachments": bool(msg.get("hasAttachments")),
+                })
+
+            progress = int(10 + ((idx + 1) / max(total_folders, 1)) * 80)
+            callback(progress, folder_name)
+
+        return mail_records
+
     def check_mail(email_info, db, progress_callback=None):
         """检查Outlook/Hotmail邮箱中的邮件并存储到数据库"""
         email_id = email_info['id']
@@ -389,7 +730,9 @@ class OutlookMailHandler:
                             record['subject'],
                             record['sender'],
                             record['received_time'],
-                            record['content']
+                            record['content'],
+                            is_read=1,
+                            has_attachments=1 if record.get('has_attachments', False) else 0
                         )
                         if success:
                             saved_count += 1

@@ -1,11 +1,11 @@
-<template>
+﻿<template>
   <el-config-provider :locale="zhCn">
     <div class="app-container">
       <el-container>
         <el-header class="app-header" :class="{ 'scrolled': isScrolled }">
           <div class="header-left">
             <router-link to="/" class="logo-link">
-              <h1>花火邮箱助手</h1>
+              <h1>学在华邮件助手</h1>
             </router-link>
           </div>
 
@@ -82,7 +82,7 @@
         </el-main>
 
         <el-footer class="app-footer">
-          花火邮箱助手 &copy; 2025
+          学在华邮件助手 &copy; 2025
         </el-footer>
       </el-container>
 

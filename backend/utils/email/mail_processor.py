@@ -103,6 +103,8 @@ class MailProcessor:
                     logger.debug(f"保存新邮件记录: '{subject[:30]}...'")
 
                     has_attachments = record.get("has_attachments", False)
+                    is_read = 1 if record.get("is_read", True) else 0
+                    graph_message_id = record.get("graph_message_id")
 
                     success, mail_id = db.add_mail_record(
                         email_id=email_id,
@@ -111,6 +113,8 @@ class MailProcessor:
                         content=record.get("content", "(无内容)"),
                         received_time=record.get("received_time", datetime.now()),
                         folder=record.get("folder", "INBOX"),
+                        is_read=is_read,
+                        graph_message_id=graph_message_id,
                         has_attachments=1 if has_attachments else 0
                     )
 
@@ -333,14 +337,23 @@ class EmailBatchProcessor:
                     # 记录开始处理
                     log_email_start(email_info['email'], email_id)
 
-                    # 获取邮件，增加last_check_time参数
-                    mail_records = OutlookMailHandler.fetch_emails(
-                        email_info['email'],
-                        access_token,
-                        folder="inbox",
-                        callback=callback,
-                        last_check_time=last_check_time
-                    )
+                    # 使用 Microsoft Graph 拉取邮件
+                    try:
+                        mail_records = OutlookMailHandler.fetch_emails_graph(
+                            email_info['email'],
+                            access_token,
+                            callback=callback,
+                            last_check_time=last_check_time
+                        )
+                    except Exception as e:
+                        error_msg = f"Graph 拉取失败: {str(e)}"
+                        if hasattr(e, "response") and e.response is not None:
+                            if e.response.status_code in (401, 403):
+                                error_msg = "Graph 授权失败，请重新获取 Refresh Token（权限: offline_access + Mail.Read）"
+                        log_email_error(email_info['email'], email_id, error_msg)
+                        if callback:
+                            callback(0, error_msg)
+                        return {'success': False, 'message': error_msg}
 
                     if not mail_records:
                         if callback:

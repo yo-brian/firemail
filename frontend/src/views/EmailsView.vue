@@ -184,11 +184,11 @@
                 </el-select>
               </el-form-item>
 
-              <el-form-item label="邮箱地址" prop="email">
+              <el-form-item v-if="addEmailForm.mail_type !== 'outlook'" label="邮箱地址" prop="email">
                 <el-input v-model="addEmailForm.email" placeholder="请输入邮箱地址" />
               </el-form-item>
 
-              <el-form-item label="密码" prop="password">
+              <el-form-item v-if="addEmailForm.mail_type !== 'outlook'" label="密码" prop="password">
                 <el-input
                   v-model="addEmailForm.password"
                   type="password"
@@ -199,32 +199,99 @@
 
               <template v-if="addEmailForm.mail_type === 'outlook'">
                 <el-form-item label="Client ID" prop="client_id">
-                  <el-input v-model="addEmailForm.client_id" placeholder="请输入Client ID" />
+                  <el-input v-model="addEmailForm.client_id" readonly disabled />
+                  <div class="form-help">Client ID 已固定为系统内置值</div>
                 </el-form-item>
 
                 <el-form-item label="Refresh Token" prop="refresh_token">
                   <el-input v-model="addEmailForm.refresh_token" placeholder="请输入Refresh Token" />
                 </el-form-item>
-              </template>
 
-              <template v-if="addEmailForm.mail_type === 'imap'">
-                <el-form-item label="服务器" prop="server">
-                  <el-input v-model="addEmailForm.server" placeholder="请输入IMAP服务器地址" />
+                <el-form-item label="设备码绑定">
+                  <div class="device-code-actions">
+                    <el-button
+                      type="primary"
+                      @click="startDeviceCodeFlow"
+                      :loading="deviceCodeLoading"
+                      :disabled="!canRequestNewDeviceCode"
+                    >
+                      获取设备码
+                    </el-button>
+                    <el-button
+                      type="success"
+                      @click="fetchDeviceCodeToken"
+                      :loading="deviceTokenLoading"
+                      :disabled="!deviceCodeInfo || (!deviceCodeInfo.flow_id && !deviceCodeInfo.device_code)"
+                    >
+                      {{ deviceTokenPolling ? '自动轮询中...' : '已绑定，获取Token' }}
+                    </el-button>
+                  </div>
+
+                  <div v-if="deviceCodeInfo" class="device-code-info">
+                    <div class="device-code-line">
+                      <span>用户代码:</span>
+                      <code>{{ deviceCodeInfo.user_code }}</code>
+                    </div>
+                    <div class="device-code-line">
+                      <span>登录地址:</span>
+                      <a
+                        :href="deviceLoginUrl"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {{ deviceLoginUrl }}
+                      </a>
+                      <el-button link type="primary" @click="openDeviceLogin">
+                        打开授权页
+                      </el-button>
+                    </div>
+                    <div class="device-code-line">
+                      有效期: {{ deviceCodeInfo.expires_in }} 秒，轮询间隔: {{ deviceCodeInfo.interval }} 秒
+                    </div>
+                    <div class="device-code-line">
+                      生成时间: {{ formatDate(deviceCodeIssuedAtIso) }}，剩余: {{ deviceCodeRemainingSeconds }} 秒
+                    </div>
+                    <div class="device-code-debug">
+                      <div>调试-轮次: #{{ deviceCodeRound }}</div>
+                      <div>调试-flow_id: {{ deviceCodeInfo.flow_id || '(legacy)' }}</div>
+                      <div>调试-user_code: {{ deviceCodeInfo.user_code }}</div>
+                      <div>调试-device_code: {{ deviceCodeDebugMask }}</div>
+                    </div>
+                    <div class="device-code-line" v-if="deviceTokenPolling">
+                      正在自动轮询授权结果...
+                    </div>
+                    <div v-if="deviceCodeInfo.message" class="device-code-message">
+                      {{ deviceCodeInfo.message }}
+                    </div>
+                  </div>
+
+                  <div v-if="deviceCodeError" class="device-code-error">
+                    {{ deviceCodeError }}
+                  </div>
+                  <div v-if="deviceTokenError" class="device-code-error">
+                    {{ deviceTokenError }}
+                  </div>
                 </el-form-item>
 
-                <el-form-item label="端口" prop="port">
-                  <el-input-number v-model="addEmailForm.port" :min="1" :max="65535" />
-                </el-form-item>
-
-                <el-form-item label="使用SSL" prop="use_ssl">
-                  <el-switch v-model="addEmailForm.use_ssl" />
-                </el-form-item>
+                <el-alert
+                  class="outlook-help"
+                  type="info"
+                  :closable="false"
+                  show-icon
+                >
+                  <template #title>Outlook 配置说明</template>
+                  <div class="outlook-help-body">
+                    <p>请使用你已获取的 Refresh Token 进行添加。</p>
+                    <p>系统会通过 Microsoft Graph 自动识别邮箱地址并完成绑定。</p>
+                    <p>请确保应用权限包含 User.Read 与 Mail.Read（openid/profile/offline_access 由 MSAL 自动处理）。</p>
+                  </div>
+                </el-alert>
               </template>
             </el-form>
           </el-tab-pane>
 
           <el-tab-pane label="批量添加" name="batch">
-            <p class="import-help">请按照以下格式输入邮箱信息，每行一个：<br/>邮箱地址----密码----客户端ID----刷新令牌</p>
+            <p class="import-help">请按照以下格式输入邮箱信息，每行一个：<br/>邮箱地址----客户端ID----刷新令牌</p>
             <el-form :model="batchImport" label-width="120px" :rules="batchImportRules" ref="batchImportFormRef">
               <el-form-item label="邮箱类型">
                 <el-select v-model="batchImport.mailType" placeholder="请选择邮箱类型">
@@ -239,7 +306,7 @@
                   v-model="batchImport.data"
                   type="textarea"
                   :rows="10"
-                  placeholder="例如: example@outlook.com----password----clientid----refreshtoken"
+                  placeholder="例如: example@outlook.com----clientid----refreshtoken"
                 />
               </el-form-item>
             </el-form>
@@ -445,7 +512,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, reactive } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, reactive, watch } from 'vue'
 import { useEmailsStore } from '@/store/emails'
 import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
 import {
@@ -475,6 +542,18 @@ const mailContentDialogVisible = ref(false)
 const mailListDialogVisible = ref(false)
 const addingEmail = ref(false)
 const importing = ref(false)
+const deviceCodeLoading = ref(false)
+const deviceTokenLoading = ref(false)
+const deviceTokenPolling = ref(false)
+const deviceCodeInfo = ref(null)
+const deviceCodeIssuedAt = ref(0)
+const deviceCodeExpiresAt = ref(0)
+const deviceCodeRemainingSeconds = ref(0)
+const deviceCodeRound = ref(0)
+const deviceCodeError = ref('')
+const deviceTokenError = ref('')
+let deviceTokenPollTimer = null
+let deviceCodeCountdownTimer = null
 
 // 添加邮箱表单引用
 const addEmailFormRef = ref(null)
@@ -511,16 +590,262 @@ const getMailTypeColor = (type) => {
 }
 
 // 添加邮箱表单
+const OUTLOOK_CLIENT_ID = '23e659ad-e020-4a5e-b0a1-f2fe15ee535c'
 const addEmailForm = ref({
   mail_type: 'outlook',
   email: '',
   password: '',
-  client_id: '',
+  client_id: OUTLOOK_CLIENT_ID,
   refresh_token: '',
   server: '',
   port: 993,
   use_ssl: true
 })
+
+const readJsonSafely = async (response) => {
+  const text = await response.text()
+  if (!text) {
+    return {
+      _empty: true,
+      _status: response.status,
+      _statusText: response.statusText
+    }
+  }
+  try {
+    return JSON.parse(text)
+  } catch (error) {
+    return { _raw: text }
+  }
+}
+
+const deviceCodeIssuedAtIso = computed(() => {
+  return deviceCodeIssuedAt.value ? new Date(deviceCodeIssuedAt.value).toISOString() : ''
+})
+
+const deviceLoginUrl = computed(() => {
+  return deviceCodeInfo.value?.verification_uri_complete || deviceCodeInfo.value?.verification_uri || 'https://microsoft.com/devicelogin'
+})
+
+const deviceCodeDebugMask = computed(() => {
+  const raw = deviceCodeInfo.value?.device_code || ''
+  if (!raw) return ''
+  if (raw.length <= 16) return raw
+  return `${raw.slice(0, 10)}...${raw.slice(-6)}`
+})
+
+const canRequestNewDeviceCode = computed(() => {
+  return !deviceCodeLoading.value && (!deviceCodeInfo.value || deviceCodeRemainingSeconds.value <= 0)
+})
+
+const stopDeviceCodeCountdown = () => {
+  if (deviceCodeCountdownTimer) {
+    clearInterval(deviceCodeCountdownTimer)
+    deviceCodeCountdownTimer = null
+  }
+}
+
+const startDeviceCodeCountdown = () => {
+  stopDeviceCodeCountdown()
+  const updateRemaining = () => {
+    if (!deviceCodeExpiresAt.value) {
+      deviceCodeRemainingSeconds.value = 0
+      return
+    }
+    const remain = Math.ceil((deviceCodeExpiresAt.value - Date.now()) / 1000)
+    deviceCodeRemainingSeconds.value = Math.max(0, remain)
+    if (deviceCodeRemainingSeconds.value <= 0) {
+      stopDeviceTokenPolling()
+      stopDeviceCodeCountdown()
+      deviceTokenError.value = '设备码已过期，请重新获取设备码'
+    }
+  }
+  updateRemaining()
+  deviceCodeCountdownTimer = setInterval(updateRemaining, 1000)
+}
+
+const stopDeviceTokenPolling = () => {
+  if (deviceTokenPollTimer) {
+    clearTimeout(deviceTokenPollTimer)
+    deviceTokenPollTimer = null
+  }
+  deviceTokenPolling.value = false
+}
+
+const scheduleNextDeviceTokenPoll = (seconds, roundId) => {
+  if (!deviceTokenPolling.value) return
+  const waitMs = Math.max(1, Number(seconds) || 1) * 1000
+  deviceTokenPollTimer = setTimeout(async () => {
+    await pollDeviceCodeTokenOnce(roundId)
+  }, waitMs)
+}
+
+const beginDeviceTokenPolling = (roundId) => {
+  if ((!deviceCodeInfo.value?.flow_id && !deviceCodeInfo.value?.device_code) || deviceTokenPolling.value) return
+  deviceTokenPolling.value = true
+  deviceTokenError.value = ''
+  scheduleNextDeviceTokenPoll(1, roundId)
+}
+
+const openDeviceLogin = () => {
+  if (!deviceLoginUrl.value) return
+  window.open(deviceLoginUrl.value, '_blank', 'noopener,noreferrer')
+}
+
+const startDeviceCodeFlow = async () => {
+  const clientId = addEmailForm.value.client_id?.trim()
+  if (!clientId) {
+    ElMessage.warning('请先填写 Client ID')
+    return
+  }
+
+  deviceCodeLoading.value = true
+  stopDeviceTokenPolling()
+  stopDeviceCodeCountdown()
+  deviceCodeError.value = ''
+  deviceTokenError.value = ''
+  try {
+    const token = localStorage.getItem('token')
+    const response = await fetch('/api/oauth/outlook/device_code', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ client_id: clientId })
+    })
+    const data = await readJsonSafely(response)
+    if (response.status === 401) {
+      deviceCodeInfo.value = null
+      deviceCodeError.value = '未登录或登录已过期，请重新登录后再试'
+      return
+    }
+    if (!response.ok) {
+      deviceCodeInfo.value = null
+      deviceCodeError.value = data.error_description || data.error || data._raw || '获取设备码失败'
+      return
+    }
+    const newRound = deviceCodeRound.value + 1
+    deviceCodeRound.value = newRound
+    deviceCodeInfo.value = data
+    deviceCodeIssuedAt.value = Date.now()
+    deviceCodeExpiresAt.value = Date.now() + ((Number(data.expires_in) || 0) * 1000)
+    startDeviceCodeCountdown()
+    ElMessage.success('设备码已生成')
+    openDeviceLogin()
+    beginDeviceTokenPolling(newRound)
+  } catch (error) {
+    console.error('获取设备码失败:', error)
+    deviceCodeInfo.value = null
+    deviceCodeError.value = error.message || '获取设备码失败'
+  } finally {
+    deviceCodeLoading.value = false
+  }
+}
+
+const fetchDeviceCodeToken = async (options = {}) => {
+  const silent = !!options.silent
+  const roundId = Number(options.roundId || 0)
+  if (roundId && roundId !== deviceCodeRound.value) {
+    return { status: 'stale' }
+  }
+  const clientId = addEmailForm.value.client_id?.trim()
+  if (!clientId) {
+    if (!silent) ElMessage.warning('请先填写 Client ID')
+    return { status: 'invalid_client' }
+  }
+  if (!deviceCodeInfo.value?.flow_id && !deviceCodeInfo.value?.device_code) {
+    if (!silent) ElMessage.warning('请先获取设备码')
+    return { status: 'missing_device_code' }
+  }
+
+  if (!silent) {
+    deviceTokenLoading.value = true
+    deviceTokenError.value = ''
+  }
+  try {
+    if (deviceCodeExpiresAt.value && Date.now() >= deviceCodeExpiresAt.value) {
+      const msg = '设备码已过期，请重新获取设备码'
+      deviceTokenError.value = msg
+      if (!silent) ElMessage.warning(msg)
+      return { status: 'expired' }
+    }
+    const token = localStorage.getItem('token')
+    const response = await fetch('/api/oauth/outlook/device_token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        flow_id: deviceCodeInfo.value.flow_id,
+        client_id: clientId,
+        device_code: deviceCodeInfo.value.device_code
+      })
+    })
+    const data = await readJsonSafely(response)
+    if (response.status === 401) {
+      deviceTokenError.value = '未登录或登录已过期，请重新登录后再试'
+      return { status: 'unauthorized' }
+    }
+    if (!response.ok) {
+      const errorMsg = data.error_description || data.error || data._raw || '获取Token失败'
+      if (data.error === 'authorization_pending') {
+        if (!silent) ElMessage.info('授权未完成，请先在浏览器完成登录')
+        return { status: 'pending', interval: Number(deviceCodeInfo.value?.interval) || 5 }
+      } else if (data.error === 'slow_down') {
+        if (!silent) ElMessage.warning('请求太频繁，请稍后再试')
+        return { status: 'slow_down', interval: (Number(deviceCodeInfo.value?.interval) || 5) + 5 }
+      } else if (data.error === 'expired_token') {
+        deviceTokenError.value = errorMsg
+        if (!silent) ElMessage.warning('设备码已过期，请重新获取设备码')
+        return { status: 'expired' }
+      } else {
+        deviceTokenError.value = errorMsg
+        if (!silent) ElMessage.error(errorMsg)
+        return { status: 'failed' }
+      }
+    }
+
+    if (data.refresh_token) {
+      addEmailForm.value.refresh_token = data.refresh_token
+      ElMessage.success('Token 已获取并填入 Refresh Token')
+      return { status: 'success' }
+    } else {
+      deviceTokenError.value = '未返回 Refresh Token，请检查权限或授权状态'
+      return { status: 'failed' }
+    }
+  } catch (error) {
+    console.error('获取Token失败:', error)
+    deviceTokenError.value = error.message || '获取Token失败'
+    return { status: 'failed' }
+  } finally {
+    if (!silent) {
+      deviceTokenLoading.value = false
+    }
+  }
+}
+
+const pollDeviceCodeTokenOnce = async (roundId) => {
+  if (!deviceTokenPolling.value) return
+  if (roundId !== deviceCodeRound.value) {
+    stopDeviceTokenPolling()
+    return
+  }
+  const result = await fetchDeviceCodeToken({ silent: true, roundId })
+  const status = result?.status
+
+  if (status === 'success') {
+    stopDeviceTokenPolling()
+    return
+  }
+
+  if (status === 'pending' || status === 'slow_down') {
+    scheduleNextDeviceTokenPoll(result.interval, roundId)
+    return
+  }
+
+  stopDeviceTokenPolling()
+}
 
 // 批量导入数据
 const batchImport = reactive({
@@ -549,13 +874,13 @@ const batchImportRules = {
           // 根据不同邮箱类型进行不同的验证
           if (batchImport.mailType === 'outlook') {
             const parts = line.split('----')
-            if (parts.length !== 4) {
+            if (parts.length !== 3) {
               hasError = true
-              callback(new Error(`第 ${i + 1} 行格式错误，请使用"----"分隔邮箱、密码、客户端ID和RefreshToken`))
+              callback(new Error(`第 ${i + 1} 行格式错误，请使用"----"分隔邮箱、客户端ID和RefreshToken`))
               break
             }
 
-            if (!parts[0] || !parts[1] || !parts[2] || !parts[3]) {
+            if (!parts[0] || !parts[1] || !parts[2]) {
               hasError = true
               callback(new Error(`第 ${i + 1} 行有空白字段，所有字段都必须填写`))
               break
@@ -582,8 +907,20 @@ const batchImportRules = {
 // 添加邮箱表单验证规则
 const addEmailRules = {
   mail_type: [{ required: true, message: '请选择邮箱类型', trigger: 'change' }],
-  email: [{ required: true, message: '请输入邮箱地址', trigger: 'blur' }],
-  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+  email: [{ required: true, message: '请输入邮箱地址', trigger: 'blur', validator: (rule, value, callback) => {
+    if (addEmailForm.value.mail_type !== 'outlook' && !value) {
+      callback(new Error('请输入邮箱地址'))
+    } else {
+      callback()
+    }
+  }}],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur', validator: (rule, value, callback) => {
+    if (addEmailForm.value.mail_type !== 'outlook' && !value) {
+      callback(new Error('请输入密码'))
+    } else {
+      callback()
+    }
+  }}],
   client_id: [{ required: true, message: '请输入Client ID', trigger: 'blur', validator: (rule, value, callback) => {
     if (addEmailForm.value.mail_type === 'outlook' && !value) {
       callback(new Error('请输入Client ID'))
@@ -591,9 +928,9 @@ const addEmailRules = {
       callback()
     }
   }}],
-  refresh_token: [{ required: true, message: '请输入Refresh Token', trigger: 'blur', validator: (rule, value, callback) => {
+  refresh_token: [{ required: true, message: '请输入 Refresh Token', trigger: 'blur', validator: (rule, value, callback) => {
     if (addEmailForm.value.mail_type === 'outlook' && !value) {
-      callback(new Error('请输入Refresh Token'))
+      callback(new Error('请输入 Refresh Token'))
     } else {
       callback()
     }
@@ -799,8 +1136,6 @@ const handleAddEmail = async () => {
     })
 
     const formData = {
-      email: addEmailForm.value.email,
-      password: addEmailForm.value.password,
       mail_type: addEmailForm.value.mail_type
     }
 
@@ -808,9 +1143,14 @@ const handleAddEmail = async () => {
       formData.client_id = addEmailForm.value.client_id
       formData.refresh_token = addEmailForm.value.refresh_token
     } else if (addEmailForm.value.mail_type === 'imap') {
+      formData.email = addEmailForm.value.email
       formData.server = addEmailForm.value.server
       formData.port = addEmailForm.value.port
       formData.use_ssl = addEmailForm.value.use_ssl
+      formData.password = addEmailForm.value.password
+    } else {
+      formData.email = addEmailForm.value.email
+      formData.password = addEmailForm.value.password
     }
 
     await emailsStore.addEmail(formData)
@@ -859,21 +1199,55 @@ const handleImport = async () => {
 }
 
 const resetAddEmailForm = () => {
+  stopDeviceTokenPolling()
+  stopDeviceCodeCountdown()
   addEmailForm.value = {
     mail_type: 'outlook',
     email: '',
     password: '',
-    client_id: '',
+    client_id: OUTLOOK_CLIENT_ID,
     refresh_token: '',
     server: '',
     port: 993,
     use_ssl: true
   }
+  deviceCodeInfo.value = null
+  deviceCodeIssuedAt.value = 0
+  deviceCodeExpiresAt.value = 0
+  deviceCodeRemainingSeconds.value = 0
+  deviceCodeError.value = ''
+  deviceTokenError.value = ''
 }
+
+watch(
+  () => addEmailForm.value.mail_type,
+  () => {
+    stopDeviceTokenPolling()
+    stopDeviceCodeCountdown()
+    if (addEmailForm.value.mail_type === 'outlook') {
+      addEmailForm.value.client_id = OUTLOOK_CLIENT_ID
+    }
+    deviceCodeInfo.value = null
+    deviceCodeIssuedAt.value = 0
+    deviceCodeExpiresAt.value = 0
+    deviceCodeRemainingSeconds.value = 0
+    deviceCodeError.value = ''
+    deviceTokenError.value = ''
+  }
+)
+
+watch(
+  () => addEmailDialogVisible.value,
+  (visible) => {
+    if (!visible) {
+      stopDeviceTokenPolling()
+    }
+  }
+)
 
 // 格式化日期
 const formatDate = (dateString) => {
-  if (!dateString) return '无';
+  if (!dateString) return '??'
   return dayjs(dateString).format('YYYY-MM-DD HH:mm:ss');
 };
 
@@ -1207,6 +1581,11 @@ onMounted(() => {
   emailsStore.initWebSocketListeners()
   refreshEmails()
 })
+
+onBeforeUnmount(() => {
+  stopDeviceTokenPolling()
+  stopDeviceCodeCountdown()
+})
 </script>
 
 <style scoped>
@@ -1272,6 +1651,12 @@ onMounted(() => {
 
 .password-text {
   font-family: monospace;
+}
+
+.form-help {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 6px;
 }
 
 .password-toggle-btn:hover {
@@ -1436,6 +1821,57 @@ onMounted(() => {
   border-radius: var(--border-radius);
   font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.outlook-help {
+  margin-top: 10px;
+}
+
+.outlook-help-body p {
+  margin: 4px 0;
+}
+
+.device-code-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.device-code-info {
+  padding: 8px 10px;
+  border: 1px dashed var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-light);
+}
+
+.device-code-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.device-code-message {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
+}
+
+.device-code-debug {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--border-color);
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--secondary-text-color);
+}
+
+.device-code-error {
+  margin-top: 6px;
+  color: #d93025;
+  font-size: 0.9rem;
 }
 
 .server-info {

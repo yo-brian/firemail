@@ -26,7 +26,7 @@ class RealTimeChecker:
         self.email_processor = email_processor
         self.running = False
         self.thread = None
-        self.check_interval = 60  # 默认检查间隔为60秒
+        self.check_interval = 300  # 默认检查间隔为300秒
         self.last_check_time = {}  # 记录每个邮箱的最后检查时间
         self.thread_pool = concurrent.futures.ThreadPoolExecutor(max_workers=5)
     

@@ -125,8 +125,8 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { Download, Delete, Search, Upload, UploadFilled, Document } from '@element-plus/icons-vue'
-import { useEmailsStore } from '@/store/emails'
 import dayjs from 'dayjs'
+import { useEmailsStore } from '@/store/emails'
 import DOMPurify from 'dompurify'
 import axios from 'axios'
 import EmailContentViewer from '@/components/EmailContentViewer.vue'
@@ -180,7 +180,7 @@ const getProcessingStatus = (id) => {
 
 // 格式化日期
 const formatDate = (dateString) => {
-  if (!dateString) return '无'
+  if (!dateString) return '??'
   return dayjs(dateString).format('YYYY-MM-DD HH:mm:ss')
 }
 

@@ -4,6 +4,7 @@
 """
 
 import logging
+import sys
 import os
 import time
 from datetime import datetime
@@ -49,7 +50,12 @@ def configure_logger():
     error_handler.setLevel(logging.ERROR)
     
     # 添加控制台处理器
-    console_handler = logging.StreamHandler()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    if hasattr(sys.stderr, "reconfigure"):
+        sys.stderr.reconfigure(encoding="utf-8")
+
+    console_handler = logging.StreamHandler(stream=sys.stdout)
     console_handler.setLevel(logging.INFO)
     
     # 设置格式

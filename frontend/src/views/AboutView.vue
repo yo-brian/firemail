@@ -1,7 +1,7 @@
-<template>
+﻿<template>
   <div class="about-container">
     <div class="about-header">
-      <h1 class="page-title">关于花火邮箱助手</h1>
+      <h1 class="page-title">关于学在华邮件助手</h1>
       <div class="version-badge">v1.0.0</div>
     </div>
     
@@ -14,7 +14,7 @@
             </div>
           </template>
           <div class="card-content">
-            <p>花火邮箱助手是一款专为Microsoft邮箱设计的批量收件工具，旨在提供简单高效的邮件管理解决方案。</p>
+            <p>学在华邮件助手是一款专为Microsoft邮箱设计的批量收件工具，旨在提供简单高效的邮件管理解决方案。</p>
             <p>通过实时的WebSocket通信，多线程并行处理，用户可以轻松管理多个邮箱账户，批量收取邮件。</p>
           </div>
         </el-card>
