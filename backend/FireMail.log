@@ -4577,3 +4577,235 @@
 2026-02-14 09:23:27,029 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 09:23:27] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
 2026-02-14 09:23:59,295 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
 2026-02-14 09:23:59,295 - websockets.server - INFO - connection closed
+2026-02-14 13:16:55,389 - database - INFO - 数据库文件已存在: H:\code\firemail\backend\data\huohuo_email.db，建立连接
+2026-02-14 13:16:55,407 - database - INFO - 连接数据库: H:\code\firemail\backend\data\huohuo_email.db
+2026-02-14 13:16:55,447 - database - INFO - 读取到注册配置: true
+2026-02-14 13:16:55,447 - FireMail - INFO - 系统启动: 注册功能状态 = True
+2026-02-14 13:16:55,466 - FireMail - INFO - 启动WebSocket服务器
+2026-02-14 13:16:55,466 - utils.email._real_time_check - INFO - 实时邮件检查已启动，检查间隔: 300秒
+2026-02-14 13:16:55,466 - FireMail - INFO - 实时邮件检查已启动
+2026-02-14 13:16:55,467 - FireMail - INFO - 学在华邮件助手启动于 http://0.0.0.0:5000
+2026-02-14 13:16:55,469 - utils.email._real_time_check - INFO - 已为邮箱 richardbujda@outlook.com 提交检查任务
+2026-02-14 13:16:55,477 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.40.102:5000
+2026-02-14 13:16:55,477 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-14 13:16:55,571 - websocket - INFO - WebSocket服务器启动于端口 8765
+2026-02-14 13:16:55,572 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2026-02-14 13:16:56,483 - utils.email._real_time_check - INFO - 已为邮箱 haoufani@outlook.com 提交检查任务
+2026-02-14 13:16:57,033 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 13:16:57,498 - utils.email._real_time_check - INFO - 已为邮箱 dodhiavaanikanilay@outlook.com 提交检查任务
+2026-02-14 13:16:57,630 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:16:58,094 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 13:16:58,148 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:16:58,148 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:16:58,637 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:16:58,781 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:16:58,781 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:16:58,876 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 13:16:59,154 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:16:59,154 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:16:59,658 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:16:59,659 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:16:59,800 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:17:00,304 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:17:00,304 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:17:00,964 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:17:00,964 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:17:29,835 - database - INFO - 读取到注册配置: true
+2026-02-14 13:17:29,836 - FireMail - INFO - 获取系统配置: 注册功能状态 = True
+2026-02-14 13:17:29,836 - FireMail - INFO - 返回系统配置: {'allow_register': True, 'server_time': '2026-02-14 13:17:29'}
+2026-02-14 13:17:29,837 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:29] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 13:17:30,196 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:30] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 13:17:30,275 - websockets.server - INFO - connection open
+2026-02-14 13:17:30,275 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 8188)
+2026-02-14 13:17:30,436 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:30] "GET /api/emails HTTP/1.1" 200 -
+2026-02-14 13:17:30,507 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:30] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:30,510 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:30] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:30,512 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:30] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:30,873 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 13:17:30,879 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 13:17:44,731 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:44] "POST /api/mail_records/batch_delete HTTP/1.1" 200 -
+2026-02-14 13:17:44,780 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:44] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:45,091 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:45] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:45,091 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:45] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:45,138 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 13:17:45,465 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:45] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:45,467 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:45] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
+2026-02-14 13:17:45,475 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:17:45] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:40,833 - database - INFO - 数据库文件已存在: H:\code\firemail\backend\data\huohuo_email.db，建立连接
+2026-02-14 13:21:40,833 - database - INFO - 连接数据库: H:\code\firemail\backend\data\huohuo_email.db
+2026-02-14 13:21:40,834 - database - INFO - 读取到注册配置: true
+2026-02-14 13:21:40,834 - FireMail - INFO - 系统启动: 注册功能状态 = True
+2026-02-14 13:21:40,852 - FireMail - INFO - 启动WebSocket服务器
+2026-02-14 13:21:40,853 - utils.email._real_time_check - INFO - 实时邮件检查已启动，检查间隔: 300秒
+2026-02-14 13:21:40,853 - FireMail - INFO - 实时邮件检查已启动
+2026-02-14 13:21:40,853 - FireMail - INFO - 学在华邮件助手启动于 http://0.0.0.0:5000
+2026-02-14 13:21:40,854 - utils.email._real_time_check - INFO - 已为邮箱 richardbujda@outlook.com 提交检查任务
+2026-02-14 13:21:40,864 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.40.102:5000
+2026-02-14 13:21:40,864 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-14 13:21:40,881 - websocket - INFO - WebSocket服务器启动于端口 8765
+2026-02-14 13:21:40,882 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2026-02-14 13:21:41,858 - utils.email._real_time_check - INFO - 已为邮箱 haoufani@outlook.com 提交检查任务
+2026-02-14 13:21:42,242 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 13:21:42,757 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:21:42,859 - utils.email._real_time_check - INFO - 已为邮箱 dodhiavaanikanilay@outlook.com 提交检查任务
+2026-02-14 13:21:43,031 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 13:21:43,279 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:21:43,279 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:21:43,568 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:21:43,813 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:21:43,813 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:21:43,892 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 13:21:44,255 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:21:44,256 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:21:44,394 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:21:44,781 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:21:44,782 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:21:44,904 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:21:44,904 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:21:45,399 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:21:45,399 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:21:49,446 - database - INFO - 读取到注册配置: true
+2026-02-14 13:21:49,446 - FireMail - INFO - 获取系统配置: 注册功能状态 = True
+2026-02-14 13:21:49,447 - FireMail - INFO - 返回系统配置: {'allow_register': True, 'server_time': '2026-02-14 13:21:49'}
+2026-02-14 13:21:49,447 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:49] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 13:21:49,657 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:49] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 13:21:49,721 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:49] "GET /api/emails HTTP/1.1" 200 -
+2026-02-14 13:21:49,776 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:49] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:49,791 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:49] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:49,797 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:49] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:49,948 - websockets.server - INFO - connection open
+2026-02-14 13:21:49,948 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 8570)
+2026-02-14 13:21:50,458 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 13:21:50,464 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 13:21:54,534 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:54] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:55,180 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:55] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:56,594 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:56] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:58,736 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:58] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:21:59,917 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:21:59] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:24:52,683 - database - INFO - 数据库文件已存在: H:\code\firemail\backend\data\huohuo_email.db，建立连接
+2026-02-14 13:24:52,683 - database - INFO - 连接数据库: H:\code\firemail\backend\data\huohuo_email.db
+2026-02-14 13:24:52,684 - database - INFO - 读取到注册配置: true
+2026-02-14 13:24:52,684 - FireMail - INFO - 系统启动: 注册功能状态 = True
+2026-02-14 13:24:52,701 - FireMail - INFO - 启动WebSocket服务器
+2026-02-14 13:24:52,702 - utils.email._real_time_check - INFO - 实时邮件检查已启动，检查间隔: 300秒
+2026-02-14 13:24:52,702 - FireMail - INFO - 实时邮件检查已启动
+2026-02-14 13:24:52,703 - FireMail - INFO - 学在华邮件助手启动于 http://0.0.0.0:5000
+2026-02-14 13:24:52,704 - utils.email._real_time_check - INFO - 已为邮箱 richardbujda@outlook.com 提交检查任务
+2026-02-14 13:24:52,713 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.40.102:5000
+2026-02-14 13:24:52,713 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-14 13:24:52,724 - websocket - INFO - WebSocket服务器启动于端口 8765
+2026-02-14 13:24:52,724 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2026-02-14 13:24:53,711 - utils.email._real_time_check - INFO - 已为邮箱 haoufani@outlook.com 提交检查任务
+2026-02-14 13:24:54,205 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 13:24:54,726 - utils.email._real_time_check - INFO - 已为邮箱 dodhiavaanikanilay@outlook.com 提交检查任务
+2026-02-14 13:24:54,750 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:24:55,022 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 13:24:55,276 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:24:55,276 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:24:55,523 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:24:55,786 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:24:55,786 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:24:56,012 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 13:24:56,062 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:24:56,063 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:24:56,546 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:24:56,590 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:24:56,591 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:24:57,079 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:24:57,079 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:24:57,659 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:24:57,659 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:27:03,240 - database - INFO - 数据库文件已存在: H:\code\firemail\backend\data\huohuo_email.db，建立连接
+2026-02-14 13:27:03,240 - database - INFO - 连接数据库: H:\code\firemail\backend\data\huohuo_email.db
+2026-02-14 13:27:03,241 - database - INFO - 读取到注册配置: true
+2026-02-14 13:27:03,242 - FireMail - INFO - 系统启动: 注册功能状态 = True
+2026-02-14 13:27:03,259 - FireMail - INFO - 启动WebSocket服务器
+2026-02-14 13:27:03,263 - utils.email._real_time_check - INFO - 实时邮件检查已启动，检查间隔: 300秒
+2026-02-14 13:27:03,264 - FireMail - INFO - 实时邮件检查已启动
+2026-02-14 13:27:03,264 - FireMail - INFO - 学在华邮件助手启动于 http://0.0.0.0:5000
+2026-02-14 13:27:03,271 - utils.email._real_time_check - INFO - 已为邮箱 richardbujda@outlook.com 提交检查任务
+2026-02-14 13:27:03,283 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.40.102:5000
+2026-02-14 13:27:03,284 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-14 13:27:03,289 - websocket - INFO - WebSocket服务器启动于端口 8765
+2026-02-14 13:27:03,290 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2026-02-14 13:27:04,282 - utils.email._real_time_check - INFO - 已为邮箱 haoufani@outlook.com 提交检查任务
+2026-02-14 13:27:04,413 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 13:27:04,952 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:27:05,302 - utils.email._real_time_check - INFO - 已为邮箱 dodhiavaanikanilay@outlook.com 提交检查任务
+2026-02-14 13:27:05,499 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:27:05,500 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:27:05,918 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 13:27:06,007 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:27:06,007 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:27:06,440 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:27:06,584 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 13:27:07,033 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:27:07,034 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:27:07,391 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:27:07,623 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:27:07,623 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:27:08,895 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:27:08,896 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:27:09,376 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:27:09,376 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:29:54,300 - database - INFO - 数据库文件已存在: H:\code\firemail\backend\data\huohuo_email.db，建立连接
+2026-02-14 13:29:54,301 - database - INFO - 连接数据库: H:\code\firemail\backend\data\huohuo_email.db
+2026-02-14 13:29:54,302 - database - INFO - 读取到注册配置: true
+2026-02-14 13:29:54,302 - FireMail - INFO - 系统启动: 注册功能状态 = True
+2026-02-14 13:29:54,320 - FireMail - INFO - 启动WebSocket服务器
+2026-02-14 13:29:54,321 - utils.email._real_time_check - INFO - 实时邮件检查已启动，检查间隔: 300秒
+2026-02-14 13:29:54,321 - FireMail - INFO - 实时邮件检查已启动
+2026-02-14 13:29:54,321 - FireMail - INFO - 学在华邮件助手启动于 http://0.0.0.0:5000
+2026-02-14 13:29:54,322 - utils.email._real_time_check - INFO - 已为邮箱 richardbujda@outlook.com 提交检查任务
+2026-02-14 13:29:54,336 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.40.102:5000
+2026-02-14 13:29:54,336 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-14 13:29:54,348 - websocket - INFO - WebSocket服务器启动于端口 8765
+2026-02-14 13:29:54,349 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2026-02-14 13:29:55,336 - utils.email._real_time_check - INFO - 已为邮箱 haoufani@outlook.com 提交检查任务
+2026-02-14 13:29:55,506 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 13:29:56,005 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:29:56,353 - utils.email._real_time_check - INFO - 已为邮箱 dodhiavaanikanilay@outlook.com 提交检查任务
+2026-02-14 13:29:56,389 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 13:29:56,507 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:29:56,507 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:29:57,002 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:29:57,002 - utils.email._real_time_check - INFO - 邮箱 ID 11 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:29:57,525 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 13:29:57,904 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:29:58,058 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 垃圾邮件
+2026-02-14 13:29:58,414 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:29:58,414 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:29:58,566 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 50%, 消息: 垃圾邮件
+2026-02-14 13:29:58,566 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 10%, 消息: 收件箱
+2026-02-14 13:29:58,932 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:29:58,932 - utils.email._real_time_check - INFO - 邮箱 ID 12 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:29:59,096 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 90%, 消息: 收件箱
+2026-02-14 13:29:59,096 - utils.email._real_time_check - INFO - 邮箱 ID 13 处理进度: 100%, 消息: 没有找到新邮件
+2026-02-14 13:30:06,366 - database - INFO - 读取到注册配置: true
+2026-02-14 13:30:06,366 - FireMail - INFO - 获取系统配置: 注册功能状态 = True
+2026-02-14 13:30:06,366 - FireMail - INFO - 返回系统配置: {'allow_register': True, 'server_time': '2026-02-14 13:30:06'}
+2026-02-14 13:30:06,367 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:30:06] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 13:30:06,602 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:30:06] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 13:30:06,688 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:30:06] "GET /api/emails HTTP/1.1" 200 -
+2026-02-14 13:30:06,774 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:30:06] "GET /api/emails/13/mail_records HTTP/1.1" 200 -
+2026-02-14 13:30:06,781 - websockets.server - INFO - connection open
+2026-02-14 13:30:06,781 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 9314)
+2026-02-14 13:30:06,794 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:30:06] "GET /api/emails/12/mail_records HTTP/1.1" 200 -
+2026-02-14 13:30:06,795 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 13:30:06] "GET /api/emails/11/mail_records HTTP/1.1" 200 -
+2026-02-14 13:30:07,287 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 13:30:07,294 - websocket - INFO - 发送邮箱列表给用户ID: 1

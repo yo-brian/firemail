@@ -1,0 +1,48 @@
+===== 2026-02-14 13:29:36.08 ===== 
+Working dir: H:\code\firemail
+Python 3.12.10
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pyinstaller in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (6.18.0)
+Requirement already satisfied: altgraph in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (from pyinstaller) (0.17.5)
+Requirement already satisfied: packaging>=22.0 in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (from pyinstaller) (25.0)
+Requirement already satisfied: pefile>=2022.5.30 in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (from pyinstaller) (2024.8.26)
+Requirement already satisfied: pyinstaller-hooks-contrib>=2025.9 in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (from pyinstaller) (2026.0)
+Requirement already satisfied: pywin32-ctypes>=0.2.1 in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (from pyinstaller) (0.2.3)
+Requirement already satisfied: setuptools>=42.0.0 in c:\users\administrator\appdata\local\packages\pythonsoftwarefoundation.python.3.12_qbz5n2kfra8p0\localcache\local-packages\python312\site-packages (from pyinstaller) (80.9.0)
+
+[notice] A new release of pip is available: 25.3 -> 26.0.1
+[notice] To update, run: C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\python.exe -m pip install --upgrade pip
+140 INFO: PyInstaller: 6.18.0, contrib hooks: 2026.0
+140 INFO: Python: 3.12.10
+157 INFO: Platform: Windows-10-10.0.19045-SP0
+157 INFO: Python environment: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0
+158 INFO: wrote H:\code\firemail\FireMailLauncher.spec
+161 INFO: Module search paths (PYTHONPATH):
+['H:\\code\\firemail',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python312.zip',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\DLLs',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0',
+ 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages',
+ 'C:\\Program '
+ 'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\site-packages',
+ 'H:\\code\\firemail']
+604 INFO: checking Analysis
+700 INFO: checking PYZ
+726 INFO: checking PKG
+796 INFO: Bootloader C:\Users\Administrator\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+796 INFO: checking EXE
+813 INFO: Rebuilding EXE-00.toc because FireMailLauncher.exe missing
+813 INFO: Building EXE from EXE-00.toc
+814 INFO: Copying bootloader EXE to H:\code\firemail\dist\FireMailLauncher.exe
+818 INFO: Copying icon to EXE
+822 INFO: Copying 0 resources to EXE
+822 INFO: Embedding manifest in EXE
+825 INFO: Appending PKG archive to EXE
+833 INFO: Fixing EXE headers
+961 INFO: Building EXE from EXE-00.toc completed successfully.
+999 INFO: Build complete! The results are available in: H:\code\firemail\dist
