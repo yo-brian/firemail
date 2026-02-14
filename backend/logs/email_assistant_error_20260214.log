@@ -1,0 +1,2 @@
+2026-02-14 15:27:45,860 - email_utils - ERROR - [ThreadPoolExecutor-1_2] - 更新检查时间失败: not an error
+2026-02-14 15:32:05,232 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 更新检查时间失败: cannot commit - no transaction is active

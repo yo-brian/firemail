@@ -26,21 +26,31 @@
                     <span>总账户（全部邮箱）</span>
                   </el-badge>
                 </div>
-                <div class="email-type">all</div>
               </div>
             </el-menu-item>
-            <el-menu-item v-for="email in emails" :key="email.id" :index="String(email.id)">
+            <el-menu-item v-for="email in pagedEmails" :key="email.id" :index="String(email.id)">
               <div class="email-item">
                 <div class="email-address">
                   <el-badge :value="email.unread_count" :hidden="!email.unread_count" :max="99">
                     <span>{{ email.email || '(未获取邮箱)' }}</span>
                   </el-badge>
                 </div>
-                <div class="email-type">{{ email.mail_type }}</div>
               </div>
             </el-menu-item>
           </el-menu>
         </el-scrollbar>
+        <div class="accounts-pagination">
+          <el-pagination
+            v-model:current-page="accountCurrentPage"
+            v-model:page-size="accountPageSize"
+            :total="emails.length"
+            :page-sizes="[10, 20, 50, 100]"
+            layout="total, sizes, prev, next"
+            small
+            @current-change="handleAccountPageChange"
+            @size-change="handleAccountPageSizeChange"
+          />
+        </div>
       </el-card>
 
       <el-card class="mail-panel records-panel">
@@ -81,6 +91,17 @@
             <template #default="{ row }">{{ formatDate(row.received_time) }}</template>
           </el-table-column>
         </el-table>
+        <div class="records-pagination">
+          <el-pagination
+            v-model:current-page="currentPage"
+            v-model:page-size="pageSize"
+            :total="totalRecords"
+            :page-sizes="[10, 20, 50, 100]"
+            layout="total, sizes, prev, pager, next, jumper"
+            @current-change="handlePageChange"
+            @size-change="handlePageSizeChange"
+          />
+        </div>
       </el-card>
     </div>
 
@@ -184,6 +205,11 @@ const activeAttachments = ref([])
 const detailVisible = ref(false)
 const mailRecordsData = ref([])
 const selectedMailIds = ref([])
+const accountCurrentPage = ref(1)
+const accountPageSize = ref(20)
+const currentPage = ref(1)
+const pageSize = ref(20)
+const totalRecords = ref(0)
 
 const composeVisible = ref(false)
 const composeLoading = ref(false)
@@ -205,6 +231,11 @@ const composeForm = ref({
 const sortState = ref({ prop: 'received_time', order: 'descending' })
 
 const emails = computed(() => emailsStore.emails || [])
+const pagedEmails = computed(() => {
+  const start = (accountCurrentPage.value - 1) * accountPageSize.value
+  const end = start + accountPageSize.value
+  return emails.value.slice(start, end)
+})
 const mailRecords = computed(() => mailRecordsData.value || [])
 const totalUnread = computed(() => emails.value.reduce((sum, item) => sum + Number(item.unread_count || 0), 0))
 const selectedEmailName = computed(() => {
@@ -344,6 +375,10 @@ const loadEmails = async () => {
   loading.value = true
   try {
     await emailsStore.fetchEmails()
+    const maxAccountPages = Math.max(1, Math.ceil((emails.value.length || 0) / accountPageSize.value))
+    if (accountCurrentPage.value > maxAccountPages) {
+      accountCurrentPage.value = maxAccountPages
+    }
     await loadMailRecords()
   } finally {
     loading.value = false
@@ -353,15 +388,20 @@ const loadEmails = async () => {
 const loadMailRecords = async () => {
   loadingMails.value = true
   try {
-    if (selectedEmailId.value === 'all') {
-      const responses = await Promise.all(
-        emails.value.map((email) => api.emails.getRecords(email.id).catch(() => []))
-      )
-      mailRecordsData.value = responses.flat()
-    } else {
-      const res = await api.emails.getRecords(selectedEmailId.value)
-      mailRecordsData.value = Array.isArray(res) ? res : []
+    const payload = await api.emails.getRecordsPage({
+      emailId: selectedEmailId.value === 'all' ? null : selectedEmailId.value,
+      page: currentPage.value,
+      pageSize: pageSize.value
+    })
+    mailRecordsData.value = Array.isArray(payload?.records) ? payload.records : []
+    totalRecords.value = Number(payload?.pagination?.total || 0)
+    const totalPages = Number(payload?.pagination?.total_pages || 0)
+
+    if (totalPages > 0 && currentPage.value > totalPages) {
+      currentPage.value = totalPages
+      return await loadMailRecords()
     }
+
     if (!mailRecordsData.value.length) {
       activeMail.value = null
       activeAttachments.value = []
@@ -374,6 +414,29 @@ const loadMailRecords = async () => {
 
 const handleSelectEmail = async (id) => {
   selectedEmailId.value = id === 'all' ? 'all' : Number(id)
+  selectedMailIds.value = []
+  currentPage.value = 1
+  await loadMailRecords()
+}
+
+const handleAccountPageChange = (page) => {
+  accountCurrentPage.value = page
+}
+
+const handleAccountPageSizeChange = (size) => {
+  accountPageSize.value = size
+  accountCurrentPage.value = 1
+}
+
+const handlePageChange = async (page) => {
+  currentPage.value = page
+  selectedMailIds.value = []
+  await loadMailRecords()
+}
+
+const handlePageSizeChange = async (size) => {
+  pageSize.value = size
+  currentPage.value = 1
   selectedMailIds.value = []
   await loadMailRecords()
 }
@@ -556,7 +619,6 @@ const handleSortChange = ({ prop, order }) => {
 
 const refreshAll = async () => {
   await loadEmails()
-  await loadMailRecords()
 }
 
 onMounted(async () => {
@@ -614,6 +676,12 @@ onMounted(async () => {
   border-right: none;
 }
 
+.accounts-pagination {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0 2px;
+}
+
 .mail-menu :deep(.el-menu-item) {
   height: auto;
   line-height: 1.2;
@@ -638,13 +706,14 @@ onMounted(async () => {
   word-break: break-all;
 }
 
-.email-type {
-  font-size: 12px;
-  color: var(--text-light);
-}
-
 .records-table {
   width: 100%;
+}
+
+.records-pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
 }
 
 .subject-cell {

@@ -108,7 +108,7 @@
               </template>
             </template>
           </el-table-column>
-          <el-table-column prop="last_check_time" label="最后检查时间" width="180">
+          <el-table-column prop="last_check_time" label="最后检查时间" width="180" sortable>
             <template #default="scope">
               <span>{{ formatDate(scope.row.last_check_time) }}</span>
             </template>
@@ -1595,6 +1595,9 @@ onBeforeUnmount(() => {
   min-height: 100vh;
   background-color: var(--bg-color);
   overflow-x: hidden;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .emails-container {
@@ -1603,8 +1606,8 @@ onBeforeUnmount(() => {
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   width: 100%;
 }
 

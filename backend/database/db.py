@@ -680,6 +680,73 @@ class Database:
 
         return records
 
+    def get_mail_records_paginated(self, page=1, page_size=20, user_id=None, email_id=None):
+        """Get paginated mail records with optional user/email filtering."""
+        try:
+            page = max(1, int(page))
+        except (TypeError, ValueError):
+            page = 1
+
+        try:
+            page_size = max(1, int(page_size))
+        except (TypeError, ValueError):
+            page_size = 20
+
+        offset = (page - 1) * page_size
+
+        where_conditions = []
+        params = []
+
+        if email_id is not None:
+            where_conditions.append("mr.email_id = ?")
+            params.append(email_id)
+
+        if user_id is not None:
+            where_conditions.append("e.user_id = ?")
+            params.append(user_id)
+
+        where_clause = ""
+        if where_conditions:
+            where_clause = " WHERE " + " AND ".join(where_conditions)
+
+        try:
+            count_sql = (
+                "SELECT COUNT(*) AS total "
+                "FROM mail_records mr "
+                "JOIN emails e ON mr.email_id = e.id"
+                f"{where_clause}"
+            )
+            total_row = self.conn.execute(count_sql, tuple(params)).fetchone()
+            total = int(total_row["total"]) if total_row and total_row["total"] is not None else 0
+
+            query_sql = (
+                "SELECT mr.* "
+                "FROM mail_records mr "
+                "JOIN emails e ON mr.email_id = e.id"
+                f"{where_clause} "
+                "ORDER BY mr.received_time DESC "
+                "LIMIT ? OFFSET ?"
+            )
+            query_params = tuple(params + [page_size, offset])
+            rows = self.conn.execute(query_sql, query_params).fetchall()
+
+            records = []
+            for row in rows:
+                record_dict = dict(row)
+                try:
+                    content = record_dict.get('content')
+                    if content and isinstance(content, str) and content.startswith('{') and content.endswith('}'):
+                        import json
+                        record_dict['content'] = json.loads(content)
+                except Exception as parse_error:
+                    logger.warning(f"Failed to parse mail content JSON: {str(parse_error)}")
+                records.append(record_dict)
+
+            return records, total
+        except Exception as e:
+            logger.error(f"Failed to get paginated mail records: {str(e)}")
+            return [], 0
+
     def set_mail_read_status(self, mail_id: int, is_read: int) -> bool:
         try:
             self.conn.execute(

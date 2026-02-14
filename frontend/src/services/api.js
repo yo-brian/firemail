@@ -259,6 +259,14 @@ const apiMethods = {
     return api.get(`/emails/${emailId}/mail_records`);
   },
 
+  getMailRecordsPage: ({ emailId = null, page = 1, pageSize = 20 } = {}) => {
+    const params = { page, page_size: pageSize };
+    if (emailId !== null && typeof emailId !== 'undefined') {
+      params.email_id = emailId;
+    }
+    return api.get('/mail_records', { params });
+  },
+
   getMailAttachments: (mailId) => {
     return api.get(`/mail_records/${mailId}/attachments`);
   },
@@ -299,6 +307,13 @@ const apiMethods = {
     getAll: () => api.get('/emails').then(res => res.data),
     getPassword: (emailId) => api.get(`/emails/${emailId}/password`).then(res => res.data),
     getRecords: (emailId) => api.get(`/emails/${emailId}/mail_records`).then(res => res.data),
+    getRecordsPage: ({ emailId = null, page = 1, pageSize = 20 } = {}) => {
+      const params = { page, page_size: pageSize };
+      if (emailId !== null && typeof emailId !== 'undefined') {
+        params.email_id = emailId;
+      }
+      return api.get('/mail_records', { params }).then(res => res.data);
+    },
     getAttachments: (mailId) => api.get(`/mail_records/${mailId}/attachments`).then(res => res.data),
     markRead: (mailId) => api.post(`/mail_records/${mailId}/mark-read`).then(res => res.data),
     sendMail: (emailId, payload) => api.post(`/emails/${emailId}/send_mail`, payload).then(res => res.data),

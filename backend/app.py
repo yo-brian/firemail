@@ -704,8 +704,70 @@ def get_mail_records(current_user, email_id):
     if not email_info:
         return jsonify({'error': f'邮箱 ID {email_id} 不存在或您没有权限'}), 404
 
+    page = request.args.get('page', type=int)
+    page_size = request.args.get('page_size', type=int)
+
+    if page is not None or page_size is not None:
+        page = page or 1
+        page_size = page_size or 20
+        page_size = min(max(page_size, 1), 200)
+        records, total = db.get_mail_records_paginated(
+            page=page,
+            page_size=page_size,
+            user_id=None if current_user['is_admin'] else current_user['id'],
+            email_id=email_id
+        )
+        total_pages = (total + page_size - 1) // page_size if total > 0 else 0
+        return jsonify({
+            'records': records,
+            'pagination': {
+                'page': page,
+                'page_size': page_size,
+                'total': total,
+                'total_pages': total_pages
+            }
+        })
+
     mail_records = db.get_mail_records(email_id)
     return jsonify([dict(record) for record in mail_records])
+
+@app.route('/api/mail_records', methods=['GET'])
+@token_required
+def list_mail_records(current_user):
+    """分页获取邮件记录，可按邮箱筛选。"""
+    page = request.args.get('page', default=1, type=int)
+    page_size = request.args.get('page_size', default=20, type=int)
+    email_id = request.args.get('email_id', type=int)
+
+    if page <= 0:
+        page = 1
+    if page_size <= 0:
+        page_size = 20
+    page_size = min(page_size, 200)
+
+    # 如果指定了邮箱，先校验权限
+    if email_id is not None:
+        email_info = db.get_email_by_id(email_id, None if current_user['is_admin'] else current_user['id'])
+        if not email_info:
+            return jsonify({'error': f'邮箱 ID {email_id} 不存在或您没有权限'}), 404
+
+    records, total = db.get_mail_records_paginated(
+        page=page,
+        page_size=page_size,
+        user_id=None if current_user['is_admin'] else current_user['id'],
+        email_id=email_id
+    )
+    total_pages = (total + page_size - 1) // page_size if total > 0 else 0
+
+    return jsonify({
+        'records': records,
+        'pagination': {
+            'page': page,
+            'page_size': page_size,
+            'total': total,
+            'total_pages': total_pages
+        }
+    })
 
 @app.route('/api/mail_records/<int:mail_id>/attachments', methods=['GET'])
 @token_required
