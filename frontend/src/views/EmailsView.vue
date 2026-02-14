@@ -731,7 +731,6 @@ const startDeviceCodeFlow = async () => {
     deviceCodeExpiresAt.value = Date.now() + ((Number(data.expires_in) || 0) * 1000)
     startDeviceCodeCountdown()
     ElMessage.success('设备码已生成')
-    openDeviceLogin()
     beginDeviceTokenPolling(newRound)
   } catch (error) {
     console.error('获取设备码失败:', error)
