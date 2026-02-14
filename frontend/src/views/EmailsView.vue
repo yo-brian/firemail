@@ -1,4 +1,5 @@
 <template>
+  <!-- FILE ENCODING: UTF-8 (required). Do not save this file as ANSI/GBK. -->
   <div class="page-container">
     <div class="emails-container">
       <el-card class="email-list-card shadow">
@@ -250,12 +251,6 @@
                     </div>
                     <div class="device-code-line">
                       生成时间: {{ formatDate(deviceCodeIssuedAtIso) }}，剩余: {{ deviceCodeRemainingSeconds }} 秒
-                    </div>
-                    <div class="device-code-debug">
-                      <div>调试-轮次: #{{ deviceCodeRound }}</div>
-                      <div>调试-flow_id: {{ deviceCodeInfo.flow_id || '(legacy)' }}</div>
-                      <div>调试-user_code: {{ deviceCodeInfo.user_code }}</div>
-                      <div>调试-device_code: {{ deviceCodeDebugMask }}</div>
                     </div>
                     <div class="device-code-line" v-if="deviceTokenPolling">
                       正在自动轮询授权结果...
@@ -512,6 +507,7 @@
 </template>
 
 <script setup>
+// FILE ENCODING: UTF-8 (required)
 import { ref, computed, onMounted, onBeforeUnmount, reactive, watch } from 'vue'
 import { useEmailsStore } from '@/store/emails'
 import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
@@ -624,13 +620,6 @@ const deviceCodeIssuedAtIso = computed(() => {
 
 const deviceLoginUrl = computed(() => {
   return deviceCodeInfo.value?.verification_uri_complete || deviceCodeInfo.value?.verification_uri || 'https://microsoft.com/devicelogin'
-})
-
-const deviceCodeDebugMask = computed(() => {
-  const raw = deviceCodeInfo.value?.device_code || ''
-  if (!raw) return ''
-  if (raw.length <= 16) return raw
-  return `${raw.slice(0, 10)}...${raw.slice(-6)}`
 })
 
 const canRequestNewDeviceCode = computed(() => {
@@ -835,6 +824,7 @@ const pollDeviceCodeTokenOnce = async (roundId) => {
 
   if (status === 'success') {
     stopDeviceTokenPolling()
+    await autoBindOutlookAndAskNext()
     return
   }
 
@@ -844,6 +834,85 @@ const pollDeviceCodeTokenOnce = async (roundId) => {
   }
 
   stopDeviceTokenPolling()
+}
+
+const persistCurrentEmail = async (options = {}) => {
+  const closeDialogOnSuccess = options.closeDialogOnSuccess !== false
+  const successMessage = options.successMessage || '添加邮箱成功'
+  if (!addEmailFormRef.value) return false
+
+  let loadingInstance = null
+  try {
+    await addEmailFormRef.value.validate()
+
+    addingEmail.value = true
+    loadingInstance = ElLoading.service({
+      lock: true,
+      text: '正在添加邮箱...',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
+
+    const formData = {
+      mail_type: addEmailForm.value.mail_type
+    }
+
+    if (addEmailForm.value.mail_type === 'outlook') {
+      formData.client_id = addEmailForm.value.client_id
+      formData.refresh_token = addEmailForm.value.refresh_token
+    } else if (addEmailForm.value.mail_type === 'imap') {
+      formData.email = addEmailForm.value.email
+      formData.server = addEmailForm.value.server
+      formData.port = addEmailForm.value.port
+      formData.use_ssl = addEmailForm.value.use_ssl
+      formData.password = addEmailForm.value.password
+    } else {
+      formData.email = addEmailForm.value.email
+      formData.password = addEmailForm.value.password
+    }
+
+    await emailsStore.addEmail(formData)
+    if (closeDialogOnSuccess) {
+      addEmailDialogVisible.value = false
+    }
+    ElMessage.success(successMessage)
+    await refreshEmails()
+    return true
+  } catch (error) {
+    console.error('添加邮箱失败:', error)
+    ElMessage.error('添加邮箱失败: ' + (error.message || '未知错误'))
+    return false
+  } finally {
+    addingEmail.value = false
+    if (loadingInstance) {
+      loadingInstance.close()
+    }
+  }
+}
+
+const autoBindOutlookAndAskNext = async () => {
+  if (addEmailForm.value.mail_type !== 'outlook' || !addEmailDialogVisible.value) return
+  const saved = await persistCurrentEmail({
+    closeDialogOnSuccess: false,
+    successMessage: '已自动绑定并保存到数据库'
+  })
+  if (!saved) return
+
+  try {
+    await ElMessageBox.confirm(
+      '已自动绑定成功，是否继续添加下一个邮箱？',
+      '提示',
+      {
+        confirmButtonText: '继续添加',
+        cancelButtonText: '关闭',
+        type: 'success'
+      }
+    )
+    resetAddEmailForm()
+    addEmailActiveTab.value = 'single'
+    addEmailDialogVisible.value = true
+  } catch {
+    addEmailDialogVisible.value = false
+  }
 }
 
 // 批量导入数据
@@ -1121,50 +1190,7 @@ const handleAddOrImport = async () => {
 }
 
 const handleAddEmail = async () => {
-  if (!addEmailFormRef.value) return
-
-  try {
-    // 表单验证
-    await addEmailFormRef.value.validate()
-
-    addingEmail.value = true
-    const loading = ElLoading.service({
-      lock: true,
-      text: '正在添加邮箱...',
-      background: 'rgba(0, 0, 0, 0.7)'
-    })
-
-    const formData = {
-      mail_type: addEmailForm.value.mail_type
-    }
-
-    if (addEmailForm.value.mail_type === 'outlook') {
-      formData.client_id = addEmailForm.value.client_id
-      formData.refresh_token = addEmailForm.value.refresh_token
-    } else if (addEmailForm.value.mail_type === 'imap') {
-      formData.email = addEmailForm.value.email
-      formData.server = addEmailForm.value.server
-      formData.port = addEmailForm.value.port
-      formData.use_ssl = addEmailForm.value.use_ssl
-      formData.password = addEmailForm.value.password
-    } else {
-      formData.email = addEmailForm.value.email
-      formData.password = addEmailForm.value.password
-    }
-
-    await emailsStore.addEmail(formData)
-    addEmailDialogVisible.value = false
-    ElMessage.success('添加邮箱成功')
-
-    // 刷新邮箱列表
-    await refreshEmails()
-  } catch (error) {
-    console.error('添加邮箱失败:', error)
-    ElMessage.error('添加邮箱失败: ' + (error.message || '未知错误'))
-  } finally {
-    addingEmail.value = false
-    ElLoading.service().close()
-  }
+  await persistCurrentEmail()
 }
 
 const handleImport = async () => {
@@ -1858,15 +1884,6 @@ onBeforeUnmount(() => {
 .device-code-message {
   margin-top: 6px;
   font-size: 0.9rem;
-  color: var(--secondary-text-color);
-}
-
-.device-code-debug {
-  margin-top: 8px;
-  padding-top: 6px;
-  border-top: 1px dashed var(--border-color);
-  font-family: monospace;
-  font-size: 0.85rem;
   color: var(--secondary-text-color);
 }
 

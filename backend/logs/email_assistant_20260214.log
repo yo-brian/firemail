@@ -592,3 +592,477 @@
 2026-02-14 15:47:17,287 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
 2026-02-14 15:47:18,481 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
 2026-02-14 15:47:18,600 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:12:35,068 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:12:35,092 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:12:35,202 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:12:35,205 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:12:35,288 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:12:35,288 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:12:35,458 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:12:35,458 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:12:35,825 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:12:35,938 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:12:36,054 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:12:36,113 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:12:36,838 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:12:36,931 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:12:36,991 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:12:37,091 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:12:37,094 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:12:37,198 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:12:37,358 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:12:37,480 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:17:37,397 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:17:37,536 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:17:37,551 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:17:37,570 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:17:37,695 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:17:37,718 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:17:37,839 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:17:37,839 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:17:38,054 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:17:38,251 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:17:38,386 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:17:38,446 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:17:39,059 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:17:39,173 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:17:39,534 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:17:39,635 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:17:39,666 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:17:39,816 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:17:39,942 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:17:40,065 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:22:39,803 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:22:39,838 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:22:39,896 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:22:40,001 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:22:40,022 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:22:40,026 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:22:40,206 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:22:40,212 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:22:40,553 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:22:40,644 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:22:40,756 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:22:40,771 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:22:41,598 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:22:41,694 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:22:41,810 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:22:41,827 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:22:41,922 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:22:41,932 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:22:42,065 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:22:42,065 - email_utils - ERROR - [ThreadPoolExecutor-1_3] - 更新检查时间失败: cannot commit - no transaction is active
+2026-02-14 16:22:42,065 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:25:30,483 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:25:30,490 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:25:30,527 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:25:30,596 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:25:30,596 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:25:30,639 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:25:30,808 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:25:30,808 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:25:31,137 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:25:31,146 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:25:31,284 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:25:31,410 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:25:32,161 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:25:32,180 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:25:32,268 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:25:32,397 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:25:32,730 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:25:32,849 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:25:33,358 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:25:33,463 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:30:32,136 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:30:32,230 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:30:32,263 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:30:32,359 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:30:32,361 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:30:32,381 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:30:32,382 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:30:32,518 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:30:32,774 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:30:32,906 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:30:33,031 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:30:33,128 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:30:33,773 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:30:33,895 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:30:33,984 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:30:34,100 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:30:34,284 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:30:34,386 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:30:34,509 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:30:34,611 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:35:34,316 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:35:34,332 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:35:34,345 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:35:34,354 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:35:34,428 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:35:34,569 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:35:34,569 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:35:34,570 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:35:34,935 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:35:35,110 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:35:35,206 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:35:35,240 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:35:35,929 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:35:36,043 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:35:36,161 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:35:36,260 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:35:36,309 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:35:36,411 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:35:36,438 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:35:36,560 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:37:29,557 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:37:29,681 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:37:29,853 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:37:29,964 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:37:30,292 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:37:30,331 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:37:30,412 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:37:30,472 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:37:30,924 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:37:31,489 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:37:31,581 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:37:31,679 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:37:31,878 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:37:31,961 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:37:32,141 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:37:32,531 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:37:32,669 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:37:33,841 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:37:35,008 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:37:35,119 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:40:08,885 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:40:08,906 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:40:08,920 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:40:08,923 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:40:09,020 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:40:09,121 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:40:09,121 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:40:09,122 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:40:09,624 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:40:09,627 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:40:09,636 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:40:09,644 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:40:10,640 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:40:10,660 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:40:10,741 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:40:10,760 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:40:10,871 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:40:10,871 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 更新检查时间失败: cannot commit - no transaction is active
+2026-02-14 16:40:10,871 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:40:11,103 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:40:11,231 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:44:32,696 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:44:32,773 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:44:32,811 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:44:32,819 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:44:32,978 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:44:32,998 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:44:33,294 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:44:33,296 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:44:33,521 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:44:33,558 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:44:33,862 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:44:34,373 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:44:34,556 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:44:34,589 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:44:34,670 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:44:34,776 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:44:35,390 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:44:35,503 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:44:35,629 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:44:35,735 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:49:34,763 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:49:34,774 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:49:34,784 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:49:34,881 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:49:34,895 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:49:35,018 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:49:35,018 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:49:35,129 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:49:35,382 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:49:35,641 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:49:35,644 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:49:35,684 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:49:36,455 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:49:36,574 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:49:36,870 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:49:36,981 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:49:37,116 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:49:37,248 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:49:37,258 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:49:37,382 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:54:36,389 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:54:36,441 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:54:36,495 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:54:36,550 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:54:36,630 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:54:36,751 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:54:36,913 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:54:37,031 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:54:37,046 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:54:37,160 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:54:37,280 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:54:37,639 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:54:38,151 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:54:38,179 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:54:38,273 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:54:38,290 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:54:38,406 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:54:38,517 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:54:38,984 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:54:39,111 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 16:59:38,567 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 16:59:38,581 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 16:59:38,602 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 16:59:38,613 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 16:59:38,689 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 16:59:38,690 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 16:59:38,690 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 16:59:38,821 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 16:59:39,191 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:59:39,237 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:59:39,336 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:59:39,478 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 16:59:40,189 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:12 的检查时间
+2026-02-14 16:59:40,265 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:11 的检查时间
+2026-02-14 16:59:40,299 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 16:59:40,421 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 16:59:40,526 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:13 的检查时间
+2026-02-14 16:59:40,644 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 16:59:40,709 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 16:59:40,846 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:04:41,439 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:04:41,539 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:04:41,638 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:04:41,770 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:04:41,798 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:04:41,910 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:04:41,976 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:04:42,150 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:04:42,403 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:04:42,465 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:04:42,580 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:04:43,250 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:04:43,426 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:04:43,553 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:04:43,703 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:04:43,942 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:04:43,962 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:04:44,175 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:04:44,621 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:04:44,821 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:09:42,755 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:09:42,842 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:09:42,893 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:09:42,979 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:09:42,988 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:09:43,046 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:09:43,076 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:09:43,164 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:09:43,664 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:09:43,668 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:09:43,809 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:09:44,214 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:09:44,877 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:09:44,979 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:09:45,122 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:09:45,133 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:09:45,213 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:09:45,236 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:09:45,297 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:09:45,380 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:14:47,575 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:14:47,673 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:14:50,305 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:14:50,395 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:14:57,948 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:14:58,187 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:14:58,971 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:14:59,083 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:14:59,412 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:14:59,500 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:14:59,870 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:14:59,916 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:14:59,973 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:15:00,056 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:15:00,562 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:15:00,731 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:15:01,679 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:15:01,779 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:15:02,109 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:15:02,215 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:19:46,883 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:19:46,961 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:19:46,981 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:19:46,989 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:19:47,062 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:19:47,063 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:19:47,154 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:19:47,155 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:19:47,500 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:19:47,603 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:19:47,809 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:19:47,830 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:19:48,549 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:19:48,644 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:19:48,695 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:19:48,783 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:19:48,864 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:19:48,956 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:19:49,202 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:19:49,296 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:24:48,751 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:24:48,757 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:24:48,775 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:24:48,798 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:24:48,921 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:24:49,012 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:24:49,012 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:24:49,013 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:24:49,505 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:24:49,540 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:24:49,661 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:24:49,940 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:24:50,577 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:24:50,589 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:24:50,677 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:24:50,769 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:24:50,949 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:24:51,013 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:24:51,031 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:24:51,148 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:29:50,931 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:29:50,937 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:29:51,019 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:29:51,060 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:29:51,073 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:29:51,123 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:29:51,227 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:29:51,228 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:29:51,555 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:29:51,748 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:29:51,799 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:29:51,898 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:29:52,515 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:29:52,607 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:29:52,712 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:29:52,790 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:29:52,909 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:29:52,996 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:29:53,067 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:29:53,150 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:34:53,476 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:34:53,496 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:34:53,566 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:34:53,576 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:34:53,576 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:34:53,627 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:34:53,667 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:34:53,766 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:34:54,070 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:34:54,097 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:34:54,181 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:34:54,419 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:34:55,099 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:34:55,166 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:34:55,217 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:34:55,249 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:34:55,309 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:34:55,400 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:34:55,930 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:34:56,025 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:35:01,632 - email_utils - INFO - [Thread-74 (process_request_thread)] - 成功获取新的访问令牌
+2026-02-14 17:35:02,150 - email_utils - INFO - [Thread-73 (process_request_thread)] - 成功获取新的访问令牌
+2026-02-14 17:37:50,695 - email_utils - INFO - [Thread-1 (start_websocket_server)] - 成功获取新的访问令牌
+2026-02-14 17:37:55,883 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 成功获取新的访问令牌
+2026-02-14 17:37:55,964 - email_utils - INFO - [ThreadPoolExecutor-0_0] - ===== 开始处理邮箱: odetesara1@outlook.com (ID:15) =====
+2026-02-14 17:37:56,697 - email_utils - INFO - [ThreadPoolExecutor-0_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:37:58,099 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 开始保存 12 封邮件记录到数据库, 邮箱ID: 15
+2026-02-14 17:37:59,324 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 邮箱 (ID:15) 进度: 100% - 正在保存邮件记录 (12/12)
+2026-02-14 17:37:59,324 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 完成保存邮件记录: 总计 12 封, 新增 10 封
+2026-02-14 17:37:59,324 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 更新邮箱 ID:15 的检查时间
+2026-02-14 17:37:59,435 - email_utils - INFO - [ThreadPoolExecutor-0_0] - ===== 邮箱处理完成: odetesara1@outlook.com (ID:15) =====
+2026-02-14 17:37:59,435 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 总邮件数: 12, 成功处理: 12, 新增: 10
+2026-02-14 17:37:59,435 - email_utils - INFO - [ThreadPoolExecutor-0_0] - 邮箱 ID 15 处理完成，已从处理队列中移除
+2026-02-14 17:38:56,283 - email_utils - INFO - [Thread-112 (process_request_thread)] - 成功获取新的访问令牌
+2026-02-14 17:38:56,314 - email_utils - INFO - [Thread-111 (process_request_thread)] - 成功获取新的访问令牌
+2026-02-14 17:39:56,467 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:39:56,503 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 成功获取新的访问令牌
+2026-02-14 17:39:56,560 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:39:56,563 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:39:56,647 - email_utils - INFO - [ThreadPoolExecutor-1_4] - ===== 开始处理邮箱: odetesara1@outlook.com (ID:15) =====
+2026-02-14 17:39:56,680 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:39:56,701 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:39:56,760 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:39:56,855 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:39:56,859 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:39:57,150 - email_utils - INFO - [ThreadPoolExecutor-1_4] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:39:57,285 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:39:57,349 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:39:57,401 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:39:57,407 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:39:58,227 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 更新邮箱 ID:15 的检查时间
+2026-02-14 17:39:58,343 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 邮箱 ID 15 处理完成，已从处理队列中移除
+2026-02-14 17:39:58,360 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:39:58,401 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:39:58,427 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:39:58,443 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:39:58,444 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:39:58,544 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:39:58,672 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:39:58,801 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:41:14,875 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:41:14,957 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:41:15,019 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:41:15,099 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:41:15,114 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:41:15,235 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:41:15,385 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 成功获取新的访问令牌
+2026-02-14 17:41:15,405 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:41:15,482 - email_utils - INFO - [ThreadPoolExecutor-1_4] - ===== 开始处理邮箱: odetesara1@outlook.com (ID:15) =====
+2026-02-14 17:41:15,567 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:41:15,585 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:41:15,667 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:41:15,768 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:41:16,013 - email_utils - INFO - [ThreadPoolExecutor-1_4] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:41:16,080 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:41:16,551 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:41:16,648 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:41:16,764 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:41:16,848 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:41:17,132 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 更新邮箱 ID:15 的检查时间
+2026-02-14 17:41:17,133 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:41:17,223 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 邮箱 ID 15 处理完成，已从处理队列中移除
+2026-02-14 17:41:17,223 - email_utils - ERROR - [ThreadPoolExecutor-1_3] - 更新检查时间失败: cannot commit - no transaction is active
+2026-02-14 17:41:17,226 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除
+2026-02-14 17:41:17,227 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:41:17,325 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:46:17,474 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 成功获取新的访问令牌
+2026-02-14 17:46:17,520 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 成功获取新的访问令牌
+2026-02-14 17:46:17,528 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 成功获取新的访问令牌
+2026-02-14 17:46:17,541 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 成功获取新的访问令牌
+2026-02-14 17:46:17,563 - email_utils - INFO - [ThreadPoolExecutor-1_0] - ===== 开始处理邮箱: odetesara1@outlook.com (ID:15) =====
+2026-02-14 17:46:17,567 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 成功获取新的访问令牌
+2026-02-14 17:46:17,650 - email_utils - INFO - [ThreadPoolExecutor-1_3] - ===== 开始处理邮箱: anikvavilashvili@outlook.com (ID:14) =====
+2026-02-14 17:46:17,650 - email_utils - INFO - [ThreadPoolExecutor-1_4] - ===== 开始处理邮箱: dodhiavaanikanilay@outlook.com (ID:13) =====
+2026-02-14 17:46:17,651 - email_utils - INFO - [ThreadPoolExecutor-1_2] - ===== 开始处理邮箱: haoufani@outlook.com (ID:12) =====
+2026-02-14 17:46:17,741 - email_utils - INFO - [ThreadPoolExecutor-1_1] - ===== 开始处理邮箱: richardbujda@outlook.com (ID:11) =====
+2026-02-14 17:46:18,099 - email_utils - INFO - [ThreadPoolExecutor-1_0] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:46:18,156 - email_utils - INFO - [ThreadPoolExecutor-1_2] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:46:18,178 - email_utils - INFO - [ThreadPoolExecutor-1_4] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:46:18,260 - email_utils - INFO - [ThreadPoolExecutor-1_1] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:46:18,322 - email_utils - INFO - [ThreadPoolExecutor-1_3] - Graph folders selected: [('垃圾邮件', None), ('收件箱', None)]
+2026-02-14 17:46:19,157 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 更新邮箱 ID:12 的检查时间
+2026-02-14 17:46:19,160 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 更新邮箱 ID:13 的检查时间
+2026-02-14 17:46:19,246 - email_utils - INFO - [ThreadPoolExecutor-1_2] - 邮箱 ID 12 处理完成，已从处理队列中移除
+2026-02-14 17:46:19,257 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 更新邮箱 ID:11 的检查时间
+2026-02-14 17:46:19,287 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 更新邮箱 ID:15 的检查时间
+2026-02-14 17:46:19,335 - email_utils - INFO - [ThreadPoolExecutor-1_4] - 邮箱 ID 13 处理完成，已从处理队列中移除
+2026-02-14 17:46:19,441 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 更新检查时间失败: cannot commit - no transaction is active
+2026-02-14 17:46:19,441 - email_utils - INFO - [ThreadPoolExecutor-1_1] - 邮箱 ID 11 处理完成，已从处理队列中移除
+2026-02-14 17:46:19,441 - email_utils - INFO - [ThreadPoolExecutor-1_0] - 邮箱 ID 15 处理完成，已从处理队列中移除
+2026-02-14 17:46:19,621 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 更新邮箱 ID:14 的检查时间
+2026-02-14 17:46:19,721 - email_utils - INFO - [ThreadPoolExecutor-1_3] - 邮箱 ID 14 处理完成，已从处理队列中移除

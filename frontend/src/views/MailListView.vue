@@ -86,6 +86,11 @@
             </template>
           </el-table-column>
           <el-table-column prop="sender" label="发件人" min-width="180" show-overflow-tooltip sortable="custom" />
+          <el-table-column label="收件人" prop="recipient" min-width="220" show-overflow-tooltip sortable="custom">
+            <template #default="{ row }">
+              <span>{{ getMailRecipient(row) }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="folder" label="文件夹" width="110" sortable="custom" />
           <el-table-column label="时间" width="170" sortable="custom" prop="received_time">
             <template #default="{ row }">{{ formatDate(row.received_time) }}</template>
@@ -256,6 +261,7 @@ const sortedMailRecords = computed(() => {
   const direction = order === 'ascending' ? 1 : -1
   const getValue = (row) => {
     if (prop === 'received_time') return row?.received_time ? new Date(row.received_time).getTime() : 0
+    if (prop === 'recipient') return getMailRecipient(row).toLowerCase()
     return (row?.[prop] ?? '').toString().toLowerCase()
   }
   records.sort((a, b) => {
@@ -369,6 +375,17 @@ const normalizeSenderToEmail = (sender) => {
     return sender.split('<', 1)[1].split('>', 1)[0].trim()
   }
   return sender.trim()
+}
+
+const getMailRecipient = (row) => {
+  if (!row) return '(未知收件人)'
+  const raw = row.recipient ?? row.to ?? row.recipients ?? row.receiver ?? row.receivers
+  if (Array.isArray(raw)) {
+    const values = raw.map(v => String(v || '').trim()).filter(Boolean)
+    return values.length ? values.join(', ') : '(未知收件人)'
+  }
+  const text = String(raw || '').trim()
+  return text || '(未知收件人)'
 }
 
 const loadEmails = async () => {

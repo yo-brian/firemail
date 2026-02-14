@@ -720,7 +720,7 @@ class Database:
             total = int(total_row["total"]) if total_row and total_row["total"] is not None else 0
 
             query_sql = (
-                "SELECT mr.* "
+                "SELECT mr.*, e.email AS recipient "
                 "FROM mail_records mr "
                 "JOIN emails e ON mr.email_id = e.id"
                 f"{where_clause} "
