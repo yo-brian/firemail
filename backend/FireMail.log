@@ -9067,3 +9067,666 @@ TypeError: realtime_status() got an unexpected keyword argument 'current_user'
 2026-02-14 17:48:34,054 - websocket - INFO - 发送邮箱列表给用户ID: 1
 2026-02-14 17:50:14,371 - websocket - INFO - 发送邮箱列表给用户ID: 1
 2026-02-14 17:50:14,373 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:55,512 - database - INFO - 数据库文件已存在: H:\code\firemail\backend\data\huohuo_email.db，建立连接
+2026-02-14 17:50:55,513 - database - INFO - 连接数据库: H:\code\firemail\backend\data\huohuo_email.db
+2026-02-14 17:50:55,514 - database - INFO - 读取到注册配置: false
+2026-02-14 17:50:55,514 - FireMail - INFO - 系统启动: 注册功能状态 = False
+2026-02-14 17:50:55,531 - FireMail - INFO - 启动WebSocket服务器
+2026-02-14 17:50:55,531 - utils.email._real_time_check - INFO - Realtime checker started: interval=300s, batch_size=5
+2026-02-14 17:50:55,532 - FireMail - INFO - 实时邮件检查已启动
+2026-02-14 17:50:55,532 - utils.email._real_time_check - INFO - Realtime round started: selected=5/5, next_cursor=0
+2026-02-14 17:50:55,532 - FireMail - INFO - 学在华邮件助手启动于 http://0.0.0.0:5000
+2026-02-14 17:50:55,532 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 17:50:55,534 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 17:50:55,537 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 17:50:55,538 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 17:50:55,540 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 17:50:55,549 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.40.102:5000
+2026-02-14 17:50:55,550 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-02-14 17:50:55,563 - websocket - INFO - WebSocket服务器启动于端口 8765
+2026-02-14 17:50:55,564 - websockets.server - INFO - server listening on 0.0.0.0:8765
+2026-02-14 17:50:55,609 - websockets.server - INFO - connection open
+2026-02-14 17:50:55,609 - websocket - INFO - 新的WebSocket连接: ('192.168.40.102', 10736)
+2026-02-14 17:50:55,915 - websockets.server - INFO - connection open
+2026-02-14 17:50:55,915 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 10737)
+2026-02-14 17:50:56,435 - database - INFO - 成功更新邮箱 ID:14 的访问令牌
+2026-02-14 17:50:56,528 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 17:50:56,635 - database - ERROR - 更新邮箱访问令牌失败, ID: 13, 错误: cannot commit - no transaction is active
+2026-02-14 17:50:56,639 - database - INFO - 成功更新邮箱 ID:15 的访问令牌
+2026-02-14 17:50:56,639 - database - ERROR - 更新邮箱访问令牌失败, ID: 11, 错误: cannot commit - no transaction is active
+2026-02-14 17:50:57,021 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 17:50:57,081 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 17:50:57,103 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:50:57,110 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:57,125 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:50:57,144 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:57,153 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 17:50:57,199 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 17:50:57,210 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 17:50:57,517 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 17:50:57,518 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 17:50:57,640 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 17:50:57,640 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 17:50:57,699 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 17:50:57,699 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 17:50:57,720 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 17:50:57,720 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 17:50:57,726 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 17:50:57,726 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 17:50:58,030 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 17:50:58,032 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 17:50:58,147 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:58,149 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:58,151 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:58,154 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 17:50:58,154 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:50:58,155 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 17:50:58,226 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 17:50:58,226 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 17:50:58,270 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 17:50:58,270 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 17:50:58,343 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 17:50:58,344 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件
+2026-02-14 17:50:58,455 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:02,459 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:51:02,460 - websockets.server - INFO - connection closed
+2026-02-14 17:51:03,549 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:03] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:51:03,813 - database - INFO - 读取到注册配置: false
+2026-02-14 17:51:03,813 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:51:03,814 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:51:03'}
+2026-02-14 17:51:03,815 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:03] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:51:03,933 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:03] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:51:04,222 - websockets.server - INFO - connection open
+2026-02-14 17:51:04,222 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 10797)
+2026-02-14 17:51:04,252 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:04] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:51:04,725 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:51:04,733 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:04,854 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:04,856 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:05,240 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:05,243 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:05,244 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:05,355 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:05,357 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:06,301 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:06,304 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:51:10,879 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:10] "POST /api/oauth/outlook/device_code HTTP/1.1" 200 -
+2026-02-14 17:51:13,181 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:13] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:19,145 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:19] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:26,378 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:26] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:33,070 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:33] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:39,360 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:39] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:46,080 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:46] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:52,448 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:52] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:51:59,455 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:51:59] "POST /api/oauth/outlook/device_token HTTP/1.1" 200 -
+2026-02-14 17:52:01,037 - database - INFO - 尝试添加Outlook邮箱: magassouba11@outlook.com (用户ID: 1)
+2026-02-14 17:52:01,144 - database - INFO - 邮箱添加成功: magassouba11@outlook.com, ID: 16, 类型: outlook, 已启用实时检查
+2026-02-14 17:52:01,145 - websocket - INFO - 用户ID 1 添加了邮箱: magassouba11@outlook.com, 类型: outlook
+2026-02-14 17:52:01,147 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:01,150 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:01,151 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:04,613 - asyncio - ERROR - Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+2026-02-14 17:52:04,621 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:52:04,621 - websockets.server - INFO - connection closed
+2026-02-14 17:52:05,405 - werkzeug - INFO - 192.168.40.102 - - [14/Feb/2026 17:52:05] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:52:05,498 - database - INFO - 读取到注册配置: false
+2026-02-14 17:52:05,498 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:52:05,498 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:52:05'}
+2026-02-14 17:52:05,499 - werkzeug - INFO - 192.168.40.102 - - [14/Feb/2026 17:52:05] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:52:05,611 - websockets.server - INFO - connection open
+2026-02-14 17:52:05,612 - websocket - INFO - 新的WebSocket连接: ('192.168.40.102', 10913)
+2026-02-14 17:52:05,665 - werkzeug - INFO - 192.168.40.102 - - [14/Feb/2026 17:52:05] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:52:05,696 - werkzeug - INFO - 192.168.40.102 - - [14/Feb/2026 17:52:05] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:52:06,010 - werkzeug - INFO - 192.168.40.102 - - [14/Feb/2026 17:52:06] "OPTIONS /api/mail_records?page=1&page_size=20 HTTP/1.1" 200 -
+2026-02-14 17:52:06,025 - werkzeug - INFO - 192.168.40.102 - - [14/Feb/2026 17:52:06] "GET /api/mail_records?page=1&page_size=20 HTTP/1.1" 200 -
+2026-02-14 17:52:06,174 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:52:06,181 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:06,529 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:07,102 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:08,111 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:20,726 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:23,734 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:52:35,286 - websocket - INFO - 发送邮件记录给用户ID: 1, 邮箱ID: 16
+2026-02-14 17:52:47,989 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:52:47] "POST /api/oauth/outlook/device_code HTTP/1.1" 200 -
+2026-02-14 17:52:49,889 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:52:49] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:52:56,792 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:52:56] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:03,148 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:03] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:10,448 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:10] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:17,074 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:17] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:23,238 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:23] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:30,374 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:30] "POST /api/oauth/outlook/device_token HTTP/1.1" 200 -
+2026-02-14 17:53:31,823 - database - INFO - 尝试添加Outlook邮箱: hussainimahd@outlook.com (用户ID: 1)
+2026-02-14 17:53:31,936 - database - INFO - 邮箱添加成功: hussainimahd@outlook.com, ID: 17, 类型: outlook, 已启用实时检查
+2026-02-14 17:53:31,936 - websocket - INFO - 用户ID 1 添加了邮箱: hussainimahd@outlook.com, 类型: outlook
+2026-02-14 17:53:31,938 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:53:31,940 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:53:31,942 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:53:37,233 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:37] "POST /api/oauth/outlook/device_code HTTP/1.1" 200 -
+2026-02-14 17:53:39,188 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:39] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:45,527 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:45] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:51,612 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:51] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:53:58,352 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:53:58] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:05,094 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:05] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:11,371 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:11] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:18,136 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:18] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:25,756 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:25] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:32,123 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:32] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:39,429 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:39] "[31m[1mPOST /api/oauth/outlook/device_token HTTP/1.1[0m" 400 -
+2026-02-14 17:54:46,679 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:54:46] "POST /api/oauth/outlook/device_token HTTP/1.1" 200 -
+2026-02-14 17:54:48,111 - database - INFO - 尝试添加Outlook邮箱: fokamwabo2025@outlook.com (用户ID: 1)
+2026-02-14 17:54:48,229 - database - INFO - 邮箱添加成功: fokamwabo2025@outlook.com, ID: 18, 类型: outlook, 已启用实时检查
+2026-02-14 17:54:48,230 - websocket - INFO - 用户ID 1 添加了邮箱: fokamwabo2025@outlook.com, 类型: outlook
+2026-02-14 17:54:48,235 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:54:48,238 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:54:48,243 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:01,713 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:55:01,713 - websockets.server - INFO - connection closed
+2026-02-14 17:55:02,600 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:02] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:02,865 - database - INFO - 读取到注册配置: false
+2026-02-14 17:55:02,867 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:55:02,868 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:55:02'}
+2026-02-14 17:55:02,869 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:02] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:02,942 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:02] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:03,247 - websockets.server - INFO - connection open
+2026-02-14 17:55:03,248 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 11229)
+2026-02-14 17:55:03,249 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:03] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:03,752 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:55:03,760 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:03,877 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:03,879 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:04,269 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:04,271 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:04,273 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:04,388 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:04,390 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:05,291 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:05,295 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:11,128 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:55:11,128 - websockets.server - INFO - connection closed
+2026-02-14 17:55:11,306 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:11] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:11,626 - database - INFO - 读取到注册配置: false
+2026-02-14 17:55:11,626 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:55:11,626 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:55:11'}
+2026-02-14 17:55:11,627 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:11] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:11,872 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:11] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:11,965 - websockets.server - INFO - connection open
+2026-02-14 17:55:11,965 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 11254)
+2026-02-14 17:55:11,984 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:11] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:12,475 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:55:12,480 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:12,604 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:12,608 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:12,994 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:13,001 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:13,007 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:13,113 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:13,124 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:14,014 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:14,022 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:24,630 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:55:24,631 - websockets.server - INFO - connection closed
+2026-02-14 17:55:24,796 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:24] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:25,114 - database - INFO - 读取到注册配置: false
+2026-02-14 17:55:25,114 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:55:25,115 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:55:25'}
+2026-02-14 17:55:25,115 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:25] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:25,362 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:25] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:25,470 - websockets.server - INFO - connection open
+2026-02-14 17:55:25,471 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 11282)
+2026-02-14 17:55:25,472 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:25] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:25,975 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:55:25,986 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,103 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,106 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,501 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,510 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,518 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,616 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:26,619 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:27,501 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:27,506 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:41,061 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:55:41,062 - websockets.server - INFO - connection closed
+2026-02-14 17:55:41,245 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:41] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:41,566 - database - INFO - 读取到注册配置: false
+2026-02-14 17:55:41,567 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:55:41,567 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:55:41'}
+2026-02-14 17:55:41,567 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:41] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:41,819 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:41] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:41,925 - websockets.server - INFO - connection open
+2026-02-14 17:55:41,925 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 11314)
+2026-02-14 17:55:41,929 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:41] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:42,430 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:55:42,438 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:42,584 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:42,587 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:42,938 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:42,942 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:42,946 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:43,085 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:43,087 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:43,962 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:43,970 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:55:57,815 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=5
+2026-02-14 17:55:57,816 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 17:55:57,818 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 17:55:57,821 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 17:55:57,824 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 17:55:57,827 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 17:55:58,602 - database - INFO - 成功更新邮箱 ID:14 的访问令牌
+2026-02-14 17:55:58,715 - database - INFO - 成功更新邮箱 ID:15 的访问令牌
+2026-02-14 17:55:58,734 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 17:55:58,735 - websockets.server - INFO - connection closed
+2026-02-14 17:55:58,799 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 17:55:58,899 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 17:55:58,899 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 17:55:58,930 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:58] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:59,238 - database - INFO - 读取到注册配置: false
+2026-02-14 17:55:59,238 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 17:55:59,238 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 17:55:59'}
+2026-02-14 17:55:59,238 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:59] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 17:55:59,271 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 17:55:59,289 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 17:55:59,346 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 17:55:59,398 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 17:55:59,430 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 17:55:59,499 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:59] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:59,578 - websockets.server - INFO - connection open
+2026-02-14 17:55:59,580 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 11361)
+2026-02-14 17:55:59,580 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 17:55:59] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 17:55:59,793 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 17:55:59,793 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 17:55:59,857 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 17:55:59,857 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 17:55:59,890 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 17:55:59,890 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 17:55:59,904 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 17:55:59,904 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 17:55:59,940 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 17:55:59,940 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 17:56:00,081 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 17:56:00,084 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,179 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,182 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,323 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 17:56:00,323 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 17:56:00,350 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 17:56:00,350 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 17:56:00,382 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 17:56:00,383 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 17:56:00,461 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 17:56:00,461 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 17:56:00,551 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 17:56:00,551 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件
+2026-02-14 17:56:00,683 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,685 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,687 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,689 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:00,691 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:01,609 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 17:56:01,615 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:00:59,828 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=2
+2026-02-14 18:00:59,829 - utils.email._real_time_check - INFO - Submitted realtime task: id=16 email=magassouba11@outlook.com
+2026-02-14 18:00:59,830 - utils.email._real_time_check - INFO - Submitted realtime task: id=17 email=hussainimahd@outlook.com
+2026-02-14 18:00:59,831 - utils.email._real_time_check - INFO - Submitted realtime task: id=18 email=fokamwabo2025@outlook.com
+2026-02-14 18:00:59,834 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 18:00:59,837 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 18:01:00,631 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 18:01:00,747 - database - INFO - 成功更新邮箱 ID:16 的访问令牌
+2026-02-14 18:01:00,937 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 18:01:00,937 - database - INFO - 成功更新邮箱 ID:18 的访问令牌
+2026-02-14 18:01:00,937 - database - INFO - 成功更新邮箱 ID:17 的访问令牌
+2026-02-14 18:01:01,146 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 18:01:01,477 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 垃圾邮件
+2026-02-14 18:01:01,483 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 18:01:01,597 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 垃圾邮件
+2026-02-14 18:01:01,639 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 18:01:01,640 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 18:01:01,680 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 垃圾邮件
+2026-02-14 18:01:02,005 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 18:01:02,005 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 18:01:02,036 - utils.email._real_time_check - INFO - Realtime progress id=18 50% 垃圾邮件
+2026-02-14 18:01:02,037 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 收件箱
+2026-02-14 18:01:02,154 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 18:01:02,154 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 18:01:02,291 - utils.email._real_time_check - INFO - Realtime progress id=16 50% 垃圾邮件
+2026-02-14 18:01:02,291 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 收件箱
+2026-02-14 18:01:02,498 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 18:01:02,499 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 18:01:02,911 - utils.email._real_time_check - INFO - Realtime progress id=18 90% 收件箱
+2026-02-14 18:01:02,911 - utils.email._real_time_check - INFO - Realtime progress id=18 5% 正在保存邮件记录 (1/17)
+2026-02-14 18:01:02,943 - utils.email._real_time_check - INFO - Realtime progress id=17 50% 垃圾邮件
+2026-02-14 18:01:02,944 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 收件箱
+2026-02-14 18:01:03,008 - utils.email._real_time_check - INFO - Realtime progress id=18 11% 正在保存邮件记录 (2/17)
+2026-02-14 18:01:03,103 - utils.email._real_time_check - INFO - Realtime progress id=18 17% 正在保存邮件记录 (3/17)
+2026-02-14 18:01:03,132 - utils.email._real_time_check - INFO - Realtime progress id=16 90% 收件箱
+2026-02-14 18:01:03,172 - utils.email._real_time_check - INFO - Realtime progress id=16 12% 正在保存邮件记录 (1/8)
+2026-02-14 18:01:03,209 - utils.email._real_time_check - INFO - Realtime progress id=18 23% 正在保存邮件记录 (4/17)
+2026-02-14 18:01:03,304 - utils.email._real_time_check - INFO - Realtime progress id=16 25% 正在保存邮件记录 (2/8)
+2026-02-14 18:01:03,305 - utils.email._real_time_check - INFO - Realtime progress id=16 37% 正在保存邮件记录 (3/8)
+2026-02-14 18:01:03,409 - utils.email._real_time_check - INFO - Realtime progress id=16 50% 正在保存邮件记录 (4/8)
+2026-02-14 18:01:03,409 - database - ERROR - 添加邮件记录失败: cannot commit - no transaction is active
+2026-02-14 18:01:03,410 - utils.email._real_time_check - INFO - Realtime progress id=16 62% 正在保存邮件记录 (5/8)
+2026-02-14 18:01:03,410 - utils.email._real_time_check - INFO - Realtime progress id=18 29% 正在保存邮件记录 (5/17)
+2026-02-14 18:01:03,411 - utils.email._real_time_check - INFO - Realtime progress id=18 35% 正在保存邮件记录 (6/17)
+2026-02-14 18:01:03,412 - utils.email._real_time_check - INFO - Realtime progress id=18 41% 正在保存邮件记录 (7/17)
+2026-02-14 18:01:03,514 - utils.email._real_time_check - INFO - Realtime progress id=16 75% 正在保存邮件记录 (6/8)
+2026-02-14 18:01:03,514 - utils.email._real_time_check - INFO - Realtime progress id=16 87% 正在保存邮件记录 (7/8)
+2026-02-14 18:01:03,514 - utils.email._real_time_check - INFO - Realtime progress id=18 47% 正在保存邮件记录 (8/17)
+2026-02-14 18:01:03,515 - utils.email._real_time_check - INFO - Realtime progress id=16 100% 正在保存邮件记录 (8/8)
+2026-02-14 18:01:03,515 - utils.email._real_time_check - INFO - Realtime progress id=18 52% 正在保存邮件记录 (9/17)
+2026-02-14 18:01:03,626 - utils.email._real_time_check - INFO - Realtime progress id=18 58% 正在保存邮件记录 (10/17)
+2026-02-14 18:01:03,628 - utils.email._real_time_check - INFO - Realtime progress id=18 64% 正在保存邮件记录 (11/17)
+2026-02-14 18:01:03,629 - utils.email._real_time_check - INFO - Realtime progress id=18 70% 正在保存邮件记录 (12/17)
+2026-02-14 18:01:03,630 - utils.email._real_time_check - INFO - Realtime progress id=18 76% 正在保存邮件记录 (13/17)
+2026-02-14 18:01:03,630 - utils.email._real_time_check - INFO - Realtime progress id=18 82% 正在保存邮件记录 (14/17)
+2026-02-14 18:01:03,631 - utils.email._real_time_check - INFO - Realtime progress id=18 88% 正在保存邮件记录 (15/17)
+2026-02-14 18:01:03,632 - utils.email._real_time_check - INFO - Realtime progress id=18 94% 正在保存邮件记录 (16/17)
+2026-02-14 18:01:03,737 - utils.email._real_time_check - INFO - Realtime progress id=18 100% 正在保存邮件记录 (17/17)
+2026-02-14 18:01:04,080 - utils.email._real_time_check - INFO - Realtime progress id=17 90% 收件箱
+2026-02-14 18:01:04,080 - utils.email._real_time_check - INFO - Realtime progress id=17 4% 正在保存邮件记录 (1/22)
+2026-02-14 18:01:04,180 - utils.email._real_time_check - INFO - Realtime progress id=17 9% 正在保存邮件记录 (2/22)
+2026-02-14 18:01:04,281 - utils.email._real_time_check - INFO - Realtime progress id=17 13% 正在保存邮件记录 (3/22)
+2026-02-14 18:01:04,381 - utils.email._real_time_check - INFO - Realtime progress id=17 18% 正在保存邮件记录 (4/22)
+2026-02-14 18:01:04,498 - utils.email._real_time_check - INFO - Realtime progress id=17 22% 正在保存邮件记录 (5/22)
+2026-02-14 18:01:04,604 - utils.email._real_time_check - INFO - Realtime progress id=17 27% 正在保存邮件记录 (6/22)
+2026-02-14 18:01:04,703 - utils.email._real_time_check - INFO - Realtime progress id=17 31% 正在保存邮件记录 (7/22)
+2026-02-14 18:01:04,809 - utils.email._real_time_check - INFO - Realtime progress id=17 36% 正在保存邮件记录 (8/22)
+2026-02-14 18:01:04,915 - utils.email._real_time_check - INFO - Realtime progress id=17 40% 正在保存邮件记录 (9/22)
+2026-02-14 18:01:05,030 - utils.email._real_time_check - INFO - Realtime progress id=17 45% 正在保存邮件记录 (10/22)
+2026-02-14 18:01:05,127 - utils.email._real_time_check - INFO - Realtime progress id=17 50% 正在保存邮件记录 (11/22)
+2026-02-14 18:01:05,129 - utils.email._real_time_check - INFO - Realtime progress id=17 54% 正在保存邮件记录 (12/22)
+2026-02-14 18:01:05,231 - utils.email._real_time_check - INFO - Realtime progress id=17 59% 正在保存邮件记录 (13/22)
+2026-02-14 18:01:05,325 - utils.email._real_time_check - INFO - Realtime progress id=17 63% 正在保存邮件记录 (14/22)
+2026-02-14 18:01:05,425 - utils.email._real_time_check - INFO - Realtime progress id=17 68% 正在保存邮件记录 (15/22)
+2026-02-14 18:01:05,520 - utils.email._real_time_check - INFO - Realtime progress id=17 72% 正在保存邮件记录 (16/22)
+2026-02-14 18:01:05,614 - utils.email._real_time_check - INFO - Realtime progress id=17 77% 正在保存邮件记录 (17/22)
+2026-02-14 18:01:05,715 - utils.email._real_time_check - INFO - Realtime progress id=17 81% 正在保存邮件记录 (18/22)
+2026-02-14 18:01:05,820 - utils.email._real_time_check - INFO - Realtime progress id=17 86% 正在保存邮件记录 (19/22)
+2026-02-14 18:01:05,913 - utils.email._real_time_check - INFO - Realtime progress id=17 90% 正在保存邮件记录 (20/22)
+2026-02-14 18:01:05,914 - utils.email._real_time_check - INFO - Realtime progress id=17 95% 正在保存邮件记录 (21/22)
+2026-02-14 18:01:06,015 - utils.email._real_time_check - INFO - Realtime progress id=17 100% 正在保存邮件记录 (22/22)
+2026-02-14 18:06:01,744 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=7
+2026-02-14 18:06:01,745 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 18:06:01,747 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 18:06:01,748 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 18:06:01,753 - utils.email._real_time_check - INFO - Submitted realtime task: id=16 email=magassouba11@outlook.com
+2026-02-14 18:06:01,760 - utils.email._real_time_check - INFO - Submitted realtime task: id=17 email=hussainimahd@outlook.com
+2026-02-14 18:06:03,580 - database - INFO - 成功更新邮箱 ID:15 的访问令牌
+2026-02-14 18:06:03,755 - database - INFO - 成功更新邮箱 ID:14 的访问令牌
+2026-02-14 18:06:03,756 - database - INFO - 成功更新邮箱 ID:17 的访问令牌
+2026-02-14 18:06:03,858 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 18:06:03,996 - database - INFO - 成功更新邮箱 ID:16 的访问令牌
+2026-02-14 18:06:04,170 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 18:06:04,392 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 18:06:04,406 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 垃圾邮件
+2026-02-14 18:06:04,439 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 18:06:04,686 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 垃圾邮件
+2026-02-14 18:06:04,707 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 18:06:04,707 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 18:06:04,893 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 18:06:04,893 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 18:06:05,014 - utils.email._real_time_check - INFO - Realtime progress id=17 50% 垃圾邮件
+2026-02-14 18:06:05,014 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 收件箱
+2026-02-14 18:06:05,152 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 18:06:05,152 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 18:06:05,232 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 18:06:05,232 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 18:06:05,303 - utils.email._real_time_check - INFO - Realtime progress id=16 50% 垃圾邮件
+2026-02-14 18:06:05,304 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 收件箱
+2026-02-14 18:06:05,404 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 18:06:05,405 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 18:06:05,768 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 18:06:05,769 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件
+2026-02-14 18:06:05,785 - utils.email._real_time_check - INFO - Realtime progress id=17 90% 收件箱
+2026-02-14 18:06:05,786 - utils.email._real_time_check - INFO - Realtime progress id=17 100% 没有找到新邮件
+2026-02-14 18:06:05,953 - utils.email._real_time_check - INFO - Realtime progress id=16 90% 收件箱
+2026-02-14 18:06:05,953 - utils.email._real_time_check - INFO - Realtime progress id=16 100% 没有找到新邮件
+2026-02-14 18:11:03,806 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=4
+2026-02-14 18:11:03,807 - utils.email._real_time_check - INFO - Submitted realtime task: id=18 email=fokamwabo2025@outlook.com
+2026-02-14 18:11:03,808 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 18:11:03,810 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 18:11:03,813 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 18:11:03,818 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 18:11:04,518 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 18:11:04,634 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 18:11:04,749 - database - INFO - 成功更新邮箱 ID:14 的访问令牌
+2026-02-14 18:11:04,940 - database - INFO - 成功更新邮箱 ID:18 的访问令牌
+2026-02-14 18:11:05,024 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 18:11:05,060 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 18:11:05,164 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 18:11:05,427 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 18:11:05,480 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 垃圾邮件
+2026-02-14 18:11:05,553 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 18:11:05,570 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 18:11:05,571 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 18:11:05,872 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 18:11:05,873 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 18:11:05,994 - utils.email._real_time_check - INFO - Realtime progress id=18 50% 垃圾邮件
+2026-02-14 18:11:05,995 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 收件箱
+2026-02-14 18:11:06,056 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 18:11:06,057 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 18:11:06,059 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 18:11:06,060 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 18:11:06,111 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 18:11:06,111 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 18:11:06,372 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 18:11:06,372 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 18:11:06,474 - utils.email._real_time_check - INFO - Realtime progress id=18 90% 收件箱
+2026-02-14 18:11:06,475 - utils.email._real_time_check - INFO - Realtime progress id=18 100% 没有找到新邮件
+2026-02-14 18:11:06,570 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 18:11:06,571 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 18:11:06,723 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 18:11:06,724 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件
+2026-02-14 18:16:05,810 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=1
+2026-02-14 18:16:05,811 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 18:16:05,812 - utils.email._real_time_check - INFO - Submitted realtime task: id=16 email=magassouba11@outlook.com
+2026-02-14 18:16:05,813 - utils.email._real_time_check - INFO - Submitted realtime task: id=17 email=hussainimahd@outlook.com
+2026-02-14 18:16:05,818 - utils.email._real_time_check - INFO - Submitted realtime task: id=18 email=fokamwabo2025@outlook.com
+2026-02-14 18:16:05,823 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 18:16:06,521 - database - INFO - 成功更新邮箱 ID:15 的访问令牌
+2026-02-14 18:16:06,639 - database - INFO - 成功更新邮箱 ID:18 的访问令牌
+2026-02-14 18:16:06,639 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 18:16:06,640 - database - INFO - 成功更新邮箱 ID:16 的访问令牌
+2026-02-14 18:16:06,832 - database - INFO - 成功更新邮箱 ID:17 的访问令牌
+2026-02-14 18:16:07,153 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 垃圾邮件
+2026-02-14 18:16:07,160 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 18:16:07,326 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 垃圾邮件
+2026-02-14 18:16:07,474 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 垃圾邮件
+2026-02-14 18:16:07,511 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 18:16:07,662 - utils.email._real_time_check - INFO - Realtime progress id=18 50% 垃圾邮件
+2026-02-14 18:16:07,662 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 收件箱
+2026-02-14 18:16:07,762 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 18:16:07,763 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 18:16:07,982 - utils.email._real_time_check - INFO - Realtime progress id=16 50% 垃圾邮件
+2026-02-14 18:16:07,982 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 收件箱
+2026-02-14 18:16:07,989 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 18:16:07,990 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 18:16:08,051 - utils.email._real_time_check - INFO - Realtime progress id=17 50% 垃圾邮件
+2026-02-14 18:16:08,051 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 收件箱
+2026-02-14 18:16:08,178 - utils.email._real_time_check - INFO - Realtime progress id=18 90% 收件箱
+2026-02-14 18:16:08,178 - utils.email._real_time_check - INFO - Realtime progress id=18 100% 没有找到新邮件
+2026-02-14 18:16:08,348 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 18:16:08,348 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 18:16:08,498 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 18:16:08,498 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 18:16:08,613 - utils.email._real_time_check - INFO - Realtime progress id=16 90% 收件箱
+2026-02-14 18:16:08,613 - utils.email._real_time_check - INFO - Realtime progress id=16 100% 没有找到新邮件
+2026-02-14 18:16:08,667 - utils.email._real_time_check - INFO - Realtime progress id=17 90% 收件箱
+2026-02-14 18:16:08,667 - utils.email._real_time_check - INFO - Realtime progress id=17 100% 没有找到新邮件
+2026-02-14 18:21:07,788 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=6
+2026-02-14 18:21:07,789 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 18:21:07,790 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 18:21:07,792 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 18:21:07,795 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 18:21:07,799 - utils.email._real_time_check - INFO - Submitted realtime task: id=16 email=magassouba11@outlook.com
+2026-02-14 18:21:08,460 - database - INFO - 成功更新邮箱 ID:16 的访问令牌
+2026-02-14 18:21:08,567 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 18:21:08,568 - database - ERROR - 更新邮箱访问令牌失败, ID: 14, 错误: cannot commit - no transaction is active
+2026-02-14 18:21:08,659 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 18:21:08,659 - database - ERROR - 更新邮箱访问令牌失败, ID: 15, 错误: cannot commit - no transaction is active
+2026-02-14 18:21:09,082 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 18:21:09,122 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 垃圾邮件
+2026-02-14 18:21:09,202 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 18:21:09,206 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 18:21:09,225 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 18:21:09,594 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 18:21:09,595 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 18:21:09,681 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 18:21:09,681 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 18:21:09,747 - utils.email._real_time_check - INFO - Realtime progress id=16 50% 垃圾邮件
+2026-02-14 18:21:09,747 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 收件箱
+2026-02-14 18:21:09,760 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 18:21:09,760 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 18:21:09,837 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 18:21:09,838 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 18:21:10,125 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 18:21:10,125 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 18:21:10,161 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 18:21:10,161 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 18:21:10,283 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 18:21:10,283 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 18:21:10,383 - utils.email._real_time_check - INFO - Realtime progress id=16 90% 收件箱
+2026-02-14 18:21:10,383 - utils.email._real_time_check - INFO - Realtime progress id=16 100% 没有找到新邮件
+2026-02-14 18:21:10,555 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 18:21:10,556 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件
+2026-02-14 18:26:09,752 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=3
+2026-02-14 18:26:09,753 - utils.email._real_time_check - INFO - Submitted realtime task: id=17 email=hussainimahd@outlook.com
+2026-02-14 18:26:09,754 - utils.email._real_time_check - INFO - Submitted realtime task: id=18 email=fokamwabo2025@outlook.com
+2026-02-14 18:26:09,755 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 18:26:09,758 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 18:26:09,763 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 18:26:10,391 - database - INFO - 成功更新邮箱 ID:18 的访问令牌
+2026-02-14 18:26:10,496 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 18:26:10,691 - database - INFO - 成功更新邮箱 ID:17 的访问令牌
+2026-02-14 18:26:10,691 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 18:26:10,780 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 18:26:11,019 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 18:26:11,031 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 垃圾邮件
+2026-02-14 18:26:11,220 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 18:26:11,315 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 18:26:11,322 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 垃圾邮件
+2026-02-14 18:26:11,533 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 18:26:11,534 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 18:26:11,622 - utils.email._real_time_check - INFO - Realtime progress id=18 50% 垃圾邮件
+2026-02-14 18:26:11,623 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 收件箱
+2026-02-14 18:26:11,711 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 18:26:11,711 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 18:26:11,820 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 18:26:11,820 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 18:26:11,919 - utils.email._real_time_check - INFO - Realtime progress id=17 50% 垃圾邮件
+2026-02-14 18:26:11,919 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 收件箱
+2026-02-14 18:26:12,032 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 18:26:12,033 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 18:26:12,147 - utils.email._real_time_check - INFO - Realtime progress id=18 90% 收件箱
+2026-02-14 18:26:12,147 - utils.email._real_time_check - INFO - Realtime progress id=18 100% 没有找到新邮件
+2026-02-14 18:26:12,204 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 18:26:12,205 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 18:26:12,293 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 18:26:12,293 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 18:26:12,541 - utils.email._real_time_check - INFO - Realtime progress id=17 90% 收件箱
+2026-02-14 18:26:12,541 - utils.email._real_time_check - INFO - Realtime progress id=17 100% 没有找到新邮件
+2026-02-14 18:31:11,825 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=0
+2026-02-14 18:31:11,825 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 18:31:11,826 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 18:31:11,826 - utils.email._real_time_check - INFO - Submitted realtime task: id=16 email=magassouba11@outlook.com
+2026-02-14 18:31:11,827 - utils.email._real_time_check - INFO - Submitted realtime task: id=17 email=hussainimahd@outlook.com
+2026-02-14 18:31:11,828 - utils.email._real_time_check - INFO - Submitted realtime task: id=18 email=fokamwabo2025@outlook.com
+2026-02-14 18:31:12,546 - database - INFO - 成功更新邮箱 ID:14 的访问令牌
+2026-02-14 18:31:12,661 - database - INFO - 成功更新邮箱 ID:15 的访问令牌
+2026-02-14 18:31:12,662 - database - INFO - 成功更新邮箱 ID:18 的访问令牌
+2026-02-14 18:31:12,757 - database - INFO - 成功更新邮箱 ID:16 的访问令牌
+2026-02-14 18:31:12,850 - database - INFO - 成功更新邮箱 ID:17 的访问令牌
+2026-02-14 18:31:13,198 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 垃圾邮件
+2026-02-14 18:31:13,209 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 18:31:13,233 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 18:31:13,419 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 垃圾邮件
+2026-02-14 18:31:13,474 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 垃圾邮件
+2026-02-14 18:31:13,720 - utils.email._real_time_check - INFO - Realtime progress id=18 50% 垃圾邮件
+2026-02-14 18:31:13,720 - utils.email._real_time_check - INFO - Realtime progress id=18 10% 收件箱
+2026-02-14 18:31:13,783 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 18:31:13,784 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 18:31:13,842 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 18:31:13,842 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 18:31:14,064 - utils.email._real_time_check - INFO - Realtime progress id=16 50% 垃圾邮件
+2026-02-14 18:31:14,065 - utils.email._real_time_check - INFO - Realtime progress id=16 10% 收件箱
+2026-02-14 18:31:14,079 - utils.email._real_time_check - INFO - Realtime progress id=17 50% 垃圾邮件
+2026-02-14 18:31:14,079 - utils.email._real_time_check - INFO - Realtime progress id=17 10% 收件箱
+2026-02-14 18:31:14,219 - utils.email._real_time_check - INFO - Realtime progress id=18 90% 收件箱
+2026-02-14 18:31:14,219 - utils.email._real_time_check - INFO - Realtime progress id=18 100% 没有找到新邮件
+2026-02-14 18:31:14,303 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 18:31:14,303 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 18:31:14,525 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 18:31:14,525 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件
+2026-02-14 18:31:14,688 - utils.email._real_time_check - INFO - Realtime progress id=17 90% 收件箱
+2026-02-14 18:31:14,689 - utils.email._real_time_check - INFO - Realtime progress id=17 100% 没有找到新邮件
+2026-02-14 18:31:14,761 - utils.email._real_time_check - INFO - Realtime progress id=16 90% 收件箱
+2026-02-14 18:31:14,762 - utils.email._real_time_check - INFO - Realtime progress id=16 100% 没有找到新邮件
+2026-02-14 18:35:52,641 - websocket - INFO - WebSocket客户端已断开连接，用户ID: 1
+2026-02-14 18:35:52,641 - websockets.server - INFO - connection closed
+2026-02-14 18:35:53,616 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 18:35:53] "OPTIONS /api/config HTTP/1.1" 200 -
+2026-02-14 18:35:53,860 - database - INFO - 读取到注册配置: false
+2026-02-14 18:35:53,861 - FireMail - INFO - 获取系统配置: 注册功能状态 = False
+2026-02-14 18:35:53,861 - FireMail - INFO - 返回系统配置: {'allow_register': False, 'server_time': '2026-02-14 18:35:53'}
+2026-02-14 18:35:53,861 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 18:35:53] "GET /api/config HTTP/1.1" 200 -
+2026-02-14 18:35:53,949 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 18:35:53] "OPTIONS /api/auth/user HTTP/1.1" 200 -
+2026-02-14 18:35:54,245 - websockets.server - INFO - connection open
+2026-02-14 18:35:54,245 - websocket - INFO - 新的WebSocket连接: ('127.0.0.1', 13252)
+2026-02-14 18:35:54,261 - werkzeug - INFO - 127.0.0.1 - - [14/Feb/2026 18:35:54] "GET /api/auth/user HTTP/1.1" 200 -
+2026-02-14 18:35:54,750 - websocket - INFO - WebSocket客户端已认证，用户ID: 1
+2026-02-14 18:35:54,754 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:54,884 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:54,887 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:55,275 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:55,284 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:55,290 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:55,401 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:55,403 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:56,321 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:35:56,323 - websocket - INFO - 发送邮箱列表给用户ID: 1
+2026-02-14 18:36:13,911 - utils.email._real_time_check - INFO - Realtime round started: selected=5/8, next_cursor=5
+2026-02-14 18:36:13,911 - utils.email._real_time_check - INFO - Submitted realtime task: id=11 email=richardbujda@outlook.com
+2026-02-14 18:36:13,913 - utils.email._real_time_check - INFO - Submitted realtime task: id=12 email=haoufani@outlook.com
+2026-02-14 18:36:13,914 - utils.email._real_time_check - INFO - Submitted realtime task: id=13 email=dodhiavaanikanilay@outlook.com
+2026-02-14 18:36:13,915 - utils.email._real_time_check - INFO - Submitted realtime task: id=14 email=anikvavilashvili@outlook.com
+2026-02-14 18:36:13,916 - utils.email._real_time_check - INFO - Submitted realtime task: id=15 email=odetesara1@outlook.com
+2026-02-14 18:36:14,613 - database - INFO - 成功更新邮箱 ID:11 的访问令牌
+2026-02-14 18:36:14,613 - database - INFO - 成功更新邮箱 ID:12 的访问令牌
+2026-02-14 18:36:14,716 - database - INFO - 成功更新邮箱 ID:14 的访问令牌
+2026-02-14 18:36:14,814 - database - INFO - 成功更新邮箱 ID:15 的访问令牌
+2026-02-14 18:36:14,814 - database - INFO - 成功更新邮箱 ID:13 的访问令牌
+2026-02-14 18:36:15,129 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 垃圾邮件
+2026-02-14 18:36:15,144 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 垃圾邮件
+2026-02-14 18:36:15,331 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 垃圾邮件
+2026-02-14 18:36:15,342 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 垃圾邮件
+2026-02-14 18:36:15,383 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 垃圾邮件
+2026-02-14 18:36:15,611 - utils.email._real_time_check - INFO - Realtime progress id=12 50% 垃圾邮件
+2026-02-14 18:36:15,611 - utils.email._real_time_check - INFO - Realtime progress id=12 10% 收件箱
+2026-02-14 18:36:15,630 - utils.email._real_time_check - INFO - Realtime progress id=11 50% 垃圾邮件
+2026-02-14 18:36:15,630 - utils.email._real_time_check - INFO - Realtime progress id=11 10% 收件箱
+2026-02-14 18:36:15,818 - utils.email._real_time_check - INFO - Realtime progress id=13 50% 垃圾邮件
+2026-02-14 18:36:15,818 - utils.email._real_time_check - INFO - Realtime progress id=13 10% 收件箱
+2026-02-14 18:36:15,872 - utils.email._real_time_check - INFO - Realtime progress id=15 50% 垃圾邮件
+2026-02-14 18:36:15,872 - utils.email._real_time_check - INFO - Realtime progress id=15 10% 收件箱
+2026-02-14 18:36:16,009 - utils.email._real_time_check - INFO - Realtime progress id=14 50% 垃圾邮件
+2026-02-14 18:36:16,009 - utils.email._real_time_check - INFO - Realtime progress id=14 10% 收件箱
+2026-02-14 18:36:16,103 - utils.email._real_time_check - INFO - Realtime progress id=12 90% 收件箱
+2026-02-14 18:36:16,104 - utils.email._real_time_check - INFO - Realtime progress id=12 100% 没有找到新邮件
+2026-02-14 18:36:16,106 - utils.email._real_time_check - INFO - Realtime progress id=11 90% 收件箱
+2026-02-14 18:36:16,107 - utils.email._real_time_check - INFO - Realtime progress id=11 100% 没有找到新邮件
+2026-02-14 18:36:16,301 - utils.email._real_time_check - INFO - Realtime progress id=13 90% 收件箱
+2026-02-14 18:36:16,302 - utils.email._real_time_check - INFO - Realtime progress id=13 100% 没有找到新邮件
+2026-02-14 18:36:16,402 - utils.email._real_time_check - INFO - Realtime progress id=15 90% 收件箱
+2026-02-14 18:36:16,403 - utils.email._real_time_check - INFO - Realtime progress id=15 100% 没有找到新邮件
+2026-02-14 18:36:16,657 - utils.email._real_time_check - INFO - Realtime progress id=14 90% 收件箱
+2026-02-14 18:36:16,657 - utils.email._real_time_check - INFO - Realtime progress id=14 100% 没有找到新邮件

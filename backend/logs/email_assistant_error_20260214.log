@@ -4,3 +4,4 @@
 2026-02-14 16:40:10,871 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 更新检查时间失败: cannot commit - no transaction is active
 2026-02-14 17:41:17,223 - email_utils - ERROR - [ThreadPoolExecutor-1_3] - 更新检查时间失败: cannot commit - no transaction is active
 2026-02-14 17:46:19,441 - email_utils - ERROR - [ThreadPoolExecutor-1_0] - 更新检查时间失败: cannot commit - no transaction is active
+2026-02-14 17:50:58,453 - email_utils - ERROR - [ThreadPoolExecutor-1_4] - 更新检查时间失败: cannot commit - no transaction is active
