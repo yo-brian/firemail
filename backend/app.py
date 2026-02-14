@@ -2,6 +2,7 @@
 import os
 import sys
 import logging
+from logging.handlers import RotatingFileHandler
 import threading
 import argparse
 import datetime
@@ -20,11 +21,19 @@ import asyncio
 import concurrent.futures
 
 # 配置日志
+log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'logs')
+os.makedirs(log_dir, exist_ok=True)
+app_log_file = os.path.join(log_dir, "FireMail.log")
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("FireMail.log", encoding='utf-8'),
+        RotatingFileHandler(
+            app_log_file,
+            maxBytes=1 * 1024 * 1024,
+            backupCount=3,
+            encoding='utf-8'
+        ),
         logging.StreamHandler()
     ]
 )
