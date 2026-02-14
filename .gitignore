@@ -54,3 +54,4 @@ pnpm-debug.log*
 
 # SQLite database
 backend/data/*.db 
+backend/log/
