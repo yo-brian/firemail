@@ -165,6 +165,39 @@
       </template>
     </el-dialog>
 
+    <el-dialog v-model="tagDialogVisible" title="设置邮件标签" width="520px" destroy-on-close>
+      <div class="tag-dialog-body">
+        <el-input
+          v-model="tagInputValue"
+          clearable
+          maxlength="32"
+          show-word-limit
+          placeholder="输入标签名称（留空可清除标签）"
+          @keyup.enter="confirmSetMailTag"
+        />
+        <div class="tag-dialog-help">快捷选择已有标签</div>
+        <div v-if="quickTagOptions.length" class="tag-quick-list">
+          <el-tag
+            v-for="item in quickTagOptions"
+            :key="item"
+            class="tag-quick-item"
+            effect="plain"
+            @click="useQuickTag(item)"
+          >
+            {{ item }}
+          </el-tag>
+        </div>
+        <div v-else class="tag-dialog-empty">暂无可用标签</div>
+      </div>
+      <template #footer>
+        <div class="drawer-footer">
+          <el-button @click="tagDialogVisible = false">取消</el-button>
+          <el-button @click="clearTagAndSave" :loading="tagSaving">清除标签</el-button>
+          <el-button type="primary" @click="confirmSetMailTag" :loading="tagSaving">保存</el-button>
+        </div>
+      </template>
+    </el-dialog>
+
     <el-drawer v-model="composeVisible" :title="composeTitle" size="48%" destroy-on-close>
       <el-form :model="composeForm" label-width="72px">
         <el-form-item v-if="composeMode === 'reply'" label="方式">
@@ -288,6 +321,11 @@ const currentPage = ref(1)
 const pageSize = ref(20)
 const totalRecords = ref(0)
 const selectedTagFilter = ref('')
+const tagDialogVisible = ref(false)
+const tagSaving = ref(false)
+const tagEditingMail = ref(null)
+const tagInputValue = ref('')
+const availableTags = ref([])
 
 const composeVisible = ref(false)
 const composeLoading = ref(false)
@@ -340,6 +378,10 @@ const filteredMailRecords = computed(() => {
   const tag = String(selectedTagFilter.value || '').trim()
   if (!tag) return records
   return records.filter((item) => String(item?.tag || '').trim() === tag)
+})
+const quickTagOptions = computed(() => {
+  const current = String(tagInputValue.value || '').trim()
+  return (availableTags.value || []).filter((item) => item !== current)
 })
 
 const composeTitle = computed(() => {
@@ -728,6 +770,7 @@ const loadMailRecords = async () => {
       activeAttachments.value = []
       detailVisible.value = false
     }
+    await loadTagOptions()
   } catch (error) {
     logger.error('mail-list-view', 'loadMailRecords:error', { message: error?.message })
     try {
@@ -753,6 +796,19 @@ const loadMailRecords = async () => {
       totalRecords: totalRecords.value,
       currentPage: currentPage.value
     })
+  }
+}
+
+const loadTagOptions = async () => {
+  try {
+    const emailId = selectedEmailId.value === 'all' ? null : Number(selectedEmailId.value)
+    const result = await api.emails.getTags({ emailId, limit: 200 })
+    const tags = Array.isArray(result?.tags) ? result.tags : []
+    availableTags.value = Array.from(
+      new Set(tags.map(item => String(item || '').trim()).filter(Boolean))
+    )
+  } catch (_) {
+    availableTags.value = []
   }
 }
 
@@ -816,28 +872,53 @@ const selectMail = async (row) => {
 
 const setMailTag = async (row) => {
   if (!row || !row.id) return
+  tagEditingMail.value = row
+  tagInputValue.value = String(row.tag || '').trim()
+  tagDialogVisible.value = true
+  if (!availableTags.value.length) {
+    await loadTagOptions()
+  }
+}
+
+const useQuickTag = (tag) => {
+  tagInputValue.value = String(tag || '').trim()
+}
+
+const syncRowTagLocal = (mailId, tag) => {
+  const normalized = tag || null
+  ;[allMailRecords.value, mailRecordsData.value].forEach((list) => {
+    if (!Array.isArray(list)) return
+    const found = list.find((item) => Number(item?.id) === Number(mailId))
+    if (found) found.tag = normalized
+  })
+  if (activeMail.value && Number(activeMail.value.id) === Number(mailId)) {
+    activeMail.value.tag = normalized
+  }
+}
+
+const confirmSetMailTag = async () => {
+  const target = tagEditingMail.value
+  if (!target?.id) return
+  const tag = String(tagInputValue.value || '').trim()
+  tagSaving.value = true
   try {
-    const { value } = await ElMessageBox.prompt(
-      '输入标签名称（留空可清除标签）',
-      '设置邮件标签',
-      {
-        confirmButtonText: '保存',
-        cancelButtonText: '取消',
-        inputValue: String(row.tag || ''),
-        inputPlaceholder: '例如：工作、账单、待跟进'
-      }
-    )
-    const tag = String(value || '').trim()
-    await api.emails.setTag(row.id, tag)
-    row.tag = tag || null
-    if (activeMail.value && Number(activeMail.value.id) === Number(row.id)) {
-      activeMail.value.tag = row.tag
+    await api.emails.setTag(target.id, tag)
+    syncRowTagLocal(target.id, tag || null)
+    if (tag && !availableTags.value.includes(tag)) {
+      availableTags.value = [tag, ...availableTags.value]
     }
+    tagDialogVisible.value = false
     ElMessage.success(tag ? '标签已保存' : '标签已清除')
   } catch (e) {
-    if (e === 'cancel' || e === 'close') return
     ElMessage.error(e?.response?.data?.error || '设置标签失败')
+  } finally {
+    tagSaving.value = false
   }
+}
+
+const clearTagAndSave = async () => {
+  tagInputValue.value = ''
+  await confirmSetMailTag()
 }
 
 const handleSelectionChange = (rows) => {
@@ -1286,6 +1367,34 @@ watch(
   display: inline-flex;
   align-items: center;
   gap: 8px;
+}
+
+.tag-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tag-dialog-help {
+  color: var(--el-text-color-secondary);
+  font-size: 13px;
+}
+
+.tag-quick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.tag-quick-item {
+  cursor: pointer;
+}
+
+.tag-dialog-empty {
+  color: var(--el-text-color-placeholder);
+  font-size: 13px;
 }
 
 @media (max-width: 1400px) {

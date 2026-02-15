@@ -907,6 +907,32 @@ def set_mail_tag(current_user, mail_id):
         logger.error(f"设置邮件标签失败: {str(e)}")
         return jsonify({'error': f'服务端错误: {str(e)}'}), 500
 
+@app.route('/api/mail_records/tags', methods=['GET'])
+@token_required
+def get_mail_tags(current_user):
+    """获取当前用户可见范围内的已有标签。"""
+    try:
+        email_id = request.args.get('email_id', type=int)
+        limit = request.args.get('limit', default=200, type=int)
+        limit = max(1, min(limit, 500))
+
+        if email_id is not None:
+            email_info = db.get_email_by_id(email_id, None if current_user['is_admin'] else current_user['id'])
+            if not email_info:
+                return jsonify({'error': f'邮箱 ID {email_id} 不存在或您没有权限'}), 404
+
+        rows = db.get_mail_tags(
+            user_id=None if current_user['is_admin'] else current_user['id'],
+            email_id=email_id,
+            limit=limit
+        )
+        return jsonify({
+            'tags': [str(item.get('tag') or '').strip() for item in rows if str(item.get('tag') or '').strip()]
+        }), 200
+    except Exception as e:
+        logger.error(f"获取邮件标签列表失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
 @app.route('/api/emails/<int:email_id>/send_mail', methods=['POST'])
 @token_required
 def send_mail(current_user, email_id):

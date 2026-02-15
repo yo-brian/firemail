@@ -871,6 +871,47 @@ class Database:
             logger.error(f"更新邮件标签失败: {str(e)}")
             return False
 
+    def get_mail_tags(self, user_id: Optional[int] = None, email_id: Optional[int] = None, limit: int = 200) -> List[Dict]:
+        """获取已有标签（含使用次数），用于前端快捷选择。"""
+        try:
+            try:
+                limit = int(limit)
+            except Exception:
+                limit = 200
+            limit = max(1, min(limit, 500))
+
+            where_conditions = [
+                "mr.tag IS NOT NULL",
+                "TRIM(mr.tag) <> ''"
+            ]
+            params = []
+
+            if user_id is not None:
+                where_conditions.append("e.user_id = ?")
+                params.append(user_id)
+
+            if email_id is not None:
+                where_conditions.append("mr.email_id = ?")
+                params.append(email_id)
+
+            where_clause = " AND ".join(where_conditions)
+            rows = self.conn.execute(
+                f"""
+                SELECT mr.tag AS tag, COUNT(*) AS usage_count
+                FROM mail_records mr
+                JOIN emails e ON mr.email_id = e.id
+                WHERE {where_clause}
+                GROUP BY mr.tag
+                ORDER BY usage_count DESC, mr.tag COLLATE NOCASE ASC
+                LIMIT ?
+                """,
+                tuple(params + [limit])
+            ).fetchall()
+            return [dict(row) for row in rows]
+        except Exception as e:
+            logger.error(f"获取邮件标签失败: {str(e)}")
+            return []
+
     def get_mail_record_by_id(self, mail_id):
         """根据ID获取邮件记录"""
         logger.debug(f"获取邮件记录, ID: {mail_id}")
