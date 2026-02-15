@@ -62,7 +62,24 @@
       <el-card class="mail-panel records-panel">
         <template #header>
           <div class="panel-head">
-            <span class="panel-title">邮件记录 {{ selectedEmailName }}</span>
+            <div class="panel-left">
+              <span class="panel-title">邮件记录 {{ selectedEmailName }}</span>
+              <el-select
+                v-model="selectedTagFilter"
+                clearable
+                filterable
+                size="small"
+                placeholder="按标签筛选"
+                class="tag-filter"
+              >
+                <el-option
+                  v-for="item in tagOptions"
+                  :key="item"
+                  :label="item"
+                  :value="item"
+                />
+              </el-select>
+            </div>
             <div class="detail-actions">
               <el-button v-if="selectedEmailId !== 'all'" type="danger" size="small" :disabled="!selectedMailIds.length" @click="batchDeleteMails">
                 批量删除 ({{ selectedMailIds.length }})
@@ -98,8 +115,19 @@
             </template>
           </el-table-column>
           <el-table-column prop="folder" label="文件夹" width="110" sortable="custom" />
+          <el-table-column prop="tag" label="标签" width="130">
+            <template #default="{ row }">
+              <el-tag v-if="row.tag" size="small">{{ row.tag }}</el-tag>
+              <span v-else class="muted-tag">-</span>
+            </template>
+          </el-table-column>
           <el-table-column label="时间" width="170" sortable="custom" prop="received_time">
             <template #default="{ row }">{{ formatDate(row.received_time) }}</template>
+          </el-table-column>
+          <el-table-column label="操作" width="90" fixed="right">
+            <template #default="{ row }">
+              <el-button link type="primary" @click.stop="setMailTag(row)">标签</el-button>
+            </template>
           </el-table-column>
         </el-table>
         <div class="records-pagination">
@@ -130,6 +158,7 @@
             <el-button :disabled="!activeMail" @click="openReply('reply')">回复</el-button>
             <el-button :disabled="!activeMail" @click="openReply('replyAll')">回复全部</el-button>
           </template>
+          <el-button :disabled="!activeMail" @click="setMailTag(activeMail)">设置标签</el-button>
           <el-button type="danger" :disabled="!activeMail" @click="deleteCurrentMail">删除</el-button>
           <el-button @click="detailVisible = false">关闭</el-button>
         </div>
@@ -258,6 +287,7 @@ const accountPageSize = ref(20)
 const currentPage = ref(1)
 const pageSize = ref(20)
 const totalRecords = ref(0)
+const selectedTagFilter = ref('')
 
 const composeVisible = ref(false)
 const composeLoading = ref(false)
@@ -297,6 +327,20 @@ const selectedEmailName = computed(() => {
   return found ? `（${found.email}）` : ''
 })
 const pageTitle = computed(() => (props.filterMode === 'sent' ? '已发送邮件' : '邮件列表'))
+const tagOptions = computed(() => {
+  const set = new Set()
+  for (const item of (allMailRecords.value || [])) {
+    const tag = String(item?.tag || '').trim()
+    if (tag) set.add(tag)
+  }
+  return Array.from(set).sort((a, b) => a.localeCompare(b, 'zh-CN'))
+})
+const filteredMailRecords = computed(() => {
+  const records = Array.isArray(allMailRecords.value) ? allMailRecords.value : []
+  const tag = String(selectedTagFilter.value || '').trim()
+  if (!tag) return records
+  return records.filter((item) => String(item?.tag || '').trim() === tag)
+})
 
 const composeTitle = computed(() => {
   if (composeMode.value === 'edit') return '编辑邮件'
@@ -305,7 +349,7 @@ const composeTitle = computed(() => {
 })
 
 const sortedMailRecords = computed(() => {
-  const records = Array.isArray(allMailRecords.value) ? [...allMailRecords.value] : []
+  const records = [...filteredMailRecords.value]
   const { prop, order } = sortState.value || {}
   if (prop && order) {
     const direction = order === 'ascending' ? 1 : -1
@@ -770,6 +814,32 @@ const selectMail = async (row) => {
   }
 }
 
+const setMailTag = async (row) => {
+  if (!row || !row.id) return
+  try {
+    const { value } = await ElMessageBox.prompt(
+      '输入标签名称（留空可清除标签）',
+      '设置邮件标签',
+      {
+        confirmButtonText: '保存',
+        cancelButtonText: '取消',
+        inputValue: String(row.tag || ''),
+        inputPlaceholder: '例如：工作、账单、待跟进'
+      }
+    )
+    const tag = String(value || '').trim()
+    await api.emails.setTag(row.id, tag)
+    row.tag = tag || null
+    if (activeMail.value && Number(activeMail.value.id) === Number(row.id)) {
+      activeMail.value.tag = row.tag
+    }
+    ElMessage.success(tag ? '标签已保存' : '标签已清除')
+  } catch (e) {
+    if (e === 'cancel' || e === 'close') return
+    ElMessage.error(e?.response?.data?.error || '设置标签失败')
+  }
+}
+
 const handleSelectionChange = (rows) => {
   selectedMailIds.value = (rows || []).map(row => row.id)
 }
@@ -1002,6 +1072,26 @@ watch(
     logger.debug('mail-list-view', 'route:changed', { from: oldPath, to: newPath })
   }
 )
+
+watch(
+  () => filteredMailRecords.value.length,
+  (len) => {
+    totalRecords.value = Number(len || 0)
+    const totalPages = Math.max(1, Math.ceil(totalRecords.value / pageSize.value))
+    if (currentPage.value > totalPages) {
+      currentPage.value = totalPages
+    }
+  },
+  { immediate: true }
+)
+
+watch(
+  () => selectedTagFilter.value,
+  () => {
+    currentPage.value = 1
+    selectedMailIds.value = []
+  }
+)
 </script>
 
 <style scoped>
@@ -1048,6 +1138,22 @@ watch(
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+}
+
+.panel-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag-filter {
+  width: 180px;
 }
 
 .mail-menu {
@@ -1098,6 +1204,10 @@ watch(
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.muted-tag {
+  color: var(--el-text-color-placeholder);
 }
 
 .unread-dot {

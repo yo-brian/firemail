@@ -316,6 +316,7 @@ const apiMethods = {
     },
     getAttachments: (mailId) => api.get(`/mail_records/${mailId}/attachments`).then(res => res.data),
     markRead: (mailId) => api.post(`/mail_records/${mailId}/mark-read`).then(res => res.data),
+    setTag: (mailId, tag) => api.post(`/mail_records/${mailId}/tag`, { tag }).then(res => res.data),
     sendMail: (emailId, payload) => api.post(`/emails/${emailId}/send_mail`, payload).then(res => res.data),
     replyMail: (mailId, payload) => api.post(`/mail_records/${mailId}/reply`, payload).then(res => res.data),
     deleteMail: (mailId) => api.delete(`/mail_records/${mailId}`).then(res => res.data),

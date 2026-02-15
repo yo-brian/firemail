@@ -818,7 +818,7 @@ def get_mail_attachments(current_user, mail_id):
 @app.route('/api/mail_records/<int:mail_id>/mark-read', methods=['POST'])
 @token_required
 def mark_mail_read(current_user, mail_id):
-    """将邮件记录标记为已读，并同步到原邮箱"""
+    """将邮件记录标记为已读（本地优先，Outlook尽力同步）"""
     try:
         mail_record = db.get_mail_record_by_id(mail_id)
         if not mail_record:
@@ -829,28 +829,82 @@ def mark_mail_read(current_user, mail_id):
         if not email_info:
             return jsonify({'error': '无权访问此邮件'}), 403
 
+        # 先写本地，保证用户侧状态稳定可用
+        if not db.set_mail_read_status(mail_id, 1):
+            return jsonify({'error': '本地标记已读失败'}), 500
+
+        sync_attempted = False
+        sync_success = False
+        sync_error = None
+
+        if email_info.get('mail_type') == 'outlook':
+            graph_message_id = (mail_record.get('graph_message_id') or '').strip()
+            refresh_token = email_info.get('refresh_token')
+            client_id = email_info.get('client_id')
+
+            if graph_message_id and refresh_token and client_id:
+                sync_attempted = True
+                try:
+                    access_token = OutlookMailHandler.get_new_access_token(refresh_token, client_id)
+                    if not access_token:
+                        sync_error = '获取Access Token失败'
+                    else:
+                        OutlookMailHandler.mark_message_read(access_token, graph_message_id, True)
+                        sync_success = True
+                except requests.exceptions.HTTPError as e:
+                    sync_error = str(e)
+                except Exception as e:
+                    sync_error = str(e)
+            else:
+                sync_error = '缺少Graph消息ID或凭据，跳过服务端同步'
+
+        if sync_attempted and not sync_success:
+            logger.warning(f"邮件已读服务端同步失败（已回退本地成功）: mail_id={mail_id}, error={sync_error}")
+            return jsonify({
+                'success': True,
+                'message': '已本地标记已读（服务端同步失败）',
+                'synced': False
+            }), 200
+
         if email_info.get('mail_type') != 'outlook':
-            return jsonify({'error': '仅支持Outlook/Graph邮箱的已读同步'}), 400
+            return jsonify({'success': True, 'message': '已本地标记已读', 'synced': False}), 200
 
-        graph_message_id = mail_record.get('graph_message_id')
-        if not graph_message_id:
-            return jsonify({'error': '缺少Graph消息ID，无法同步已读'}), 400
+        if not sync_attempted:
+            logger.info(f"邮件已读仅本地标记（跳过服务端同步）: mail_id={mail_id}, reason={sync_error}")
+            return jsonify({'success': True, 'message': '已本地标记已读', 'synced': False}), 200
 
-        refresh_token = email_info.get('refresh_token')
-        client_id = email_info.get('client_id')
-        if not refresh_token or not client_id:
-            return jsonify({'error': '缺少Refresh Token或Client ID，无法同步已读'}), 400
-
-        access_token = OutlookMailHandler.get_new_access_token(refresh_token, client_id)
-        if not access_token:
-            return jsonify({'error': '获取Access Token失败'}), 500
-
-        OutlookMailHandler.mark_message_read(access_token, graph_message_id, True)
-        db.set_mail_read_status(mail_id, 1)
-
-        return jsonify({'success': True, 'message': '已同步已读'}), 200
+        return jsonify({'success': True, 'message': '已同步已读', 'synced': True}), 200
     except Exception as e:
         logger.error(f"同步邮件已读状态失败: {str(e)}")
+        return jsonify({'error': f'服务端错误: {str(e)}'}), 500
+
+@app.route('/api/mail_records/<int:mail_id>/tag', methods=['POST'])
+@token_required
+def set_mail_tag(current_user, mail_id):
+    """设置邮件标签（本地）"""
+    try:
+        mail_record = db.get_mail_record_by_id(mail_id)
+        if not mail_record:
+            return jsonify({'error': '邮件不存在'}), 404
+
+        email_id = mail_record['email_id']
+        email_info = db.get_email_by_id(email_id, None if current_user['is_admin'] else current_user['id'])
+        if not email_info:
+            return jsonify({'error': '无权访问此邮件'}), 403
+
+        data = request.json or {}
+        raw_tag = data.get('tag')
+        tag = str(raw_tag or '').strip()
+        if len(tag) > 32:
+            return jsonify({'error': '标签长度不能超过32个字符'}), 400
+        tag = tag or None
+
+        ok = db.set_mail_tag(mail_id, tag)
+        if not ok:
+            return jsonify({'error': '保存标签失败'}), 500
+        return jsonify({'success': True, 'tag': tag}), 200
+    except Exception as e:
+        logger.error(f"设置邮件标签失败: {str(e)}")
         return jsonify({'error': f'服务端错误: {str(e)}'}), 500
 
 @app.route('/api/emails/<int:email_id>/send_mail', methods=['POST'])

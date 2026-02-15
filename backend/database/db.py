@@ -7,7 +7,7 @@ import secrets
 import uuid
 import re
 from typing import List, Dict, Optional, Callable
-from datetime import datetime
+from datetime import datetime, timezone
 import traceback
 from utils.email.logger import logger, log_progress
 
@@ -126,6 +126,7 @@ class Database:
                     received_time TIMESTAMP,
                     content TEXT,
                     folder TEXT,
+                    tag TEXT,
                     is_read INTEGER DEFAULT 1,
                     graph_message_id TEXT,
                     has_attachments INTEGER DEFAULT 0,
@@ -194,6 +195,7 @@ class Database:
         self._check_and_add_column('mail_records', 'is_read', 'INTEGER DEFAULT 1')
         self._check_and_add_column('mail_records', 'graph_message_id', 'TEXT')
         self._check_and_add_column('mail_records', 'recipient', 'TEXT')
+        self._check_and_add_column('mail_records', 'tag', 'TEXT')
         self._check_and_add_column('attachments', 'file_path', 'TEXT')
 
     def _safe_filename(self, filename: str) -> str:
@@ -214,6 +216,36 @@ class Database:
         if isinstance(content, str):
             return content.encode('utf-8', errors='ignore')
         return bytes(content)
+
+    def _normalize_to_utc_timestamp(self, value):
+        """
+        Normalize datetime-like values to UTC in SQLite-compatible format:
+        YYYY-MM-DD HH:MM:SS.
+        """
+        if value is None:
+            return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+
+        dt = None
+        if isinstance(value, datetime):
+            dt = value
+        elif isinstance(value, str):
+            text = value.strip()
+            if not text:
+                return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+            try:
+                dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
+            except Exception:
+                # Keep unknown legacy string formats unchanged.
+                return text
+        else:
+            return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+
+        if dt.tzinfo is None:
+            # Backward compatibility: treat naive datetimes as local time.
+            local_tz = datetime.now().astimezone().tzinfo
+            dt = dt.replace(tzinfo=local_tz)
+
+        return dt.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
 
     def _remove_attachment_files_by_mail_ids(self, mail_ids: List[int]):
         if not mail_ids:
@@ -676,10 +708,12 @@ class Database:
         """添加邮件记录"""
         logger.debug(f"添加邮件记录, 邮箱ID: {email_id}, 主题: {subject}")
         try:
+            normalized_received_time = self._normalize_to_utc_timestamp(received_time)
+
             # 先检查邮件是否已存在
             cursor = self.conn.execute(
                 "SELECT id FROM mail_records WHERE email_id = ? AND sender = ? AND subject = ? AND received_time = ?",
-                (email_id, sender, subject, received_time)
+                (email_id, sender, subject, normalized_received_time)
             )
             exists = cursor.fetchone() is not None
 
@@ -695,7 +729,7 @@ class Database:
             # 邮件不存在，添加新记录
             cursor = self.conn.execute(
                 "INSERT INTO mail_records (email_id, subject, sender, recipient, received_time, content, folder, is_read, graph_message_id, has_attachments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (email_id, subject, sender, recipient, received_time, content, folder, is_read, graph_message_id, has_attachments)
+                (email_id, subject, sender, recipient, normalized_received_time, content, folder, is_read, graph_message_id, has_attachments)
             )
             mail_id = cursor.lastrowid
             self.conn.commit()
@@ -820,6 +854,21 @@ class Database:
             return True
         except Exception as e:
             logger.error(f"更新邮件已读状态失败: {str(e)}")
+            return False
+
+    def set_mail_tag(self, mail_id: int, tag: Optional[str]) -> bool:
+        try:
+            normalized_tag = (tag or "").strip()
+            if not normalized_tag:
+                normalized_tag = None
+            self.conn.execute(
+                "UPDATE mail_records SET tag = ? WHERE id = ?",
+                (normalized_tag, mail_id)
+            )
+            self.conn.commit()
+            return True
+        except Exception as e:
+            logger.error(f"更新邮件标签失败: {str(e)}")
             return False
 
     def get_mail_record_by_id(self, mail_id):
@@ -1165,7 +1214,7 @@ class Database:
                         sender=sender,
                         recipient=record.get("recipient"),
                         content=record.get("content", "(无内容)"),
-                        received_time=record.get("received_time", datetime.now()),
+                        received_time=record.get("received_time", datetime.now(timezone.utc)),
                         folder=record.get("folder", "INBOX"),
                         is_read=1 if record.get("is_read", True) else 0,
                         graph_message_id=record.get("graph_message_id"),
