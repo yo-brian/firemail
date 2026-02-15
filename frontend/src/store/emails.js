@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia';
 import api from '@/services/api';
 import websocket from '@/services/websocket';
+import logger from '@/utils/debugLogger';
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const useEmailsStore = defineStore('emails', {
   state: () => ({
@@ -11,137 +14,105 @@ export const useEmailsStore = defineStore('emails', {
     processingEmails: {},
     currentMailRecords: [],
     currentEmailId: null,
-    isConnected: false
+    isConnected: false,
+    listenersInitialized: false
   }),
 
   getters: {
-    getEmailById: (state) => (id) => {
-      return state.emails.find(email => email.id === id);
-    },
-
-    getProcessingStatus: (state) => (id) => {
-      return state.processingEmails[id] || null;
-    },
-
-    hasSelectedEmails: (state) => {
-      return Array.isArray(state.selectedEmails) && state.selectedEmails.length > 0;
-    },
-
-    selectedEmailsCount: (state) => {
-      return Array.isArray(state.selectedEmails) ? state.selectedEmails.length : 0;
-    },
-
-    isAllSelected: (state) => {
-      return state.emails.length > 0 && Array.isArray(state.selectedEmails) &&
-        state.selectedEmails.length === state.emails.length;
-    }
+    getEmailById: (state) => (id) => state.emails.find((email) => email.id === id),
+    getProcessingStatus: (state) => (id) => state.processingEmails[id] || null,
+    hasSelectedEmails: (state) => Array.isArray(state.selectedEmails) && state.selectedEmails.length > 0,
+    selectedEmailsCount: (state) => (Array.isArray(state.selectedEmails) ? state.selectedEmails.length : 0),
+    isAllSelected: (state) => state.emails.length > 0
+      && Array.isArray(state.selectedEmails)
+      && state.selectedEmails.length === state.emails.length
   },
 
   actions: {
-    // 初始化WebSocket事件监听
     initWebSocketListeners() {
-      // 连接状态
+      logger.debug('emails-store', 'initWebSocketListeners:start', { initialized: this.listenersInitialized });
+      if (this.listenersInitialized) return;
+      this.listenersInitialized = true;
+
       websocket.onConnect(() => {
+        logger.debug('emails-store', 'ws:onConnect');
         this.isConnected = true;
-        this.fetchEmails();
+        this.fetchEmails().catch((e) => console.error('fetchEmails on connect failed:', e));
       });
 
       websocket.onDisconnect(() => {
+        logger.warn('emails-store', 'ws:onDisconnect');
         this.isConnected = false;
       });
 
-      // 邮箱列表更新
       websocket.onMessage('emails_list', (data) => {
-        console.log('接收到邮箱列表：', data);
+        logger.debug('emails-store', 'ws:emails_list', { count: Array.isArray(data?.data) ? data.data.length : -1 });
         if (data && Array.isArray(data.data)) {
-          this.emails = data.data || [];
+          this.emails = data.data;
         }
       });
 
-      // 新增邮箱
-      websocket.onMessage('email_added', (data) => {
-        console.log('邮箱添加成功：', data);
-        this.fetchEmails();
+      websocket.onMessage('email_added', () => {
+        this.fetchEmails().catch((e) => console.error('fetchEmails after email_added failed:', e));
       });
 
-      // 删除邮箱
       websocket.onMessage('emails_deleted', (data) => {
-        if (data.email_ids) {
-          this.emails = this.emails.filter(email => !data.email_ids.includes(email.id));
-          // 更新已选邮箱
-          this.selectedEmails = this.selectedEmails.filter(id => !data.email_ids.includes(id));
-        }
+        if (!data || !Array.isArray(data.email_ids)) return;
+        this.emails = this.emails.filter((email) => !data.email_ids.includes(email.id));
+        this.selectedEmails = this.selectedEmails.filter((id) => !data.email_ids.includes(id));
       });
 
-      // 邮箱导入
       websocket.onMessage('emails_imported', () => {
-        this.fetchEmails();
+        this.fetchEmails().catch((e) => console.error('fetchEmails after emails_imported failed:', e));
       });
 
-      // 处理进度更新
       websocket.onMessage('check_progress', (data) => {
-        const { email_id, progress, message } = data;
+        const { email_id, progress, message } = data || {};
+        if (typeof email_id === 'undefined') return;
         this.processingEmails[email_id] = { progress, message };
 
-        // 进度完成后刷新邮箱列表
         if (progress === 100) {
-          // 延迟刷新，确保服务器已完成处理
           setTimeout(() => {
-            this.fetchEmails();
-            // 如果正在查看此邮箱的邮件，也刷新邮件列表
+            this.fetchEmails().catch((e) => console.error('fetchEmails after check_progress failed:', e));
             if (this.currentEmailId === email_id) {
-              this.fetchMailRecords(email_id);
+              this.fetchMailRecords(email_id).catch((e) => console.error('fetchMailRecords after check_progress failed:', e));
             }
           }, 1000);
         }
       });
 
-      // 邮件记录
       websocket.onMessage('mail_records', (data) => {
-        if (data.email_id === this.currentEmailId) {
-          // 添加数据验证和清理
-          if (Array.isArray(data.data)) {
-            // 确保每条记录都有必要的字段
-            this.currentMailRecords = data.data.map(record => ({
-              id: record.id || Date.now() + Math.random().toString(36).substring(2, 10),
-              subject: record.subject || '(无主题)',
-              sender: record.sender || '(未知发件人)',
-              received_time: record.received_time || new Date().toISOString(),
-              content: record.content || '(无内容)',
-              folder: record.folder || 'INBOX',
-              is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
-              graph_message_id: record.graph_message_id || null
-            }));
-          } else {
-            this.currentMailRecords = [];
-            console.error('收到的邮件记录数据不是数组格式:', data);
-          }
-        }
+        if (!data || Number(data.email_id) !== Number(this.currentEmailId)) return;
+        const records = Array.isArray(data.data) ? data.data : [];
+        this.currentMailRecords = records.map((record) => ({
+          id: record.id || Date.now() + Math.random().toString(36).slice(2, 10),
+          subject: record.subject || '(无主题)',
+          sender: record.sender || '(未知发件人)',
+          received_time: record.received_time || new Date().toISOString(),
+          content: record.content || '(无内容)',
+          folder: record.folder || 'INBOX',
+          is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
+          graph_message_id: record.graph_message_id || null
+        }));
       });
 
-      // 错误处理
       websocket.onMessage('error', (data) => {
-        this.error = data.message;
-        console.error('WebSocket 错误：', data.message);
+        this.error = data?.message || 'WebSocket 错误';
+        console.error('WebSocket error:', data?.message || data);
       });
     },
 
-    // 添加邮箱
     async addEmail(emailData) {
       this.loading = true;
       this.error = null;
-
       try {
-        console.log('添加邮箱：', {...emailData, password: '******'});
         if (!websocket.isConnected) {
           await api.emails.add(emailData);
         } else {
-          // 确保mail_type参数正确传递
-          const wsData = {
+          websocket.send('add_email', {
             ...emailData,
-            mail_type: emailData.mail_type || 'imap' // 默认使用imap类型
-          };
-          websocket.send('add_email', wsData);
+            mail_type: emailData.mail_type || 'imap'
+          });
         }
       } catch (error) {
         this.error = '添加邮箱失败';
@@ -151,13 +122,10 @@ export const useEmailsStore = defineStore('emails', {
       }
     },
 
-    // 导入邮箱
     async importEmails(importData) {
       this.loading = true;
       this.error = null;
-
       try {
-        console.log('导入邮箱：', importData);
         if (!websocket.isConnected) {
           await api.emails.import(importData);
         } else {
@@ -171,44 +139,73 @@ export const useEmailsStore = defineStore('emails', {
       }
     },
 
-    // 获取所有邮箱
     async fetchEmails() {
+      const startedAt = Date.now();
+      logger.debug('emails-store', 'fetchEmails:start', {
+        wsConnected: websocket.isConnected,
+        wsAuthenticated: websocket.isAuthenticated
+      });
       this.loading = true;
       this.error = null;
-
       try {
-        console.log('获取邮箱列表，WebSocket状态：', websocket.isConnected);
-        if (!websocket.isConnected) {
+        let lastError = null;
+        for (let attempt = 1; attempt <= 3; attempt += 1) {
+          try {
+            logger.debug('emails-store', 'fetchEmails:ws_attempt', { attempt });
+            const response = await websocket.requestResponse({
+              sendType: 'get_all_emails',
+              responseType: 'emails_list',
+              timeoutMs: 10000
+            });
+            if (response && Array.isArray(response.data)) {
+              this.emails = response.data;
+              lastError = null;
+              break;
+            }
+            throw new Error('emails_list 响应格式无效');
+          } catch (error) {
+            lastError = error;
+            logger.warn('emails-store', 'fetchEmails:ws_attempt_failed', { attempt, message: error?.message });
+            websocket.reconnect();
+            await sleep(300);
+          }
+        }
+
+        if (lastError) {
+          logger.warn('emails-store', 'fetchEmails:http_fallback');
           const response = await api.emails.getAll();
-          this.emails = response;
-        } else {
-          websocket.send('get_all_emails');
+          if (Array.isArray(response)) {
+            this.emails = response;
+            lastError = null;
+          } else {
+            throw lastError;
+          }
         }
       } catch (error) {
         this.error = '获取邮箱列表失败';
+        logger.error('emails-store', 'fetchEmails:error', { message: error?.message });
         console.error(error);
       } finally {
         this.loading = false;
+        logger.debug('emails-store', 'fetchEmails:end', {
+          durationMs: Date.now() - startedAt,
+          count: Array.isArray(this.emails) ? this.emails.length : -1,
+          error: this.error
+        });
       }
     },
 
-    // 删除单个邮箱
     async deleteEmail(emailId) {
       this.loading = true;
       this.error = null;
-
       try {
         if (!websocket.isConnected) {
           await api.emails.delete([emailId]);
         } else {
           websocket.send('delete_emails', { email_ids: [emailId] });
         }
-
-        // 更新本地状态
-        this.emails = this.emails.filter(email => email.id !== emailId);
-        if (Array.isArray(this.selectedEmails)) {
-          this.selectedEmails = this.selectedEmails.filter(id => id !== emailId);
-        }
+        this.emails = this.emails.filter((email) => email.id !== emailId);
+        this.selectedEmails = this.selectedEmails.filter((id) => id !== emailId);
       } catch (error) {
         this.error = '删除邮箱失败';
         throw error;
@@ -217,27 +214,19 @@ export const useEmailsStore = defineStore('emails', {
       }
     },
 
-    // 批量删除邮箱
     async deleteEmails(emailIds) {
-      if (!Array.isArray(emailIds) || emailIds.length === 0) {
-        return;
-      }
+      if (!Array.isArray(emailIds) || emailIds.length === 0) return;
 
       this.loading = true;
       this.error = null;
-
       try {
         if (!websocket.isConnected) {
           await api.emails.delete(emailIds);
         } else {
           websocket.send('delete_emails', { email_ids: emailIds });
         }
-
-        // 更新本地状态
-        this.emails = this.emails.filter(email => !emailIds.includes(email.id));
-        if (Array.isArray(this.selectedEmails)) {
-          this.selectedEmails = this.selectedEmails.filter(id => !emailIds.includes(id));
-        }
+        this.emails = this.emails.filter((email) => !emailIds.includes(email.id));
+        this.selectedEmails = this.selectedEmails.filter((id) => !emailIds.includes(id));
       } catch (error) {
         this.error = '删除邮箱失败';
         throw error;
@@ -246,42 +235,26 @@ export const useEmailsStore = defineStore('emails', {
       }
     },
 
-    // 检查单个邮箱
     async checkEmail(emailId) {
       try {
-        // 使用api对象调用，确保使用正确的基础URL
-        console.log(`检查邮箱 ID:${emailId}`);
         const response = await api.emails.check([emailId]);
-
-        // 处理响应
         if (response.status === 409) {
-          // 邮箱正在处理中，这是正常状态，不抛出错误
-          console.log('邮箱正在处理中:', response.data);
           return { success: false, message: response.data.message, status: 'processing' };
         }
-
         return true;
       } catch (error) {
-        // 特殊处理409状态码（邮箱正在处理中）
         if (error.response && error.response.status === 409) {
-          console.log('邮箱正在处理中:', error.response.data);
           return { success: false, message: error.response.data.message, status: 'processing' };
         }
-
-        console.error('检查邮箱失败:', error);
         throw error;
       }
     },
 
-    // 批量检查邮箱
     async checkEmails(emailIds) {
-      if (!Array.isArray(emailIds) || emailIds.length === 0) {
-        return;
-      }
+      if (!Array.isArray(emailIds) || emailIds.length === 0) return;
 
       this.loading = true;
       this.error = null;
-
       try {
         if (!websocket.isConnected) {
           await api.emails.check(emailIds);
@@ -296,37 +269,71 @@ export const useEmailsStore = defineStore('emails', {
       }
     },
 
-    // 获取邮件记录
     async fetchMailRecords(emailId) {
+      const startedAt = Date.now();
+      logger.debug('emails-store', 'fetchMailRecords:start', {
+        emailId,
+        wsConnected: websocket.isConnected,
+        wsAuthenticated: websocket.isAuthenticated
+      });
       this.loading = true;
       this.error = null;
-
       try {
-        if (!websocket.isConnected) {
-          const response = await api.emails.getRecords(emailId);
-
-          // 确保返回数据是数组且每条记录格式正确
-          if (Array.isArray(response)) {
-            this.currentMailRecords = response.map(record => ({
-              id: record.id || Date.now() + Math.random().toString(36).substring(2, 10),
-              subject: record.subject || '(无主题)',
-              sender: record.sender || '(未知发件人)',
-              received_time: record.received_time || new Date().toISOString(),
-              content: record.content || '(无内容)',
-              folder: record.folder || 'INBOX',
-              is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
-              graph_message_id: record.graph_message_id || null
-            }));
-          } else {
-            this.currentMailRecords = [];
-            console.error('API返回的邮件记录数据不是数组格式:', response);
+        this.currentEmailId = emailId;
+        let response = null;
+        let lastError = null;
+        for (let attempt = 1; attempt <= 3; attempt += 1) {
+          try {
+            logger.debug('emails-store', 'fetchMailRecords:ws_attempt', { attempt, emailId });
+            response = await websocket.requestResponse({
+              sendType: 'get_mail_records',
+              payload: { email_id: emailId },
+              responseType: 'mail_records',
+              match: (msg) => Number(msg?.email_id) === Number(emailId),
+              timeoutMs: 15000
+            });
+            lastError = null;
+            break;
+          } catch (error) {
+            lastError = error;
+            logger.warn('emails-store', 'fetchMailRecords:ws_attempt_failed', {
+              attempt,
+              emailId,
+              message: error?.message
+            });
+            websocket.reconnect();
+            await sleep(300);
           }
-
-          this.currentEmailId = emailId;
-        } else {
-          this.currentEmailId = emailId;
-          websocket.send('get_mail_records', { email_id: emailId });
         }
+
+        if (lastError) {
+          logger.warn('emails-store', 'fetchMailRecords:http_fallback', { emailId });
+          const response = await api.emails.getRecords(emailId);
+          const records = Array.isArray(response) ? response : [];
+          this.currentMailRecords = records.map((record) => ({
+            id: record.id || Date.now() + Math.random().toString(36).slice(2, 10),
+            subject: record.subject || '(无主题)',
+            sender: record.sender || '(未知发件人)',
+            received_time: record.received_time || new Date().toISOString(),
+            content: record.content || '(无内容)',
+            folder: record.folder || 'INBOX',
+            is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
+            graph_message_id: record.graph_message_id || null
+          }));
+          return;
+        }
+
+        const records = Array.isArray(response?.data) ? response.data : [];
+        this.currentMailRecords = records.map((record) => ({
+          id: record.id || Date.now() + Math.random().toString(36).slice(2, 10),
+          subject: record.subject || '(无主题)',
+          sender: record.sender || '(未知发件人)',
+          received_time: record.received_time || new Date().toISOString(),
+          content: record.content || '(无内容)',
+          folder: record.folder || 'INBOX',
+          is_read: typeof record.is_read !== 'undefined' ? record.is_read : 1,
+          graph_message_id: record.graph_message_id || null
+        }));
       } catch (error) {
         this.error = '获取邮件记录失败';
         console.error(error);
@@ -335,72 +342,45 @@ export const useEmailsStore = defineStore('emails', {
       }
     },
 
-    // 重新全量拉取
     async recheckEmailAll(emailId) {
-      try {
-        await api.emails.recheckAll(emailId);
-        return true;
-      } catch (error) {
-        console.error('重新全量拉取失败:', error);
-        throw error;
-      }
+      return api.emails.recheckAll(emailId);
     },
 
-    // 标记邮件已读并同步到邮箱
     async markMailRead(mailId) {
-      try {
-        await api.emails.markRead(mailId);
-        const record = this.currentMailRecords.find(item => item.id === mailId);
-        if (record) {
-          record.is_read = 1;
+      await api.emails.markRead(mailId);
+      const record = this.currentMailRecords.find((item) => item.id === mailId);
+      if (record) record.is_read = 1;
+
+      if (this.currentEmailId) {
+        const email = this.emails.find((item) => item.id === this.currentEmailId);
+        if (email && typeof email.unread_count === 'number' && email.unread_count > 0) {
+          email.unread_count -= 1;
         }
-        if (this.currentEmailId) {
-          const email = this.emails.find(item => item.id === this.currentEmailId);
-          if (email && typeof email.unread_count === 'number' && email.unread_count > 0) {
-            email.unread_count -= 1;
-          }
-        }
-        return true;
-      } catch (error) {
-        console.error('标记邮件已读失败:', error);
-        throw error;
       }
+      return true;
     },
 
-    // 获取邮箱密码
     async getEmailPassword(emailId) {
-      try {
-        return await api.emails.getPassword(emailId);
-      } catch (error) {
-        this.error = '获取邮箱密码失败';
-        throw error;
-      }
+      return api.emails.getPassword(emailId);
     },
 
-    // 选择/取消选择邮箱
     toggleSelectEmail(emailId) {
       if (!Array.isArray(this.selectedEmails)) {
         this.selectedEmails = [];
       }
-
       const index = this.selectedEmails.indexOf(emailId);
-      if (index === -1) {
-        this.selectedEmails.push(emailId);
-      } else {
-        this.selectedEmails.splice(index, 1);
-      }
+      if (index === -1) this.selectedEmails.push(emailId);
+      else this.selectedEmails.splice(index, 1);
     },
 
-    // 选择所有邮箱
     selectAllEmails() {
       if (!Array.isArray(this.emails)) {
         this.selectedEmails = [];
         return;
       }
-      this.selectedEmails = this.emails.map(email => email.id);
+      this.selectedEmails = this.emails.map((email) => email.id);
     },
 
-    // 重置状态
     resetState() {
       this.emails = [];
       this.loading = false;
@@ -410,32 +390,22 @@ export const useEmailsStore = defineStore('emails', {
       this.currentMailRecords = [];
       this.currentEmailId = null;
       this.isConnected = false;
+      this.listenersInitialized = false;
     },
 
-    // 更新邮箱
     async updateEmail(email) {
-      try {
-        // 确保IMAP类型邮箱的use_ssl是布尔值
-        const emailData = { ...email }
-        if (emailData.mail_type === 'imap' && 'use_ssl' in emailData) {
-          emailData.use_ssl = Boolean(emailData.use_ssl)
-        }
-
-        // 使用api对象调用，确保使用正确的基础URL
-        console.log(`更新邮箱 ID:${emailData.id}`);
-        const response = await api.put(`/emails/${emailData.id}`, emailData);
-
-        // 更新本地邮箱数据
-        const index = this.emails.findIndex(e => e.id === emailData.id);
-        if (index !== -1) {
-          this.emails[index] = { ...this.emails[index], ...emailData };
-        }
-
-        return true;
-      } catch (error) {
-        console.error('更新邮箱失败:', error);
-        throw error;
+      const emailData = { ...email };
+      if (emailData.mail_type === 'imap' && 'use_ssl' in emailData) {
+        emailData.use_ssl = Boolean(emailData.use_ssl);
       }
+
+      await api.put(`/emails/${emailData.id}`, emailData);
+
+      const index = this.emails.findIndex((e) => e.id === emailData.id);
+      if (index !== -1) {
+        this.emails[index] = { ...this.emails[index], ...emailData };
+      }
+      return true;
     }
   }
 });

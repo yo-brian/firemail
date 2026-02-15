@@ -15,9 +15,9 @@
           </div>
         </div>
 
-        <div class="header-item" v-if="mail.recipient">
+        <div class="header-item" v-if="detailRecipient">
           <div class="label">收件人:</div>
-          <div class="value">{{ mail.recipient }}</div>
+          <div class="value">{{ detailRecipient }}</div>
         </div>
 
         <div class="header-item" v-if="mail.cc && mail.cc.length > 0">
@@ -117,7 +117,7 @@
       </template>
       <!-- 纯文本邮件 -->
       <template v-else-if="isPlainText">
-        <pre class="plain-content">{{ processedPlainText }}</pre>
+        <div class="html-content plain-html-content" v-html="plainTextAsHtml"></div>
       </template>
       <!-- 其他格式邮件 -->
       <template v-else>
@@ -253,6 +253,18 @@ const processedPlainText = computed(() => {
   }
 
   return text
+})
+
+const plainTextAsHtml = computed(() => {
+  const text = String(processedPlainText.value || '')
+  if (!text) return ''
+  const escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+  return escaped.replace(/\n/g, '<br>')
 })
 
 // 检查是否是HTML内容
@@ -561,6 +573,45 @@ const isNotionEmail = computed(() => {
   return false
 })
 
+
+const resolveInlineCidImages = (html) => {
+  if (!html || !Array.isArray(props.attachments) || props.attachments.length === 0) return html
+  try {
+    const tempDiv = document.createElement('div')
+    tempDiv.innerHTML = html
+    const images = tempDiv.querySelectorAll('img')
+    const imageAttachments = props.attachments.filter(
+      (att) => String(att?.content_type || '').toLowerCase().startsWith('image/')
+    )
+    let imageAttachIndex = 0
+    images.forEach((img) => {
+      const src = (img.getAttribute('src') || '').trim()
+      if (!src.toLowerCase().startsWith('cid:')) return
+      const cidRaw = src.slice(4).replace(/[<>]/g, '').toLowerCase()
+      const cidBase = cidRaw.split('@')[0]
+      let matched = props.attachments.find((att) => {
+        const name = String(att?.filename || '').toLowerCase()
+        if (!name) return false
+        return name === cidRaw || name === cidBase || cidRaw.includes(name) || name.includes(cidBase)
+      })
+      if (!matched && imageAttachments.length > imageAttachIndex) {
+        matched = imageAttachments[imageAttachIndex]
+        imageAttachIndex += 1
+      }
+      if (matched?.id) {
+        const token = localStorage.getItem('token') || ''
+        const query = token
+          ? `?token=${encodeURIComponent(token)}&inline=1`
+          : '?inline=1'
+        img.setAttribute('src', `/api/attachments/${matched.id}/download${query}`)
+      }
+    })
+    return tempDiv.innerHTML
+  } catch (_) {
+    return html
+  }
+}
+
 const sanitizedContent = computed(() => {
   // 使用DOMPurify清理HTML内容，允许安全的标签和属性
   const cleanHtml = DOMPurify.sanitize(mailContent.value, {
@@ -595,23 +646,27 @@ const sanitizedContent = computed(() => {
     KEEP_CONTENT: true
   });
 
+  const htmlWithInlineImages = resolveInlineCidImages(cleanHtml)
+
   // 根据邮件类型进行特殊处理
   if (isGitHubEmail.value) {
     // 修复GitHub邮件中的样式问题
-    return fixGitHubEmailStyles(cleanHtml);
+    return fixGitHubEmailStyles(htmlWithInlineImages);
   } else if (isMicrosoftEmail.value) {
     // 专门处理微软邮件的样式问题
-    return fixMicrosoftEmailStyles(cleanHtml);
+    return fixMicrosoftEmailStyles(htmlWithInlineImages);
   } else if (isNotionEmail.value) {
     // 修复Notion邮件中的样式问题
-    return fixGitHubEmailStyles(cleanHtml); // 暂时复用GitHub的处理函数
+    return fixGitHubEmailStyles(htmlWithInlineImages); // 暂时复用GitHub的处理函数
   }
 
-  return cleanHtml;
+  return htmlWithInlineImages;
 })
 
 const hasAttachments = computed(() => {
-  return props.mail && props.mail.has_attachments && props.attachments && props.attachments.length > 0
+  if (!props.mail) return false
+  const loaded = Array.isArray(props.attachments) && props.attachments.length > 0
+  return Boolean(props.loadingAttachments || props.mail.has_attachments || loaded)
 })
 
 const attachmentsCount = computed(() => {
@@ -633,6 +688,35 @@ const senderInitial = computed(() => {
   }
   return ''
 })
+
+const detailRecipient = computed(() => {
+  const mail = props.mail || {}
+  const fromContent = (() => {
+    const content = mail.content
+    if (!content || typeof content !== 'object') return null
+    return content.to ?? content.recipient ?? content.recipients ?? content.receiver ?? content.receivers ?? null
+  })()
+
+  const raw = mail.recipient
+    ?? mail.to
+    ?? mail.recipients
+    ?? mail.receiver
+    ?? mail.receivers
+    ?? fromContent
+
+  if (Array.isArray(raw)) {
+    const values = raw.map(v => String(v || '').trim()).filter(Boolean)
+    return values.length ? values.join(', ') : ''
+  }
+
+  if (raw && typeof raw === 'object') {
+    const values = Object.values(raw).map(v => String(v || '').trim()).filter(Boolean)
+    return values.length ? values.join(', ') : ''
+  }
+
+  return String(raw || '').trim()
+})
+
 
 // 方法
 const formatDate = (date) => {

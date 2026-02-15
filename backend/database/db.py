@@ -4,6 +4,8 @@ import threading
 import logging
 import hashlib
 import secrets
+import uuid
+import re
 from typing import List, Dict, Optional, Callable
 from datetime import datetime
 import traceback
@@ -66,6 +68,8 @@ class Database:
 
         # 保存数据库路径
         self.db_path = db_path
+        self.attachments_dir = os.path.join(os.path.dirname(self.db_path), 'attachments')
+        os.makedirs(self.attachments_dir, exist_ok=True)
 
         logger.info(f"连接数据库: {db_path}")
         self.conn = sqlite3.connect(db_path, check_same_thread=False)
@@ -118,6 +122,7 @@ class Database:
                     email_id INTEGER NOT NULL,
                     subject TEXT,
                     sender TEXT,
+                    recipient TEXT,
                     received_time TIMESTAMP,
                     content TEXT,
                     folder TEXT,
@@ -137,6 +142,7 @@ class Database:
                     filename TEXT,
                     content_type TEXT,
                     size INTEGER,
+                    file_path TEXT,
                     content BLOB,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY (mail_id) REFERENCES mail_records (id) ON DELETE CASCADE
@@ -187,6 +193,48 @@ class Database:
         self._check_and_add_column('users', 'password_hash', 'TEXT NOT NULL')
         self._check_and_add_column('mail_records', 'is_read', 'INTEGER DEFAULT 1')
         self._check_and_add_column('mail_records', 'graph_message_id', 'TEXT')
+        self._check_and_add_column('mail_records', 'recipient', 'TEXT')
+        self._check_and_add_column('attachments', 'file_path', 'TEXT')
+
+    def _safe_filename(self, filename: str) -> str:
+        name = str(filename or '').strip()
+        if not name:
+            name = 'attachment.bin'
+        name = os.path.basename(name)
+        name = re.sub(r'[\\/:*?"<>|]+', '_', name)
+        return name or 'attachment.bin'
+
+    def _normalize_attachment_bytes(self, content):
+        if content is None:
+            return b''
+        if isinstance(content, (bytes, bytearray)):
+            return bytes(content)
+        if isinstance(content, memoryview):
+            return content.tobytes()
+        if isinstance(content, str):
+            return content.encode('utf-8', errors='ignore')
+        return bytes(content)
+
+    def _remove_attachment_files_by_mail_ids(self, mail_ids: List[int]):
+        if not mail_ids:
+            return
+
+        placeholders = ','.join(['?'] * len(mail_ids))
+        try:
+            cursor = self.conn.execute(
+                f"SELECT file_path FROM attachments WHERE mail_id IN ({placeholders})",
+                mail_ids
+            )
+            rows = cursor.fetchall()
+            for row in rows:
+                file_path = row['file_path']
+                if file_path and os.path.exists(file_path):
+                    try:
+                        os.remove(file_path)
+                    except Exception as remove_error:
+                        logger.warning(f"删除附件文件失败: {file_path}, 错误: {str(remove_error)}")
+        except Exception as e:
+            logger.warning(f"查询附件文件路径失败: {str(e)}")
 
     def _init_system_config(self):
         """初始化系统配置"""
@@ -572,7 +620,13 @@ class Database:
             sql_where += " AND user_id = ?"
             params.append(user_id)
 
-        # 先删除相关的邮件记录
+        # 先删除附件文件、附件记录和相关邮件记录
+        mail_cursor = self.conn.execute("SELECT id FROM mail_records WHERE email_id = ?", (email_id,))
+        mail_ids = [row['id'] for row in mail_cursor.fetchall()]
+        self._remove_attachment_files_by_mail_ids(mail_ids)
+        if mail_ids:
+            placeholders = ','.join(['?'] * len(mail_ids))
+            self.conn.execute(f"DELETE FROM attachments WHERE mail_id IN ({placeholders})", mail_ids)
         self.conn.execute("DELETE FROM mail_records WHERE email_id = ?", (email_id,))
 
         # 再删除邮箱
@@ -603,13 +657,22 @@ class Database:
             email_ids = valid_ids
 
         placeholders = ','.join(['?'] * len(email_ids))
-        # 先删除相关的邮件记录
+        # 先删除附件文件、附件记录和相关邮件记录
+        mail_cursor = self.conn.execute(
+            f"SELECT id FROM mail_records WHERE email_id IN ({placeholders})",
+            email_ids
+        )
+        mail_ids = [row['id'] for row in mail_cursor.fetchall()]
+        self._remove_attachment_files_by_mail_ids(mail_ids)
+        if mail_ids:
+            mail_placeholders = ','.join(['?'] * len(mail_ids))
+            self.conn.execute(f"DELETE FROM attachments WHERE mail_id IN ({mail_placeholders})", mail_ids)
         self.conn.execute(f"DELETE FROM mail_records WHERE email_id IN ({placeholders})", email_ids)
         # 再删除邮箱
         self.conn.execute(f"DELETE FROM emails WHERE id IN ({placeholders})", email_ids)
         self.conn.commit()
 
-    def add_mail_record(self, email_id, subject, sender, received_time, content, folder=None, is_read=1, graph_message_id=None, has_attachments=0):
+    def add_mail_record(self, email_id, subject, sender, received_time, content, folder=None, is_read=1, graph_message_id=None, has_attachments=0, recipient=None):
         """添加邮件记录"""
         logger.debug(f"添加邮件记录, 邮箱ID: {email_id}, 主题: {subject}")
         try:
@@ -631,8 +694,8 @@ class Database:
 
             # 邮件不存在，添加新记录
             cursor = self.conn.execute(
-                "INSERT INTO mail_records (email_id, subject, sender, received_time, content, folder, is_read, graph_message_id, has_attachments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (email_id, subject, sender, received_time, content, folder, is_read, graph_message_id, has_attachments)
+                "INSERT INTO mail_records (email_id, subject, sender, recipient, received_time, content, folder, is_read, graph_message_id, has_attachments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (email_id, subject, sender, recipient, received_time, content, folder, is_read, graph_message_id, has_attachments)
             )
             mail_id = cursor.lastrowid
             self.conn.commit()
@@ -797,12 +860,55 @@ class Database:
     def delete_mail_record(self, mail_id: int) -> bool:
         """删除单条邮件记录"""
         try:
+            self._remove_attachment_files_by_mail_ids([mail_id])
+            self.conn.execute("DELETE FROM attachments WHERE mail_id = ?", (mail_id,))
             self.conn.execute("DELETE FROM mail_records WHERE id = ?", (mail_id,))
             self.conn.commit()
             return True
         except Exception as e:
             logger.error(f"删除邮件记录失败: {str(e)}")
             return False
+
+    def delete_mail_records_batch(self, mail_ids: List[int]) -> int:
+        """批量删除邮件记录（含附件和附件文件）"""
+        if not mail_ids:
+            return 0
+        try:
+            normalized = []
+            seen = set()
+            for item in mail_ids:
+                try:
+                    mid = int(item)
+                except Exception:
+                    continue
+                if mid > 0 and mid not in seen:
+                    seen.add(mid)
+                    normalized.append(mid)
+
+            if not normalized:
+                return 0
+
+            placeholders = ",".join(["?"] * len(normalized))
+            self._remove_attachment_files_by_mail_ids(normalized)
+
+            self.conn.execute("BEGIN")
+            self.conn.execute(
+                f"DELETE FROM attachments WHERE mail_id IN ({placeholders})",
+                tuple(normalized)
+            )
+            cursor = self.conn.execute(
+                f"DELETE FROM mail_records WHERE id IN ({placeholders})",
+                tuple(normalized)
+            )
+            self.conn.commit()
+            return int(cursor.rowcount or 0)
+        except Exception as e:
+            try:
+                self.conn.rollback()
+            except Exception:
+                pass
+            logger.error(f"批量删除邮件记录失败: {str(e)}")
+            return 0
 
     def get_unread_count(self, email_id: int) -> int:
         """获取指定邮箱的未读邮件数量"""
@@ -821,9 +927,30 @@ class Database:
         """添加附件记录"""
         logger.debug(f"添加附件记录, 邮件ID: {mail_id}, 文件名: {filename}")
         try:
+            data = self._normalize_attachment_bytes(content)
+            safe_name = self._safe_filename(filename)
+            actual_size = int(size or len(data))
+
+            # 避免重复保存同名同大小附件
+            existing = self.conn.execute(
+                "SELECT id FROM attachments WHERE mail_id = ? AND filename = ? AND size = ?",
+                (mail_id, safe_name, actual_size)
+            ).fetchone()
+            if existing:
+                return existing['id']
+
+            ext = os.path.splitext(safe_name)[1]
+            saved_name = f"{mail_id}_{uuid.uuid4().hex}{ext}"
+            mail_dir = os.path.join(self.attachments_dir, str(mail_id))
+            os.makedirs(mail_dir, exist_ok=True)
+            file_path = os.path.join(mail_dir, saved_name)
+
+            with open(file_path, 'wb') as f:
+                f.write(data)
+
             cursor = self.conn.execute(
-                "INSERT INTO attachments (mail_id, filename, content_type, size, content) VALUES (?, ?, ?, ?, ?)",
-                (mail_id, filename, content_type, size, content)
+                "INSERT INTO attachments (mail_id, filename, content_type, size, file_path, content) VALUES (?, ?, ?, ?, ?, NULL)",
+                (mail_id, safe_name, content_type, actual_size, file_path)
             )
             attachment_id = cursor.lastrowid
 
@@ -844,7 +971,7 @@ class Database:
         logger.debug(f"获取邮件附件, 邮件ID: {mail_id}")
         try:
             cursor = self.conn.execute(
-                "SELECT id, filename, content_type, size, created_at FROM attachments WHERE mail_id = ?",
+                "SELECT id, filename, content_type, size, file_path, created_at FROM attachments WHERE mail_id = ?",
                 (mail_id,)
             )
             return cursor.fetchall()
@@ -903,12 +1030,13 @@ class Database:
             search_conditions.append("sender LIKE ?")
             params.append(f"%{query}%")
 
+        if search_in_recipient:
+            search_conditions.append("recipient LIKE ?")
+            params.append(f"%{query}%")
+
         if search_in_content:
             search_conditions.append("content LIKE ?")
             params.append(f"%{query}%")
-
-        # 收件人暂时用不到，因为数据库中没有专门的收件人字段
-        # 如果需要，可以从邮件内容中解析或在数据库中添加recipient字段
 
         # 如果没有任何搜索条件，直接返回空列表
         if not search_conditions:
@@ -1035,6 +1163,7 @@ class Database:
                         email_id=email_id,
                         subject=subject,
                         sender=sender,
+                        recipient=record.get("recipient"),
                         content=record.get("content", "(无内容)"),
                         received_time=record.get("received_time", datetime.now()),
                         folder=record.get("folder", "INBOX"),

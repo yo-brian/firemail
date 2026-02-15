@@ -1,4 +1,4 @@
-===== 2026-02-14 13:29:36.08 ===== 
+===== 2026-02-14 20:14:55.99 ===== 
 Working dir: H:\code\firemail
 Python 3.12.10
 Defaulting to user installation because normal site-packages is not writeable
@@ -12,12 +12,12 @@ Requirement already satisfied: setuptools>=42.0.0 in c:\users\administrator\appd
 
 [notice] A new release of pip is available: 25.3 -> 26.0.1
 [notice] To update, run: C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\python.exe -m pip install --upgrade pip
-140 INFO: PyInstaller: 6.18.0, contrib hooks: 2026.0
-140 INFO: Python: 3.12.10
-157 INFO: Platform: Windows-10-10.0.19045-SP0
-157 INFO: Python environment: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0
-158 INFO: wrote H:\code\firemail\FireMailLauncher.spec
-161 INFO: Module search paths (PYTHONPATH):
+134 INFO: PyInstaller: 6.18.0, contrib hooks: 2026.0
+134 INFO: Python: 3.12.10
+152 INFO: Platform: Windows-10-10.0.19045-SP0
+152 INFO: Python environment: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0
+153 INFO: wrote H:\code\firemail\FireMailLauncher.spec
+156 INFO: Module search paths (PYTHONPATH):
 ['H:\\code\\firemail',
  'C:\\Program '
  'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\python312.zip',
@@ -31,18 +31,50 @@ Requirement already satisfied: setuptools>=42.0.0 in c:\users\administrator\appd
  'C:\\Program '
  'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\\Lib\\site-packages',
  'H:\\code\\firemail']
-604 INFO: checking Analysis
-700 INFO: checking PYZ
-726 INFO: checking PKG
-796 INFO: Bootloader C:\Users\Administrator\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
-796 INFO: checking EXE
-813 INFO: Rebuilding EXE-00.toc because FireMailLauncher.exe missing
-813 INFO: Building EXE from EXE-00.toc
-814 INFO: Copying bootloader EXE to H:\code\firemail\dist\FireMailLauncher.exe
-818 INFO: Copying icon to EXE
-822 INFO: Copying 0 resources to EXE
-822 INFO: Embedding manifest in EXE
-825 INFO: Appending PKG archive to EXE
-833 INFO: Fixing EXE headers
-961 INFO: Building EXE from EXE-00.toc completed successfully.
-999 INFO: Build complete! The results are available in: H:\code\firemail\dist
+640 INFO: checking Analysis
+654 INFO: Building because H:\code\firemail\launcher_gui.py changed
+654 INFO: Looking for Python shared library...
+654 INFO: Using Python shared library: C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\python312.dll
+654 INFO: Running Analysis Analysis-00.toc
+654 INFO: Target bytecode optimization level: 0
+654 INFO: Initializing module dependency graph...
+655 INFO: Initializing module graph hook caches...
+673 INFO: Analyzing modules for base_library.zip ...
+2034 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks'
+4057 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks'
+5170 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks'
+5741 INFO: Caching module dependency graph...
+5785 INFO: Analyzing H:\code\firemail\launcher_gui.py
+5839 INFO: Processing pre-find-module-path hook 'hook-tkinter.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks\\pre_find_module_path'
+5840 INFO: TclTkInfo: initializing cached Tcl/Tk info...
+6215 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks'
+6231 INFO: Processing module hooks (post-graph stage)...
+6236 INFO: Processing standard module hook 'hook-_tkinter.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks'
+6248 INFO: Performing binary vs. data reclassification (927 entries)
+6409 INFO: Looking for ctypes DLLs
+6416 INFO: Analyzing run-time hooks ...
+6417 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks'
+6420 INFO: Including run-time hook 'pyi_rth__tkinter.py' from 'C:\\Users\\Administrator\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python312\\site-packages\\PyInstaller\\hooks\\rthooks'
+6457 INFO: Creating base_library.zip...
+6481 INFO: Looking for dynamic libraries
+6676 INFO: Extra DLL search directories (AddDllDirectory): []
+6676 INFO: Extra DLL search directories (PATH): []
+7184 INFO: Warnings written to H:\code\firemail\build\FireMailLauncher\warn-FireMailLauncher.txt
+7204 INFO: Graph cross-reference written to H:\code\firemail\build\FireMailLauncher\xref-FireMailLauncher.html
+7246 INFO: checking PYZ
+7275 INFO: checking PKG
+7287 INFO: Building because toc changed
+7287 INFO: Building PKG (CArchive) FireMailLauncher.pkg
+11157 INFO: Building PKG (CArchive) FireMailLauncher.pkg completed successfully.
+11188 INFO: Bootloader C:\Users\Administrator\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+11188 INFO: checking EXE
+11200 INFO: Rebuilding EXE-00.toc because FireMailLauncher.exe missing
+11200 INFO: Building EXE from EXE-00.toc
+11200 INFO: Copying bootloader EXE to H:\code\firemail\dist\FireMailLauncher.exe
+11204 INFO: Copying icon to EXE
+11207 INFO: Copying 0 resources to EXE
+11207 INFO: Embedding manifest in EXE
+11211 INFO: Appending PKG archive to EXE
+11218 INFO: Fixing EXE headers
+11311 INFO: Building EXE from EXE-00.toc completed successfully.
+11340 INFO: Build complete! The results are available in: H:\code\firemail\dist

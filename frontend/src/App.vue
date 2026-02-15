@@ -62,6 +62,9 @@
           <el-menu-item index="/search">
             <el-icon><Search /></el-icon>邮件搜索
           </el-menu-item>
+          <el-menu-item index="/sent">
+            <el-icon><Promotion /></el-icon>已发送邮件
+          </el-menu-item>
           <el-menu-item index="/admin/users" v-if="isAdmin">
             <el-icon><UserFilled /></el-icon>用户管理
           </el-menu-item>
@@ -72,9 +75,7 @@
 
         <el-main>
           <router-view v-slot="{ Component }" v-if="!initializing">
-            <transition name="fade" mode="out-in">
-              <component :is="Component" />
-            </transition>
+            <component :is="Component" :key="$route.fullPath" />
           </router-view>
           <div v-else class="loading-container">
             <el-skeleton :rows="6" animated />
@@ -110,7 +111,7 @@
 import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import { useStore } from 'vuex'
 import { ElConfigProvider, ElMessage } from 'element-plus'
-import { ArrowDown, Search, Message, HomeFilled, InfoFilled, UserFilled, Setting } from '@element-plus/icons-vue'
+import { ArrowDown, Search, Message, HomeFilled, InfoFilled, UserFilled, Setting, Promotion } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import websocket from '@/services/websocket'
@@ -355,6 +356,17 @@ body {
   font-weight: 600;
   letter-spacing: -0.5px;
   position: relative;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-link:hover,
+.logo-link:focus,
+.logo-link:active {
+  text-decoration: none;
 }
 
 .app-header h1::after {

@@ -4,6 +4,7 @@ import re
 import subprocess
 import sys
 import threading
+import webbrowser
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.scrolledtext import ScrolledText
@@ -22,6 +23,8 @@ def get_runtime_root() -> str:
 
 
 ROOT_DIR = get_runtime_root()
+FRONTEND_PORT = os.environ.get("VITE_PORT", "3000")
+FRONTEND_URL = f"http://127.0.0.1:{FRONTEND_PORT}"
 
 
 class FiremailLauncher:
@@ -202,6 +205,14 @@ class FiremailLauncher:
         self.start_backend()
         self.start_frontend()
         self.status_text.set("前后端启动命令已发送")
+        self.root.after(5000, self._open_frontend_in_browser)
+
+    def _open_frontend_in_browser(self) -> None:
+        try:
+            webbrowser.open(FRONTEND_URL, new=2)
+            self._append_log("frontend", f"已在默认浏览器打开: {FRONTEND_URL}\n")
+        except Exception as exc:
+            self._append_log("frontend", f"自动打开浏览器失败: {exc}\n")
 
     def stop_backend(self) -> None:
         self._kill_tree(self.backend_proc)

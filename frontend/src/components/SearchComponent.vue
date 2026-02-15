@@ -12,7 +12,7 @@
           <el-button :icon="Search" @click="handleSearch">搜索</el-button>
         </template>
       </el-input>
-      
+
       <div class="search-options">
         <span class="search-in-label">搜索范围:</span>
         <el-checkbox-group v-model="searchIn">
@@ -28,47 +28,70 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { Search } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
+import logger from '@/utils/debugLogger';
 
 const router = useRouter();
+const route = useRoute();
 
-// 搜索状态
+const DEFAULT_SEARCH_IN = ['subject', 'sender', 'content'];
 const searchQuery = ref('');
-const searchIn = ref(['subject', 'sender', 'content']); // 默认勾选主题、发件人和正文
+const searchIn = ref([...DEFAULT_SEARCH_IN]);
 
-// 搜索处理
-const handleSearch = () => {
-  if (!searchQuery.value || searchQuery.value.trim() === '') {
+const normalizeQueryValue = (value) => {
+  if (Array.isArray(value)) {
+    return value[0] ?? '';
+  }
+  return typeof value === 'string' ? value : '';
+};
+
+const handleSearch = async () => {
+  const keyword = String(searchQuery.value || '').trim();
+  logger.debug('search-component', 'handleSearch:click', {
+    keyword,
+    fields: searchIn.value
+  });
+  if (!keyword) {
     ElMessage.warning('请输入搜索关键词');
     return;
   }
 
-  // 至少选择一个搜索范围
-  if (searchIn.value.length === 0) {
+  if (!Array.isArray(searchIn.value) || searchIn.value.length === 0) {
     ElMessage.warning('请至少选择一个搜索范围');
     return;
   }
 
-  // 导航到搜索结果页面
-  router.push({
-    name: 'search',
-    query: {
-      q: searchQuery.value,
-      in: searchIn.value.join(',')
+  try {
+    await router.push({
+      name: 'search',
+      query: {
+        q: keyword,
+        in: searchIn.value.join(',')
+      }
+    });
+  } catch (error) {
+    logger.error('search-component', 'handleSearch:navigation_error', { message: error?.message });
+    // Ignore duplicate navigation errors, surface others.
+    if (!String(error?.message || '').includes('Avoided redundant navigation')) {
+      ElMessage.error('跳转搜索页失败');
+      console.error('跳转搜索页失败:', error);
     }
-  });
+  }
 };
 
 onMounted(() => {
-  // 如果从URL中获取查询参数
-  const query = router.currentRoute.value.query;
-  if (query.q) {
-    searchQuery.value = query.q;
+  const queryText = normalizeQueryValue(route.query.q);
+  const inText = normalizeQueryValue(route.query.in);
+
+  if (queryText) {
+    searchQuery.value = queryText;
   }
-  if (query.in) {
-    searchIn.value = query.in.split(',');
+
+  if (inText) {
+    const parsed = inText.split(',').map((item) => item.trim()).filter(Boolean);
+    searchIn.value = parsed.length > 0 ? parsed : [...DEFAULT_SEARCH_IN];
   }
 });
 </script>
@@ -138,13 +161,13 @@ onMounted(() => {
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .search-in-label {
     margin-bottom: 10px;
   }
-  
+
   .search-container {
     padding: 16px;
   }
 }
-</style> 
+</style>

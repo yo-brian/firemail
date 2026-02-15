@@ -8,9 +8,10 @@ import argparse
 import datetime
 import time
 import uuid
+import base64
 import jwt
 from functools import wraps
-from flask import Flask, send_from_directory, jsonify, request, Response, make_response
+from flask import Flask, send_from_directory, send_file, jsonify, request, Response, make_response
 from flask_cors import CORS
 from database.db import Database
 from utils.email import EmailBatchProcessor, OutlookMailHandler
@@ -132,13 +133,15 @@ def token_required(f):
     def decorated(*args, **kwargs):
         token = None
 
-        # 从请求头或Cookie获取token
+        # 从请求头、Cookie 或 query 参数获取 token
         if 'Authorization' in request.headers:
             auth_header = request.headers['Authorization']
             if auth_header.startswith('Bearer '):
                 token = auth_header.split(" ")[1]
         elif request.cookies.get('token'):
             token = request.cookies.get('token')
+        elif request.args.get('token'):
+            token = request.args.get('token')
 
         if not token:
             return jsonify({'error': '未认证，请先登录'}), 401
@@ -794,8 +797,19 @@ def get_mail_attachments(current_user, mail_id):
         if not email_info:
             return jsonify({'error': '无权访问此邮件'}), 403
 
+        logger.info(
+            "attachment_debug start mail_id=%s email_id=%s has_attachments=%s graph_message_id=%s",
+            mail_id,
+            email_id,
+            mail_record.get('has_attachments'),
+            mail_record.get('graph_message_id'),
+        )
+
         # 获取附件列表
         attachments = db.get_attachments(mail_id)
+        logger.info("attachment_debug local_before_count mail_id=%s count=%s", mail_id, len(attachments or []))
+
+        logger.info("attachment_debug return mail_id=%s final_count=%s", mail_id, len(attachments or []))
         return jsonify([dict(attachment) for attachment in attachments])
     except Exception as e:
         logger.error(f"获取附件列表失败: {str(e)}")
@@ -906,7 +920,9 @@ def _normalize_attachments(value):
         normalized.append({
             'name': (item.get('name') or 'attachment.bin').strip(),
             'content_type': (item.get('content_type') or 'application/octet-stream').strip(),
-            'content_base64': content_base64
+            'content_base64': content_base64,
+            'is_inline': bool(item.get('is_inline', False)),
+            'content_id': (item.get('content_id') or '').strip()
         })
     return normalized
 
@@ -965,8 +981,9 @@ def reply_mail(current_user, mail_id):
             to_list=to_list,
             cc_list=cc_list,
             bcc_list=bcc_list,
-            attachments=attachments,
         )
+        if attachments:
+            OutlookMailHandler.add_draft_attachments(access_token, draft_id, attachments=attachments)
         OutlookMailHandler.send_draft_message(access_token, draft_id)
         return jsonify({'success': True, 'message': '回复发送成功', 'action': 'replyAll' if reply_all else 'reply'}), 200
     except Exception as e:
@@ -1042,47 +1059,90 @@ def batch_delete_mail_records(current_user):
         failed = []
         token_cache = {}
 
+        mail_records = {}
+        email_infos = {}
+        outlook_batches = {}  # email_id -> list[{mail_id, graph_message_id}]
+
         for mail_id in normalized_ids:
+            mail_record = db.get_mail_record_by_id(mail_id)
+            if not mail_record:
+                failed.append({'id': mail_id, 'error': '邮件不存在'})
+                continue
+            mail_records[mail_id] = mail_record
+
+            email_info = db.get_email_by_id(
+                mail_record['email_id'],
+                None if current_user['is_admin'] else current_user['id']
+            )
+            if not email_info:
+                failed.append({'id': mail_id, 'error': '无权限访问此邮件'})
+                continue
+
+            email_id = int(email_info['id'])
+            email_infos[email_id] = email_info
+            if email_info.get('mail_type') == 'outlook' and mail_record.get('graph_message_id'):
+                outlook_batches.setdefault(email_id, []).append({
+                    'mail_id': mail_id,
+                    'graph_message_id': str(mail_record.get('graph_message_id')).strip()
+                })
+
+        remote_failed_mail_ids = set()
+        for email_id, items in outlook_batches.items():
             try:
-                mail_record = db.get_mail_record_by_id(mail_id)
-                if not mail_record:
-                    failed.append({'id': mail_id, 'error': '邮件不存在'})
-                    continue
-
-                email_info = db.get_email_by_id(
-                    mail_record['email_id'],
-                    None if current_user['is_admin'] else current_user['id']
-                )
-                if not email_info:
-                    failed.append({'id': mail_id, 'error': '无权限访问此邮件'})
-                    continue
-
-                if email_info.get('mail_type') == 'outlook' and mail_record.get('graph_message_id'):
-                    email_id = int(email_info['id'])
-                    access_token = token_cache.get(email_id)
+                access_token = token_cache.get(email_id)
+                if not access_token:
+                    info = email_infos.get(email_id) or {}
+                    access_token = OutlookMailHandler.get_new_access_token(
+                        info.get('refresh_token'),
+                        info.get('client_id')
+                    )
                     if not access_token:
-                        access_token = OutlookMailHandler.get_new_access_token(
-                            email_info.get('refresh_token'),
-                            email_info.get('client_id')
-                        )
-                        if not access_token:
-                            failed.append({'id': mail_id, 'error': '获取Access Token失败'})
+                        for it in items:
+                            failed.append({'id': it['mail_id'], 'error': '获取Access Token失败'})
+                            remote_failed_mail_ids.add(it['mail_id'])
+                        continue
+                    token_cache[email_id] = access_token
+
+                graph_ids = [it['graph_message_id'] for it in items if it.get('graph_message_id')]
+                result = OutlookMailHandler.delete_messages_batch(access_token, graph_ids)
+                failed_by_message_id = {str(x.get('message_id')): x for x in (result.get('failed') or [])}
+                for it in items:
+                    msg_id = it['graph_message_id']
+                    if msg_id in failed_by_message_id:
+                        status = failed_by_message_id[msg_id].get('status')
+                        body = failed_by_message_id[msg_id].get('body')
+                        # 权限不足时允许仅删除本地记录，保持与单删逻辑一致
+                        if status in (401, 403):
                             continue
-                        token_cache[email_id] = access_token
-                    try:
-                        OutlookMailHandler.delete_message(access_token, mail_record['graph_message_id'])
-                    except requests.exceptions.HTTPError as http_err:
-                        status = getattr(http_err.response, 'status_code', None)
-                        if status not in (401, 403):
-                            raise
+                        failed.append({
+                            'id': it['mail_id'],
+                            'error': f'远端删除失败(HTTP {status})',
+                            'remote': body
+                        })
+                        remote_failed_mail_ids.add(it['mail_id'])
+            except Exception as remote_err:
+                for it in items:
+                    failed.append({'id': it['mail_id'], 'error': f'远端批量删除异常: {str(remote_err)}'})
+                    remote_failed_mail_ids.add(it['mail_id'])
 
-                if not db.delete_mail_record(mail_id):
+        local_deletable_ids = []
+        failed_id_set = {int(item.get('id')) for item in failed if str(item.get('id', '')).isdigit()}
+        for mail_id in normalized_ids:
+            if mail_id in remote_failed_mail_ids or mail_id in failed_id_set:
+                continue
+            local_deletable_ids.append(mail_id)
+
+        if local_deletable_ids:
+            deleted_count = db.delete_mail_records_batch(local_deletable_ids)
+            if deleted_count <= 0:
+                for mail_id in local_deletable_ids:
                     failed.append({'id': mail_id, 'error': '删除本地邮件记录失败'})
-                    continue
-
-                success_ids.append(mail_id)
-            except Exception as inner_e:
-                failed.append({'id': mail_id, 'error': str(inner_e)})
+            else:
+                for mail_id in local_deletable_ids:
+                    if db.get_mail_record_by_id(mail_id) is None:
+                        success_ids.append(mail_id)
+                    else:
+                        failed.append({'id': mail_id, 'error': '删除本地邮件记录失败'})
 
         return jsonify({
             'success': True,
@@ -1099,6 +1159,8 @@ def batch_delete_mail_records(current_user):
 def download_attachment(current_user, attachment_id):
     """下载附件"""
     try:
+        inline = str(request.args.get('inline', '')).strip().lower() in ('1', 'true', 'yes')
+
         # 获取附件信息
         attachment = db.get_attachment(attachment_id)
         if not attachment:
@@ -1118,11 +1180,36 @@ def download_attachment(current_user, attachment_id):
         # 准备下载响应
         filename = attachment['filename']
         content_type = attachment['content_type']
+        file_path = attachment['file_path'] if 'file_path' in attachment.keys() else None
+        if file_path:
+            attachments_root = os.path.abspath(getattr(db, 'attachments_dir', os.path.join(os.path.dirname(db.db_path), 'attachments')))
+            abs_path = os.path.abspath(file_path)
+            try:
+                is_in_root = os.path.commonpath([attachments_root, abs_path]) == attachments_root
+            except Exception:
+                is_in_root = False
+
+            if not is_in_root:
+                return jsonify({'error': '附件路径非法'}), 403
+
+            if os.path.exists(abs_path):
+                return send_file(
+                    abs_path,
+                    mimetype=content_type or 'application/octet-stream',
+                    as_attachment=not inline,
+                    download_name=filename or 'attachment.bin'
+                )
+
         content = attachment['content']
+        if content is None:
+            return jsonify({'error': '附件文件不存在'}), 404
+        if isinstance(content, memoryview):
+            content = content.tobytes()
 
         response = make_response(content)
         response.headers['Content-Type'] = content_type
-        response.headers['Content-Disposition'] = f'attachment; filename="{filename}"'
+        disposition = 'inline' if inline else 'attachment'
+        response.headers['Content-Disposition'] = f'{disposition}; filename="{filename}"'
 
         return response
     except Exception as e:

@@ -2,12 +2,10 @@
   <div class="search-view">
     <h1 class="page-title">搜索邮件</h1>
 
-    <!-- 搜索组件 -->
     <div class="search-bar">
       <SearchComponent />
     </div>
 
-    <!-- 搜索结果 -->
     <el-card class="search-results-card" v-loading="loading">
       <template #header>
         <div class="card-header">
@@ -19,12 +17,7 @@
       </template>
 
       <div v-if="searchResults.length > 0">
-        <el-table
-          :data="searchResults"
-          style="width: 100%"
-          stripe
-          border
-        >
+        <el-table :data="searchResults" style="width: 100%" stripe border>
           <el-table-column prop="subject" label="标题" min-width="250" show-overflow-tooltip>
             <template #default="scope">
               <a href="#" @click.prevent="viewMailContent(scope.row)" class="mail-link">
@@ -39,7 +32,7 @@
               </a>
             </template>
           </el-table-column>
-          <el-table-column prop="email_address" label="收件人" min-width="180" show-overflow-tooltip>
+          <el-table-column prop="email_address" label="收件邮箱" min-width="180" show-overflow-tooltip>
             <template #default="scope">
               <a href="#" @click.prevent="viewAllMailsByEmail(scope.row.email_id)" class="mail-link">
                 {{ scope.row.email_address }}
@@ -53,27 +46,23 @@
           </el-table-column>
           <el-table-column label="操作" width="120" fixed="right">
             <template #default="scope">
-              <el-button
-                type="primary"
-                size="small"
-                @click="viewMailContent(scope.row)"
-                :icon="Document"
-              >
+              <el-button type="primary" size="small" @click="viewMailContent(scope.row)" :icon="Document">
                 查看
               </el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
+
       <div v-else-if="hasSearched && !loading" class="no-results">
         <el-empty description="未找到符合条件的邮件" />
       </div>
+
       <div v-else-if="!hasSearched && !loading" class="search-tip">
         请在上方输入关键词开始搜索
       </div>
     </el-card>
 
-    <!-- 邮件内容查看对话框 -->
     <el-dialog
       v-model="mailContentDialogVisible"
       :title="selectedMail ? selectedMail.subject : '邮件内容'"
@@ -82,7 +71,6 @@
       class="mail-content-dialog"
     >
       <div v-if="selectedMail" class="mail-detail">
-        <!-- 使用EmailContentViewer组件 -->
         <EmailContentViewer
           :mail="selectedMail"
           :attachments="selectedMail.attachments || []"
@@ -94,32 +82,36 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { Document } from '@element-plus/icons-vue';
 import SearchComponent from '@/components/SearchComponent.vue';
-import api from '@/services/api';
-import DOMPurify from 'dompurify';
 import EmailContentViewer from '@/components/EmailContentViewer.vue';
+import api from '@/services/api';
+import logger from '@/utils/debugLogger';
 
-// 路由器和当前路由
 const router = useRouter();
 const route = useRoute();
 
-// 状态
 const loading = ref(false);
 const searchResults = ref([]);
 const hasSearched = ref(false);
 const mailContentDialogVisible = ref(false);
 const selectedMail = ref(null);
+const latestRequestId = ref(0);
 
-// 格式化日期
+const normalizeQueryValue = (value) => {
+  if (Array.isArray(value)) {
+    return value[0] ?? '';
+  }
+  return typeof value === 'string' ? value : '';
+};
+
 const formatDate = (dateString) => {
   if (!dateString) return '未知';
   const date = new Date(dateString);
-  if (isNaN(date.getTime())) return dateString;
-
+  if (Number.isNaN(date.getTime())) return String(dateString);
   return date.toLocaleString('zh-CN', {
     year: 'numeric',
     month: '2-digit',
@@ -130,125 +122,97 @@ const formatDate = (dateString) => {
   });
 };
 
-// 执行搜索
 const performSearch = async (query, searchInFields) => {
-  if (!query || !searchInFields || searchInFields.length === 0) {
+  logger.debug('search-view', 'performSearch:start', { query, fields: searchInFields });
+  if (!query || !Array.isArray(searchInFields) || searchInFields.length === 0) {
     return;
   }
 
+  const requestId = ++latestRequestId.value;
   loading.value = true;
   hasSearched.value = true;
 
   try {
     const response = await api.search(query, searchInFields);
-    searchResults.value = response.data.results || [];
+
+    if (requestId !== latestRequestId.value) {
+      return;
+    }
+
+    searchResults.value = response?.data?.results || [];
     if (searchResults.value.length === 0) {
       ElMessage.info('未找到符合条件的邮件');
     }
   } catch (error) {
+    logger.error('search-view', 'performSearch:error', { message: error?.message, query, fields: searchInFields });
+    if (requestId !== latestRequestId.value) {
+      return;
+    }
     console.error('搜索失败:', error);
-    ElMessage.error(error.response?.data?.error || '搜索失败，请稍后重试');
+    ElMessage.error(error?.response?.data?.error || '搜索失败，请稍后重试');
     searchResults.value = [];
   } finally {
-    loading.value = false;
+    logger.debug('search-view', 'performSearch:end', {
+      query,
+      resultCount: searchResults.value.length,
+      loading: loading.value
+    });
+    if (requestId === latestRequestId.value) {
+      loading.value = false;
+    }
   }
 };
 
-// 查看邮件内容
 const viewMailContent = (mail) => {
   selectedMail.value = mail;
   mailContentDialogVisible.value = true;
 };
 
-// 检查邮件内容是否为HTML格式
-const isHtmlContent = (mail) => {
-  if (!mail || !mail.content) return false;
-
-  // 兼容新旧格式
-  if (typeof mail.content === 'object') {
-    return mail.content.has_html === true || mail.content.content_type === 'text/html';
+const searchBySender = async (sender) => {
+  try {
+    await router.push({
+      name: 'search',
+      query: { q: sender, in: 'sender' }
+    });
+  } catch (error) {
+    console.error('按发件人搜索跳转失败:', error);
   }
-
-  // 旧格式，检查内容是否包含HTML标签
-  const content = String(mail.content);
-  return content.includes('<html') || content.includes('<body') ||
-         content.includes('<div') || content.includes('<p>') ||
-         content.includes('<table') || content.includes('<img');
-}
-
-// 获取邮件内容
-const getMailContent = (mail) => {
-  if (!mail) return '';
-
-  // 兼容新旧格式
-  if (typeof mail.content === 'object' && mail.content !== null) {
-    return mail.content.content || '';
-  }
-
-  return mail.content || '';
-}
-
-// 净化HTML内容，防止XSS攻击
-const sanitizeHtml = (html) => {
-  if (!html) return '';
-  return DOMPurify.sanitize(html, {
-    ALLOWED_TAGS: [
-      'a', 'b', 'br', 'div', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-      'i', 'img', 'li', 'ol', 'p', 'span', 'strong', 'table', 'tbody',
-      'td', 'th', 'thead', 'tr', 'u', 'ul', 'font', 'blockquote', 'hr',
-      'pre', 'code', 'col', 'colgroup', 'section', 'header', 'footer',
-      'nav', 'article', 'aside', 'figure', 'figcaption', 'address', 'main',
-      'caption', 'center', 'cite', 'dd', 'dl', 'dt', 'mark', 's', 'small',
-      'strike', 'sub', 'sup'
-    ],
-    ALLOWED_ATTR: [
-      'href', 'target', 'src', 'alt', 'style', 'class', 'id', 'width', 'height',
-      'align', 'valign', 'bgcolor', 'border', 'cellpadding', 'cellspacing',
-      'color', 'colspan', 'dir', 'face', 'frame', 'frameborder', 'headers',
-      'hspace', 'lang', 'marginheight', 'marginwidth', 'nowrap', 'rel',
-      'rev', 'rowspan', 'scrolling', 'shape', 'span', 'summary', 'title',
-      'usemap', 'vspace', 'start', 'type', 'value', 'size', 'data-*'
-    ]
-  });
 };
 
-// 按发件人搜索
-const searchBySender = (sender) => {
-  router.push({
-    name: 'search',
-    query: {
-      q: sender,
-      in: 'sender'
+const viewAllMailsByEmail = async (emailId) => {
+  try {
+    await router.push({
+      name: 'email-detail',
+      params: { id: emailId }
+    });
+  } catch (error) {
+    console.error('跳转邮箱详情失败:', error);
+  }
+};
+
+watch(
+  () => route.query,
+  (newQuery) => {
+    logger.debug('search-view', 'route-query:changed', { query: newQuery });
+    const q = normalizeQueryValue(newQuery.q).trim();
+    const inText = normalizeQueryValue(newQuery.in);
+
+    if (!q) {
+      loading.value = false;
+      searchResults.value = [];
+      hasSearched.value = false;
+      return;
     }
-  });
-};
 
-// 查看指定邮箱的所有邮件
-const viewAllMailsByEmail = (emailId) => {
-  router.push({
-    name: 'emailDetail',
-    params: { id: emailId }
-  });
-};
+    const fields = (inText || 'subject,sender,content')
+      .split(',')
+      .map((item) => item.trim())
+      .filter(Boolean);
 
-// 监听URL参数变化
-watch(() => route.query, (newQuery) => {
-  if (newQuery.q) {
-    const query = newQuery.q;
-    const searchInFields = newQuery.in ? newQuery.in.split(',') : ['subject', 'sender', 'content'];
-    performSearch(query, searchInFields);
-  }
-}, { immediate: true, deep: true });
-
-// 初始化
-onMounted(() => {
-  // 从URL获取查询参数
-  if (route.query.q) {
-    const query = route.query.q;
-    const searchInFields = route.query.in ? route.query.in.split(',') : ['subject', 'sender', 'content'];
-    performSearch(query, searchInFields);
-  }
-});
+    performSearch(q, fields.length > 0 ? fields : ['subject', 'sender', 'content']);
+  },
+  { immediate: true }
+);
 </script>
 
 <style scoped>
@@ -256,7 +220,7 @@ onMounted(() => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  min-height: calc(100vh - 180px); /* 确保内容区域足够高以推动页脚到底部 */
+  min-height: calc(100vh - 180px);
 }
 
 .page-title {
@@ -301,7 +265,8 @@ onMounted(() => {
   border-radius: 4px;
 }
 
-.no-results, .search-tip {
+.no-results,
+.search-tip {
   text-align: center;
   padding: 60px 0;
   color: #909399;
@@ -323,76 +288,6 @@ onMounted(() => {
   padding: 0 20px;
 }
 
-.mail-info {
-  margin-bottom: 20px;
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.info-item {
-  margin-bottom: 8px;
-  display: flex;
-}
-
-.label {
-  width: 80px;
-  color: #606266;
-  font-weight: bold;
-}
-
-.value {
-  flex: 1;
-  word-break: break-all;
-}
-
-.mail-content {
-  padding: 20px;
-  background-color: #f5f7fa;
-  border-radius: 8px;
-  min-height: 200px;
-  white-space: pre-wrap;
-  word-break: break-word;
-  line-height: 1.6;
-}
-
-pre {
-  font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  white-space: pre-wrap;
-  margin: 0;
-}
-
-.html-content {
-  max-width: 100%;
-  overflow-x: auto;
-  padding: 10px;
-  background-color: #f5f7fa;
-  border-radius: 8px;
-  line-height: 1.6;
-}
-
-.html-content img {
-  max-width: 100%;
-  height: auto;
-}
-
-.html-content a {
-  color: #409eff;
-  text-decoration: underline;
-}
-
-.html-content table {
-  border-collapse: collapse;
-  margin: 10px 0;
-}
-
-.html-content th,
-.html-content td {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-/* 表格样式优化 */
 :deep(.el-table) {
   border-radius: 8px;
   overflow: hidden;
