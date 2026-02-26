@@ -284,11 +284,11 @@ const apiMethods = {
   },
 
   sendMail: (emailId, payload) => {
-    return api.post(`/emails/${emailId}/send_mail`, payload);
+    return api.post(`/emails/${emailId}/send_mail`, payload, { timeout: 60000 });
   },
 
   replyMail: (mailId, payload) => {
-    return api.post(`/mail_records/${mailId}/reply`, payload);
+    return api.post(`/mail_records/${mailId}/reply`, payload, { timeout: 60000 });
   },
 
   deleteMailRecord: (mailId) => {
@@ -332,8 +332,8 @@ const apiMethods = {
       }
       return api.get('/mail_records/tags', { params }).then(res => res.data);
     },
-    sendMail: (emailId, payload) => api.post(`/emails/${emailId}/send_mail`, payload).then(res => res.data),
-    replyMail: (mailId, payload) => api.post(`/mail_records/${mailId}/reply`, payload).then(res => res.data),
+    sendMail: (emailId, payload) => api.post(`/emails/${emailId}/send_mail`, payload, { timeout: 60000 }).then(res => res.data),
+    replyMail: (mailId, payload) => api.post(`/mail_records/${mailId}/reply`, payload, { timeout: 60000 }).then(res => res.data),
     deleteMail: (mailId) => api.delete(`/mail_records/${mailId}`).then(res => res.data),
     batchDeleteMail: (mailIds) => api.post('/mail_records/batch_delete', { mail_ids: mailIds }).then(res => res.data),
     add: (emailData) => api.post('/emails', emailData),
