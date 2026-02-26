@@ -103,7 +103,32 @@ class MailProcessor:
                 has_attachments = bool(record.get("has_attachments", False))
                 incoming_attachments = record.get("full_attachments", []) if has_attachments else []
 
-                existing = db.get_mail_record_by_subject_and_sender(email_id, subject, sender)
+                graph_message_id = (record.get("graph_message_id") or "").strip()
+                received_time = record.get("received_time", datetime.now())
+
+                existing = None
+                # Prefer Graph message id for dedup; this avoids dropping multiple
+                # same-subject mails from the same sender on the same day.
+                if graph_message_id:
+                    try:
+                        existing = db.conn.execute(
+                            "SELECT * FROM mail_records WHERE email_id = ? AND graph_message_id = ?",
+                            (email_id, graph_message_id)
+                        ).fetchone()
+                    except Exception as query_error:
+                        logger.error(f"按graph_message_id查重失败: {str(query_error)}")
+
+                if not existing:
+                    existing = db.conn.execute(
+                        "SELECT * FROM mail_records WHERE email_id = ? AND subject = ? AND sender = ? AND received_time = ?",
+                        (
+                            email_id,
+                            subject,
+                            sender,
+                            db._normalize_to_utc_timestamp(received_time)
+                        )
+                    ).fetchone()
+
                 if not existing:
                     success, mail_id = db.add_mail_record(
                         email_id=email_id,
@@ -111,10 +136,10 @@ class MailProcessor:
                         sender=sender,
                         recipient=record.get("recipient"),
                         content=record.get("content", "(无内容)"),
-                        received_time=record.get("received_time", datetime.now()),
+                        received_time=received_time,
                         folder=record.get("folder", "INBOX"),
                         is_read=1 if record.get("is_read", True) else 0,
-                        graph_message_id=record.get("graph_message_id"),
+                        graph_message_id=graph_message_id,
                         has_attachments=1 if has_attachments else 0,
                     )
 
